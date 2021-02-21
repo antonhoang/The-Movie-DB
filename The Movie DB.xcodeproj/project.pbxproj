@@ -76,6 +76,7 @@
 		7A2B003C25E2E18200D253BD /* The Movie DB */ = {
 			isa = PBXGroup;
 			children = (
+				7A2B009C25E301DA00D253BD /* Services */,
 				7A2B007425E300AE00D253BD /* App */,
 				7A2B007325E300A200D253BD /* Coordinator */,
 				7A2B007225E3008F00D253BD /* View */,
@@ -143,6 +144,29 @@
 				7A2B009925E301B700D253BD /* DetailsViewModel.swift */,
 			);
 			path = DetailsModule;
+			sourceTree = "<group>";
+		};
+		7A2B009C25E301DA00D253BD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7A2B009E25E301F100D253BD /* Network */,
+				7A2B009D25E301E600D253BD /* Storage */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7A2B009D25E301E600D253BD /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		7A2B009E25E301F100D253BD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
