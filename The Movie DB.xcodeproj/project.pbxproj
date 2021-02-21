@@ -15,6 +15,10 @@
 		7A2B007725E300EA00D253BD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B007625E300EA00D253BD /* HomeViewModel.swift */; };
 		7A2B007B25E300F500D253BD /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B007A25E300F500D253BD /* HomeCoordinator.swift */; };
 		7A2B007E25E300FE00D253BD /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B007D25E300FE00D253BD /* HomeAssembler.swift */; };
+		7A2B008225E3016300D253BD /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B008125E3016300D253BD /* FavoriteController.swift */; };
+		7A2B008625E3016C00D253BD /* FavoriteAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B008525E3016C00D253BD /* FavoriteAssembler.swift */; };
+		7A2B008925E3017400D253BD /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B008825E3017400D253BD /* FavoriteCoordinator.swift */; };
+		7A2B008C25E3017B00D253BD /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B008B25E3017B00D253BD /* FavoriteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		7A2B007625E300EA00D253BD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7A2B007A25E300F500D253BD /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		7A2B007D25E300FE00D253BD /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
+		7A2B008125E3016300D253BD /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
+		7A2B008525E3016C00D253BD /* FavoriteAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAssembler.swift; sourceTree = "<group>"; };
+		7A2B008825E3017400D253BD /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
+		7A2B008B25E3017B00D253BD /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,7 @@
 		7A2B007225E3008F00D253BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7A2B008025E3012100D253BD /* FavoriteModule */,
 				7A2B007525E300CA00D253BD /* HomeModule */,
 			);
 			path = View;
@@ -103,6 +112,17 @@
 				7A2B007625E300EA00D253BD /* HomeViewModel.swift */,
 			);
 			path = HomeModule;
+			sourceTree = "<group>";
+		};
+		7A2B008025E3012100D253BD /* FavoriteModule */ = {
+			isa = PBXGroup;
+			children = (
+				7A2B008125E3016300D253BD /* FavoriteController.swift */,
+				7A2B008525E3016C00D253BD /* FavoriteAssembler.swift */,
+				7A2B008825E3017400D253BD /* FavoriteCoordinator.swift */,
+				7A2B008B25E3017B00D253BD /* FavoriteViewModel.swift */,
+			);
+			path = FavoriteModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,12 +194,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A2B008625E3016C00D253BD /* FavoriteAssembler.swift in Sources */,
 				7A2B004225E2E18200D253BD /* HomeController.swift in Sources */,
 				7A2B007E25E300FE00D253BD /* HomeAssembler.swift in Sources */,
 				7A2B003E25E2E18200D253BD /* AppDelegate.swift in Sources */,
 				7A2B007B25E300F500D253BD /* HomeCoordinator.swift in Sources */,
 				7A2B004025E2E18200D253BD /* SceneDelegate.swift in Sources */,
 				7A2B007725E300EA00D253BD /* HomeViewModel.swift in Sources */,
+				7A2B008225E3016300D253BD /* FavoriteController.swift in Sources */,
+				7A2B008C25E3017B00D253BD /* FavoriteViewModel.swift in Sources */,
+				7A2B008925E3017400D253BD /* FavoriteCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
