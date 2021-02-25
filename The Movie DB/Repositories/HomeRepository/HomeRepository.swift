@@ -14,12 +14,19 @@ protocol HomeRepositoryProtocol {
 final class HomeRepository: HomeRepositoryProtocol {
   
   let network: NetworkManagerProtocol
+  let storage: StorageManagerProtocol
   
-  init(network: NetworkManagerProtocol) {
+  init(network: NetworkManagerProtocol,
+       storage: StorageManagerProtocol) {
     self.network = network
+    self.storage = storage
   }
   
   func fetchMovies() {
     network.sendDataRequest()
+  }
+  
+  func fetchMovieFromDB() {
+    storage.fetchData()
   }
 }

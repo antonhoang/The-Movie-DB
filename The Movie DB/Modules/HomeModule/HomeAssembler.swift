@@ -12,7 +12,10 @@ final class HomeAssembler: AssemblerProtocol {
   
   func assembly() -> HomeController {
     let homeController = HomeController()
-    let homeViewModel = HomeViewModel()
+    let networkManager = NetworkManager()
+    let storageManager = StorageManager()
+    let horeRepository = HomeRepository(network: networkManager, storage: storageManager)
+    let homeViewModel = HomeViewModel(repository: horeRepository)
     homeController.viewModel = homeViewModel
     return homeController
   }
