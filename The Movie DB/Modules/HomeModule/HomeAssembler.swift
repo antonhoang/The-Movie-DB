@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+final class HomeAssembler: AssemblerProtocol {
+  
+  func assembly() -> HomeController {
+    return HomeController()
+  }
+}
