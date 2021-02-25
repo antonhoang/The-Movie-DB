@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-final class HomeCoordinator: CoordinatorProtocol {
+protocol HomeCoordinatorFlow {
+  func coordinateToDetails()
+}
+
+final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorFlow {
   
   let navController: UINavigationController
   
@@ -19,5 +23,9 @@ final class HomeCoordinator: CoordinatorProtocol {
   func start() {
     let homeVC = HomeAssembler().assembly()
     navController.pushViewController(homeVC, animated: false)
+  }
+  
+  func coordinateToDetails() {
+    
   }
 }

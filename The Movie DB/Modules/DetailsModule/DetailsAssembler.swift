@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+final class DetailsAssembler: AssemblerProtocol {
+  
+  func assembly() -> DetailsController {
+    return DetailsController()
+  }
+}

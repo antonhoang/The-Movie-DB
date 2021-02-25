@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import UIKit
+
+final class DetailsCoordinator: CoordinatorProtocol {
+  
+  let navController: UINavigationController
+  
+  init(navController: UINavigationController) {
+    self.navController = navController
+  }
+  
+  func start() {
+    let homeVC = DetailsAssembler().assembly()
+    navController.pushViewController(homeVC, animated: false)
+  }
+}
