@@ -11,6 +11,9 @@ import UIKit
 final class HomeAssembler: AssemblerProtocol {
   
   func assembly() -> HomeController {
-    return HomeController()
+    let homeController = HomeController()
+    let homeViewModel = HomeViewModel()
+    homeController.viewModel = homeViewModel
+    return homeController
   }
 }

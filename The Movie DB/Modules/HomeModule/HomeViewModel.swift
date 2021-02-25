@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol HomeViewModelProtocol { }
+
+final class HomeViewModel: HomeViewModelProtocol {
+  
+}

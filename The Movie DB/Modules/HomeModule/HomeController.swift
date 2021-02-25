@@ -10,8 +10,10 @@ import UIKit
 final class HomeController: UIViewController {
   
   var coordinator: HomeCoordinatorFlow?
+  var viewModel: HomeViewModelProtocol?
   
   fileprivate let cellID = Constants.CellIdentifiers.homeCellId.rawValue
+  fileprivate let screenTitle = Constants.ScreenTitles.home.rawValue
   
   fileprivate lazy var tableView: UITableView = {
     $0.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
@@ -38,7 +40,7 @@ final class HomeController: UIViewController {
   }
   
   fileprivate func setupUI() {
-    navigationItem.title = "Home"
+    navigationItem.title = screenTitle
     view.backgroundColor = .systemTeal
   }
 }

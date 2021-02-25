@@ -13,4 +13,10 @@ struct Constants {
     case homeCellId = "homeCellId"
   }
   
+  enum ScreenTitles: String, RawRepresentable {
+    case home = "Home"
+    case details = "Details"
+    case favorite = "Favorite"
+  }
+  
 }
