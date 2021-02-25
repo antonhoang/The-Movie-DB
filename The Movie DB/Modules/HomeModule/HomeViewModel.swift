@@ -7,8 +7,19 @@
 
 import Foundation
 
-protocol HomeViewModelProtocol { }
+protocol HomeViewModelProtocol {
+  func getMoviesList()
+}
 
 final class HomeViewModel: HomeViewModelProtocol {
   
+  let repository: HomeRepositoryProtocol
+  
+  init(repository: HomeRepositoryProtocol) {
+    self.repository = repository
+  }
+  
+  func getMoviesList() {
+    repository.fetchMovies()
+  }
 }
