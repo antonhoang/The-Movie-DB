@@ -11,13 +11,17 @@ import UIKit
 final class AppCoordinator: CoordinatorProtocol {
   
   let window: UIWindow
+  let navController: UINavigationController
   
-  init(window: UIWindow) {
+  init(window: UIWindow, navController: UINavigationController) {
     self.window = window
+    self.navController = navController
   }
   
   func start() {
-    window.rootViewController = UIViewController()
+    let homeCoordinator = HomeCoordinator(navController: navController)
+    coordinate(to: homeCoordinator)
+    window.rootViewController = homeCoordinator.navController
     window.makeKeyAndVisible()
   }
 }
