@@ -26,6 +26,7 @@
 		7A68A41E25E84334007B6B37 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A41D25E84333007B6B37 /* Coordinator.swift */; };
 		7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A42025E8438B007B6B37 /* AppCoordinator.swift */; };
 		7A68A42525E8457F007B6B37 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A42425E8457F007B6B37 /* Assembler.swift */; };
+		7A68A42C25E84B24007B6B37 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A42B25E84B24007B6B37 /* Constants.swift */; };
 		7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC40DBE25E392F400FD4E60 /* RequestItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		7A68A41D25E84333007B6B37 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7A68A42025E8438B007B6B37 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7A68A42425E8457F007B6B37 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		7A68A42B25E84B24007B6B37 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7AC40DBE25E392F400FD4E60 /* RequestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,7 @@
 		7A2B003C25E2E18200D253BD /* The Movie DB */ = {
 			isa = PBXGroup;
 			children = (
+				7A68A42A25E84B1A007B6B37 /* Helpers */,
 				7A68A42325E8456E007B6B37 /* DI */,
 				7A2B009C25E301DA00D253BD /* Model */,
 				7A2B007425E300AE00D253BD /* App */,
@@ -149,9 +152,9 @@
 		7A2B008E25E3019000D253BD /* DetailsModule */ = {
 			isa = PBXGroup;
 			children = (
-				7A2B008F25E301A100D253BD /* DetailsController.swift */,
 				7A2B009325E301A700D253BD /* DetailsAssembler.swift */,
 				7A2B009625E301AE00D253BD /* DetailsCoordinator.swift */,
+				7A2B008F25E301A100D253BD /* DetailsController.swift */,
 				7A2B009925E301B700D253BD /* DetailsViewModel.swift */,
 			);
 			path = DetailsModule;
@@ -187,6 +190,14 @@
 				7A68A42425E8457F007B6B37 /* Assembler.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		7A68A42A25E84B1A007B6B37 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7A68A42B25E84B24007B6B37 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A68A41E25E84334007B6B37 /* Coordinator.swift in Sources */,
+				7A68A42C25E84B24007B6B37 /* Constants.swift in Sources */,
 				7A2B008625E3016C00D253BD /* FavoriteAssembler.swift in Sources */,
 				7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */,
 				7A2B009425E301A700D253BD /* DetailsAssembler.swift in Sources */,

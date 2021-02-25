@@ -16,7 +16,7 @@ final class DetailsController: UIViewController {
   }
   
   fileprivate func setupUI() {
-    navigationItem.title = "Home"
-    view.backgroundColor = .systemTeal
+    navigationItem.title = "Details"
+    view.backgroundColor = .systemGreen
   }
 }

@@ -22,10 +22,12 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorFlow {
   
   func start() {
     let homeVC = HomeAssembler().assembly()
+    homeVC.coordinator = self 
     navController.pushViewController(homeVC, animated: false)
   }
   
   func coordinateToDetails() {
-    
+    let detailsCoordinator = DetailsCoordinator(navController: navController)
+    coordinate(to: detailsCoordinator)
   }
 }

@@ -18,6 +18,6 @@ final class DetailsCoordinator: CoordinatorProtocol {
   
   func start() {
     let homeVC = DetailsAssembler().assembly()
-    navController.pushViewController(homeVC, animated: false)
+    navController.pushViewController(homeVC, animated: true)
   }
 }
