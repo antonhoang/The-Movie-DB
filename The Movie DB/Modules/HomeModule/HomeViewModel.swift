@@ -17,6 +17,8 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   init(repository: HomeRepositoryProtocol) {
     self.repository = repository
+    
+    getMoviesList()
   }
   
   func getMoviesList() {

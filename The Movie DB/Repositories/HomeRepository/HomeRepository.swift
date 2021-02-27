@@ -23,7 +23,8 @@ final class HomeRepository: HomeRepositoryProtocol {
   }
   
   func fetchMovies() {
-    network.sendDataRequest()
+    network.testRequest()
+//    network.sendDataRequest()
   }
   
   func fetchMovieFromDB() {
