@@ -13,6 +13,9 @@ protocol NetworkManagerProtocol {
 }
 
 final class NetworkManager: NetworkManagerProtocol {
+  
+  fileprivate let requestTimeout: Double = 25.0
+  
   func sendDataRequest() {
     print(#function)
   }
@@ -33,22 +36,36 @@ final class NetworkManager: NetworkManagerProtocol {
     return nil
   }
   
+  func buildRequestWithURL(endPoint: EndPointType) -> URLRequest? {
+    if let url = constructURLFromEndpoints(endPoint: endPoint) {
+      var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: requestTimeout)
+      request.httpMethod = endPoint.httpMethod.rawValue
+      
+      if let headers = endPoint.headers {
+        if request.allHTTPHeaderFields == nil {
+          request.allHTTPHeaderFields = [:]
+        }
+        request.allHTTPHeaderFields?.merge(headers, uniquingKeysWith: { (_, new) in new })
+      }
+      return request
+    }
+    
+    return nil
+  }
+  
   func testRequest() {
     let reqItem = RequestItem.getLatestMovies
     
-    let s = constructURLFromEndpoints(endPoint: reqItem)
-    print("sss" , s)
-//    let timeout = 25.0
-//    if let url = URL(string: "https://api.themoviedb.org/3/movie/latest?api_key=a1e6469b9c841dbf821f4ef57f4d74f0&language=en-US") {
-//      let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
-//      let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//
-//        guard let data = data else { return }
-//        let json = try? JSONSerialization.jsonObject(with: data, options: [])
-//      }
-//
-//      task.resume()
-//    }
+    if let request = buildRequestWithURL(endPoint: reqItem) {
+      let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+        guard let data = data else { return }
+        let json = try? JSONSerialization.jsonObject(with: data, options: [])
+        print(json)
+      }
+      
+      task.resume()
+    }
   }
 }
 
