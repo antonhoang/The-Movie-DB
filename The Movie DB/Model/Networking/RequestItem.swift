@@ -45,17 +45,12 @@ extension RequestItem: EndPointType {
     }
   }
   
+  var headers: [String: String] {
+    switch self {
+    case .getLatestMovies:
+      return ["ContentType": "application/json"]
+    }
+  }
+  
 }
 
-protocol EndPointType {
-  var baseURL: String { get }
-  var path: String { get }
-  var httpMethod: HTTPMethod { get }
-}
-
-enum HTTPMethod {
-  case get
-  case post
-  case put
-  case delete
-}
