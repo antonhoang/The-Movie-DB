@@ -22,19 +22,24 @@ enum RequestItem {
 
 extension RequestItem: EndPointType {
   
-  
-  var baseURL: String {
+  var scheme: String {
     switch self {
     case .getLatestMovies:
-      let base = "https://api.themoviedb.org"
-      return base
+      return "https"
+    }
+  }
+  
+  var host: String {
+    switch self {
+    case .getLatestMovies:
+      return "api.themoviedb.org"
     }
   }
   
   var path: String {
     switch self {
     case .getLatestMovies:
-      return "3/movie/latest"
+      return "/3/movie/latest"
     }
   }
   
@@ -45,12 +50,15 @@ extension RequestItem: EndPointType {
     }
   }
   
-  var headers: [String: String] {
+  var headers: [String: String]? {
     switch self {
     case .getLatestMovies:
       return ["ContentType": "application/json"]
     }
   }
   
+  var queryParameters: [String : String]? {
+    return nil
+  }
 }
 

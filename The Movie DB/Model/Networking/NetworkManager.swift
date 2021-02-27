@@ -17,7 +17,29 @@ final class NetworkManager: NetworkManagerProtocol {
     print(#function)
   }
   
+  func constructURLFromEndpoints(endPoint: EndPointType) throws -> URL? {
+    var components = URLComponents()
+    components.scheme = endPoint.scheme
+    components.host = endPoint.host
+    components.path = endPoint.path
+    
+    if endPoint.queryParameters != nil {
+      components.queryItems = endPoint.queryParameters?.map { URLQueryItem(name: $0.key, value: $0.value) }
+    }
+    
+    if let url = components.url {
+      return url
+    }
+    fatalError()
+  }
+  
   func testRequest() {
+    
+    
+    let reqItem = RequestItem.getLatestMovies
+    
+    let s = try? constructURLFromEndpoints(endPoint: reqItem)
+    print("sss" , s)
     let timeout = 25.0
     if let url = URL(string: "https://api.themoviedb.org/3/movie/latest?api_key=a1e6469b9c841dbf821f4ef57f4d74f0&language=en-US") {
       let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeout)
