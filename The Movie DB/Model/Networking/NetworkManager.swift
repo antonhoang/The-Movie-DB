@@ -20,7 +20,7 @@ final class NetworkManager: NetworkManagerProtocol {
     print(#function)
   }
   
-  func constructURLFromEndpoints(endPoint: EndPointType) -> URL? {
+  fileprivate func constructURLFromEndpoints(endPoint: EndPointType) -> URL? {
     var components = URLComponents()
     components.scheme = endPoint.scheme
     components.host = endPoint.host
@@ -36,7 +36,7 @@ final class NetworkManager: NetworkManagerProtocol {
     return nil
   }
   
-  func buildRequestWithURL(endPoint: EndPointType) -> URLRequest? {
+  fileprivate func buildRequestWithURL(endPoint: EndPointType) -> URLRequest? {
     if let url = constructURLFromEndpoints(endPoint: endPoint) {
       var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: requestTimeout)
       request.httpMethod = endPoint.httpMethod.rawValue
