@@ -60,7 +60,7 @@ extension RequestItem: EndPointType {
   var queryParameters: [String : String]? {
     switch self {
     case .getLatestMovies:
-      return ["api_key" : "a1e6469b9c841dbf821f4ef57f4d74f0",
+      return ["api_key" : "\(Constants.Keys.api_key.rawValue)",
               "language" : "en-US"]
     }
   }
