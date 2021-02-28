@@ -26,8 +26,8 @@ final class NetworkManager: NetworkManagerProtocol {
     components.host = endPoint.host
     components.path = endPoint.path
     
-    if endPoint.queryParameters != nil {
-      components.queryItems = endPoint.queryParameters?.map { URLQueryItem(name: $0.key, value: $0.value) }
+    if let queryParmaeters = endPoint.queryParameters {
+      components.queryItems = queryParmaeters.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
     
     if let url = components.url {
