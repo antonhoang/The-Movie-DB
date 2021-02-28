@@ -9,16 +9,11 @@ import Foundation
 
 //struct RequestItem {
 //  // "6bc047b88f669d1fb86574f06381005d93d3517a" REQUEST TOKEN
-//  let API_KEY = "a1e6469b9c841dbf821f4ef57f4d74f0" // v3 auth value // key - api_key
-//
-//  let TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMWU2NDY5YjljODQxZGJmODIxZjRlZjU3ZjRkNzRmMCIsInN1YiI6IjYwMzM1OGY5OWFmMTcxMDAzZjQ1YjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.H-f-0iZNchiOoPmJc42k5p7vszMqsvOqd9K-6p1JiL0" //  Bearer token v4 auth
-//}
+
 
 enum RequestItem {
   case getLatestMovies
 }
-
-//https://api.themoviedb.org/3/movie/550?api_key=a1e6469b9c841dbf821f4ef57f4d74f0
 
 extension RequestItem: EndPointType {
   
@@ -53,22 +48,15 @@ extension RequestItem: EndPointType {
   var headers: [String: String]? {
     switch self {
     case .getLatestMovies:
-      return ["ContentType": "application/json"]
+      return ["Authorization" : "Bearer \(Constants.APICreditials.bearer.rawValue)"]
     }
   }
   
   var queryParameters: [String : String]? {
     switch self {
     case .getLatestMovies:
-      return ["api_key" : "\(Constants.Keys.api_key.rawValue)",
+      return ["api_key" : "\(Constants.APICreditials.api_key.rawValue)",
               "language" : "en-US"]
-    }
-  }
-  
-  var authorizationType: AuthorizationType {
-    switch self {
-    case .getLatestMovies:
-      return .apikey
     }
   }
 }

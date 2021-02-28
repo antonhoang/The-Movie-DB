@@ -26,8 +26,8 @@ final class NetworkManager: NetworkManagerProtocol {
     components.host = endPoint.host
     components.path = endPoint.path
     
-    if let queryParmaeters = endPoint.queryParameters {
-      components.queryItems = queryParmaeters.map { URLQueryItem(name: $0.key, value: $0.value) }
+    if let queryParameters = endPoint.queryParameters {
+      components.queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
     
     if let url = components.url {
@@ -40,13 +40,14 @@ final class NetworkManager: NetworkManagerProtocol {
     if let url = constructURLFromEndpoints(endPoint: endPoint) {
       var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: requestTimeout)
       request.httpMethod = endPoint.httpMethod.rawValue
-
+      
       if let headers = endPoint.headers {
         if request.allHTTPHeaderFields == nil {
           request.allHTTPHeaderFields = [:]
         }
         request.allHTTPHeaderFields?.merge(headers, uniquingKeysWith: { (_, new) in new })
       }
+    
       return request
     }
     
