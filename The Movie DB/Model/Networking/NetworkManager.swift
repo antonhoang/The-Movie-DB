@@ -8,15 +8,14 @@
 import Foundation
 
 protocol NetworkManagerProtocol {
-  func sendDataRequest(endPoint: EndPointType)
-  func sendDataRequestTest<T: Codable>(endPoint: EndPointType, response: T.Type)
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type)
 }
 
 final class NetworkManager: NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
   
-  func sendDataRequestTest<T: Codable>(endPoint: EndPointType, response: T.Type) {
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type) {
     if let request = buildRequestWithURL(endPoint: endPoint) {
       let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         
@@ -24,25 +23,6 @@ final class NetworkManager: NetworkManagerProtocol {
         let decoder = JSONDecoder()
         do {
           let json = try decoder.decode(T.self, from: data)
-          //        let json = try? JSONSerialization.jsonObject(with: data, options: [])
-          print(json)
-        } catch let error {
-          print(error)
-        }
-      }
-      
-      task.resume()
-    }
-  }
-  
-  func sendDataRequest(endPoint: EndPointType) {
-    if let request = buildRequestWithURL(endPoint: endPoint) {
-      let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-        guard let data = data else { return }
-        let decoder = JSONDecoder()
-        do {
-          let json = try decoder.decode(ImagesData.self, from: data)
           //        let json = try? JSONSerialization.jsonObject(with: data, options: [])
           print(json)
         } catch let error {

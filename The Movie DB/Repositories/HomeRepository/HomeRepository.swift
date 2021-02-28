@@ -29,34 +29,32 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   func fetchImageConfiguration() {
     let endPoint = RequestItem.getImageConfiguration
-    
-    network.sendDataRequestTest(endPoint: endPoint, response: ImagesData.self) 
-//    network.sendDataRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
   }
   
   func fetchLatestMovies() {
     let endPoint = RequestItem.getLatestMovies
-    network.sendDataRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
   }
   
   func fetchNowPlayingMovies() {
     let endPoint = RequestItem.getNowPlayingMovies
-    network.sendDataRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
   }
   
   func fetchPopularMovies() {
     let endPoint = RequestItem.getPopularMovies
-    network.sendDataRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
   }
   
   func fetchTopRatedMovies() {
     let endPoint = RequestItem.getTopRatedMovies
-    network.sendDataRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
   }
   
   func fetchUpcomingMovies() {
     let endPoint = RequestItem.getUpcomingMovies
-    network.sendDataRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
   }
   
   func fetchMovieFromDB() {

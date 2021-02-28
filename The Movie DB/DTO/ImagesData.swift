@@ -45,7 +45,10 @@ struct Images: Codable {
       result[logoSize.size] = logoSize
       return result
     }
-    w154 = dict[LogoSizes.w154.rawValue]?.size
+    
+    if let logoW154 = dict[LogoSizes.w154.rawValue]?.size {
+      w154 = logoW154
+    }
   }
 }
 
