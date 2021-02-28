@@ -21,7 +21,7 @@ final class AppCoordinator: CoordinatorProtocol {
   func start() {
     let homeCoordinator = HomeCoordinator(navController: navController)
     coordinate(to: homeCoordinator)
-    window.rootViewController = homeCoordinator.navController
+    window.rootViewController = navController
     window.makeKeyAndVisible()
   }
 }
