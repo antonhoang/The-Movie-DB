@@ -40,7 +40,7 @@ final class NetworkManager: NetworkManagerProtocol {
     if let url = constructURLFromEndpoints(endPoint: endPoint) {
       var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: requestTimeout)
       request.httpMethod = endPoint.httpMethod.rawValue
-      
+
       if let headers = endPoint.headers {
         if request.allHTTPHeaderFields == nil {
           request.allHTTPHeaderFields = [:]

@@ -14,4 +14,7 @@ protocol EndPointType {
   var httpMethod: HTTPMethod { get }
   var headers: [String: String]? { get }
   var queryParameters: [String: String]? { get }
+  var authorizationType: AuthorizationType { get }
 }
+
+

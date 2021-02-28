@@ -64,5 +64,12 @@ extension RequestItem: EndPointType {
               "language" : "en-US"]
     }
   }
+  
+  var authorizationType: AuthorizationType {
+    switch self {
+    case .getLatestMovies:
+      return .apikey
+    }
+  }
 }
 
