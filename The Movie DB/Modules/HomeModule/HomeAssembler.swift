@@ -14,8 +14,8 @@ final class HomeAssembler: AssemblerProtocol {
     let homeController = HomeController()
     let networkManager = NetworkManager()
     let storageManager = StorageManager()
-    let horeRepository = HomeRepository(network: networkManager, storage: storageManager)
-    let homeViewModel = HomeViewModel(repository: horeRepository)
+    let homeRepository = HomeRepository(network: networkManager, storage: storageManager)
+    let homeViewModel = HomeViewModel(repository: homeRepository)
     homeController.viewModel = homeViewModel
     return homeController
   }

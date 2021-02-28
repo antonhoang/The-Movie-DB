@@ -8,17 +8,12 @@
 import Foundation
 
 protocol NetworkManagerProtocol {
-  func sendDataRequest()
-  func testRequest(endPoint: EndPointType)
+  func sendDataRequest(endPoint: EndPointType)
 }
 
 final class NetworkManager: NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
-  
-  func sendDataRequest() {
-    print(#function)
-  }
   
   fileprivate func constructURLFromEndpoints(endPoint: EndPointType) -> URL? {
     var components = URLComponents()
@@ -54,7 +49,7 @@ final class NetworkManager: NetworkManagerProtocol {
     return nil
   }
   
-  func testRequest(endPoint: EndPointType) {    
+  func sendDataRequest(endPoint: EndPointType) {    
     if let request = buildRequestWithURL(endPoint: endPoint) {
       let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         

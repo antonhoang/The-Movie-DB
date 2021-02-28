@@ -28,27 +28,27 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   func fetchLatestMovies() {
     let endPoint = RequestItem.getLatestMovies
-    network.testRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchNowPlayingMovies() {
     let endPoint = RequestItem.getNowPlayingMovies
-    network.testRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchPopularMovies() {
     let endPoint = RequestItem.getPopularMovies
-    network.testRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchTopRatedMovies() {
     let endPoint = RequestItem.getTopRatedMovies
-    network.testRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchUpcomingMovies() {
     let endPoint = RequestItem.getUpcomingMovies
-    network.testRequest(endPoint: endPoint)
+    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchMovieFromDB() {
