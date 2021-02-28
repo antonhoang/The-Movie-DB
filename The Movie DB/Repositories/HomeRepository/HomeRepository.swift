@@ -29,7 +29,9 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   func fetchImageConfiguration() {
     let endPoint = RequestItem.getImageConfiguration
-    network.sendDataRequest(endPoint: endPoint)
+    
+    network.sendDataRequestTest(endPoint: endPoint, response: ImagesData.self) 
+//    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchLatestMovies() {
