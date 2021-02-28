@@ -14,20 +14,21 @@ enum RequestItem {
   case getPopularMovies
   case getTopRatedMovies
   case getUpcomingMovies
+  case getDetailsMovie(movie_id: Int)
 }
 
 extension RequestItem: EndPointType {
   
   var scheme: String {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
       return "https"
     }
   }
   
   var host: String {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
       return "api.themoviedb.org"
     }
   }
@@ -44,26 +45,28 @@ extension RequestItem: EndPointType {
       return "/3/movie/top_rated"
     case .getUpcomingMovies:
       return "/3/movie/upcoming"
+    case .getDetailsMovie(let movie_id):
+      return "/3/movie/\(movie_id)"
     }
   }
   
   var httpMethod: HTTPMethod {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
       return .get
     }
   }
   
   var headers: [String: String]? {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
       return ["Authorization" : "Bearer \(Constants.APICreditials.bearer.rawValue)"]
     }
   }
   
   var queryParameters: [String : String]? {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
       return ["api_key" : "\(Constants.APICreditials.api_key.rawValue)",
               "language" : "en-US"]
     }
