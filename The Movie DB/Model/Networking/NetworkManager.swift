@@ -9,7 +9,7 @@ import Foundation
 
 protocol NetworkManagerProtocol {
   func sendDataRequest()
-  func testRequest()
+  func testRequest(endPoint: EndPointType)
 }
 
 final class NetworkManager: NetworkManagerProtocol {
@@ -54,10 +54,8 @@ final class NetworkManager: NetworkManagerProtocol {
     return nil
   }
   
-  func testRequest() {
-    let reqItem = RequestItem.getLatestMovies
-    
-    if let request = buildRequestWithURL(endPoint: reqItem) {
+  func testRequest(endPoint: EndPointType) {    
+    if let request = buildRequestWithURL(endPoint: endPoint) {
       let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         
         guard let data = data else { return }

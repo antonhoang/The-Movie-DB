@@ -32,7 +32,6 @@
 		7A68A43F25E85150007B6B37 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A43E25E85150007B6B37 /* StorageManager.swift */; };
 		7A952D4125EA8E6B00D4A2F6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D4025EA8E6B00D4A2F6 /* HTTPMethod.swift */; };
 		7A952D4425EA8E7D00D4A2F6 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D4325EA8E7D00D4A2F6 /* EndPointType.swift */; };
-		7A952D4725EBE0DC00D4A2F6 /* AuthorizationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D4625EBE0DC00D4A2F6 /* AuthorizationType.swift */; };
 		7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC40DBE25E392F400FD4E60 /* RequestItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +63,6 @@
 		7A68A43E25E85150007B6B37 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		7A952D4025EA8E6B00D4A2F6 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		7A952D4325EA8E7D00D4A2F6 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
-		7A952D4625EBE0DC00D4A2F6 /* AuthorizationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationType.swift; sourceTree = "<group>"; };
 		7AC40DBE25E392F400FD4E60 /* RequestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,7 +195,6 @@
 				7A952D4325EA8E7D00D4A2F6 /* EndPointType.swift */,
 				7A68A43B25E84FDB007B6B37 /* NetworkManager.swift */,
 				7A952D4025EA8E6B00D4A2F6 /* HTTPMethod.swift */,
-				7A952D4625EBE0DC00D4A2F6 /* AuthorizationType.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -322,7 +319,6 @@
 				7A2B007B25E300F500D253BD /* HomeCoordinator.swift in Sources */,
 				7A2B004025E2E18200D253BD /* SceneDelegate.swift in Sources */,
 				7A2B007725E300EA00D253BD /* HomeViewModel.swift in Sources */,
-				7A952D4725EBE0DC00D4A2F6 /* AuthorizationType.swift in Sources */,
 				7A2B008225E3016300D253BD /* FavoriteController.swift in Sources */,
 				7A2B009A25E301B700D253BD /* DetailsViewModel.swift in Sources */,
 				7A952D4125EA8E6B00D4A2F6 /* HTTPMethod.swift in Sources */,

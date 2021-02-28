@@ -8,7 +8,11 @@
 import Foundation
 
 protocol HomeRepositoryProtocol {
-  func fetchMovies()
+  func fetchLatestMovies()
+  func fetchNowPlayingMovies()
+  func fetchPopularMovies()
+  func fetchTopRatedMovies()
+  func fetchUpcomingMovies() 
 }
 
 final class HomeRepository: HomeRepositoryProtocol {
@@ -22,9 +26,29 @@ final class HomeRepository: HomeRepositoryProtocol {
     self.storage = storage
   }
   
-  func fetchMovies() {
-    network.testRequest()
-//    network.sendDataRequest()
+  func fetchLatestMovies() {
+    let endPoint = RequestItem.getLatestMovies
+    network.testRequest(endPoint: endPoint)
+  }
+  
+  func fetchNowPlayingMovies() {
+    let endPoint = RequestItem.getNowPlayingMovies
+    network.testRequest(endPoint: endPoint)
+  }
+  
+  func fetchPopularMovies() {
+    let endPoint = RequestItem.getPopularMovies
+    network.testRequest(endPoint: endPoint)
+  }
+  
+  func fetchTopRatedMovies() {
+    let endPoint = RequestItem.getTopRatedMovies
+    network.testRequest(endPoint: endPoint)
+  }
+  
+  func fetchUpcomingMovies() {
+    let endPoint = RequestItem.getUpcomingMovies
+    network.testRequest(endPoint: endPoint)
   }
   
   func fetchMovieFromDB() {
