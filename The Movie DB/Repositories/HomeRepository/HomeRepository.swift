@@ -12,7 +12,8 @@ protocol HomeRepositoryProtocol {
   func fetchNowPlayingMovies()
   func fetchPopularMovies()
   func fetchTopRatedMovies()
-  func fetchUpcomingMovies() 
+  func fetchUpcomingMovies()
+  func fetchImageConfiguration() 
 }
 
 final class HomeRepository: HomeRepositoryProtocol {
@@ -24,6 +25,11 @@ final class HomeRepository: HomeRepositoryProtocol {
        storage: StorageManagerProtocol) {
     self.network = network
     self.storage = storage
+  }
+  
+  func fetchImageConfiguration() {
+    let endPoint = RequestItem.getImageConfiguration
+    network.sendDataRequest(endPoint: endPoint)
   }
   
   func fetchLatestMovies() {

@@ -15,6 +15,20 @@ final class NetworkManager: NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
   
+  func sendDataRequest(endPoint: EndPointType) {
+    if let request = buildRequestWithURL(endPoint: endPoint) {
+      let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+        guard let data = data else { return }
+        let decoder = JSONDecoder()
+        let json = try? JSONSerialization.jsonObject(with: data, options: [])
+        print(json)
+      }
+      
+      task.resume()
+    }
+  }
+  
   fileprivate func constructURLFromEndpoints(endPoint: EndPointType) -> URL? {
     var components = URLComponents()
     components.scheme = endPoint.scheme
@@ -49,18 +63,7 @@ final class NetworkManager: NetworkManagerProtocol {
     return nil
   }
   
-  func sendDataRequest(endPoint: EndPointType) {    
-    if let request = buildRequestWithURL(endPoint: endPoint) {
-      let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-        guard let data = data else { return }
-        let json = try? JSONSerialization.jsonObject(with: data, options: [])
-        print(json)
-      }
-      
-      task.resume()
-    }
-  }
+
 }
 
 

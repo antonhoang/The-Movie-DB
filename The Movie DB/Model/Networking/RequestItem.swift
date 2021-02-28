@@ -8,6 +8,9 @@
 import Foundation
 
 enum RequestItem {
+  //MARK: - Images
+  case getImageConfiguration
+  
   //MARK: - Movies
   case getLatestMovies
   case getNowPlayingMovies
@@ -21,14 +24,14 @@ extension RequestItem: EndPointType {
   
   var scheme: String {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration:
       return "https"
     }
   }
   
   var host: String {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration:
       return "api.themoviedb.org"
     }
   }
@@ -47,26 +50,29 @@ extension RequestItem: EndPointType {
       return "/3/movie/upcoming"
     case .getDetailsMovie(let movie_id):
       return "/3/movie/\(movie_id)"
+      
+    case .getImageConfiguration:
+      return "/3/configuration"
     }
   }
   
   var httpMethod: HTTPMethod {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration:
       return .get
     }
   }
   
-  var headers: [String: String]? {
+  var headers: [String : String]? {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration:
       return ["Authorization" : "Bearer \(Constants.APICreditials.bearer.rawValue)"]
     }
   }
   
   var queryParameters: [String : String]? {
     switch self {
-    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie:
+    case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration:
       return ["api_key" : "\(Constants.APICreditials.api_key.rawValue)",
               "language" : "en-US"]
     }
