@@ -39,7 +39,7 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   func fetchNowPlayingMovies() {
     let endPoint = RequestItem.getNowPlayingMovies
-    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
+    network.sendDataRequest(endPoint: endPoint, response: NowPlayingDataMovie.self)
   }
   
   func fetchPopularMovies() {
