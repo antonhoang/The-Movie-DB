@@ -23,6 +23,7 @@ final class NetworkManager: NetworkManagerProtocol {
         let decoder = JSONDecoder()
         do {
           let json = try decoder.decode(T.self, from: data)
+          
           //        let json = try? JSONSerialization.jsonObject(with: data, options: [])
           print(json)
         } catch let error {
