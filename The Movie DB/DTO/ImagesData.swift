@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum LogoSizes: String {
+  case w154
+  case w300
+  case original
+}
+
 struct ImagesData: Codable {
   var images: Images?
 }
@@ -20,13 +26,7 @@ struct Images: Codable {
   var profile_sizes: [String]?
   
   var w154: String?
-  
-  enum LogoSizes: String {
-    case w154
-    case w300
-    case original
-  }
-  
+    
   init(from decoder: Decoder) throws {
     let value = try decoder.container(keyedBy: Images.CodingKeys.self)
     let logoSizes = try value.decode([String].self, forKey: .logo_sizes)

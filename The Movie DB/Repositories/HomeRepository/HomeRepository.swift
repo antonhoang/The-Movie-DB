@@ -27,13 +27,23 @@ final class HomeRepository: HomeRepositoryProtocol {
     self.storage = storage
   }
   
+  enum SecureType {
+    case base
+    case secure
+  }
+  
+  func setImage(with secureType: SecureType, size: LogoSizes) -> String {
+  
+    return ""
+  }
+  
   func fetchImageConfiguration() {
     let endPoint = RequestItem.getImageConfiguration
     network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some({ (ic) in
       
       do {
         if let imageConfig = try ic.get().images {
-          print(imageConfig)          
+          print(imageConfig)
         }
       } catch let error {
         print(error)
@@ -49,7 +59,13 @@ final class HomeRepository: HomeRepositoryProtocol {
   func fetchNowPlayingMovies() {
     let endPoint = RequestItem.getNowPlayingMovies    
     network.sendDataRequest(endPoint: endPoint, response: MovieData.self) { (movie) in
-      print("movie --->", movie)
+      
+      movie.map({ $0.results.map { mov in
+        if let posterPath = mov.poster_path {
+          let path = self.setImage(with: .secure, size: .w154) + posterPath
+          print(path)
+        }
+      }})
     }
   }
   
