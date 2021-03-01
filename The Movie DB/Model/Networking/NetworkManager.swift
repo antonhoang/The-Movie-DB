@@ -7,15 +7,17 @@
 
 import Foundation
 
+typealias Handler<T> = ((Result<T, Error>) -> Void)?
+
 protocol NetworkManagerProtocol {
-  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type)
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: Handler<T>)
 }
 
 final class NetworkManager: NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
   
-  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type) {
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: Handler<T>) {
     if let request = buildRequestWithURL(endPoint: endPoint) {
       let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         
@@ -23,10 +25,9 @@ final class NetworkManager: NetworkManagerProtocol {
         let decoder = JSONDecoder()
         do {
           let json = try decoder.decode(T.self, from: data)
-          
-          //        let json = try? JSONSerialization.jsonObject(with: data, options: [])
-          print(json)
+          handler?(.success(json))
         } catch let error {
+          handler?(.failure(error))
           print(error)
         }
       }

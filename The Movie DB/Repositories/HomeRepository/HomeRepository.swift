@@ -29,32 +29,36 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   func fetchImageConfiguration() {
     let endPoint = RequestItem.getImageConfiguration
-    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self)
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some({ (_) in
+        
+    }))
   }
   
   func fetchLatestMovies() {
     let endPoint = RequestItem.getLatestMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self)
+    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .none)
   }
   
   func fetchNowPlayingMovies() {
-    let endPoint = RequestItem.getNowPlayingMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self)
+    let endPoint = RequestItem.getNowPlayingMovies    
+    network.sendDataRequest(endPoint: endPoint, response: MovieData.self) { (movie) in
+      print("movie --->", movie)
+    }
   }
   
   func fetchPopularMovies() {
     let endPoint = RequestItem.getPopularMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self)
+    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: nil)
   }
   
   func fetchTopRatedMovies() {
     let endPoint = RequestItem.getTopRatedMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self)
+    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .none)
   }
   
   func fetchUpcomingMovies() {
     let endPoint = RequestItem.getUpcomingMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self)
+    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .none)
   }
   
   func fetchMovieFromDB() {
