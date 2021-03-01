@@ -29,8 +29,15 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   func fetchImageConfiguration() {
     let endPoint = RequestItem.getImageConfiguration
-    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some({ (_) in
-        
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some({ (ic) in
+      
+      do {
+        if let imageConfig = try ic.get().images {
+          print(imageConfig)          
+        }
+      } catch let error {
+        print(error)
+      }
     }))
   }
   

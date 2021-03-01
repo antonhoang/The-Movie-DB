@@ -23,10 +23,10 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   func getMoviesList() {
 //    repository.fetchLatestMovies()
-    repository.fetchNowPlayingMovies()
-//    repository.fetchPopularMovies()
-//    repository.fetchImageConfiguration()
-//    repository.fetchTopRatedMovies()
-//    repository.fetchUpcomingMovies()
+//    repository.fetchNowPlayingMovies()
+    repository.fetchPopularMovies()
+    repository.fetchImageConfiguration()
+    repository.fetchTopRatedMovies()
+    repository.fetchUpcomingMovies()
   }
 }
