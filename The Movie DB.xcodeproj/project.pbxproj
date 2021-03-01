@@ -33,7 +33,7 @@
 		7A952D4125EA8E6B00D4A2F6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D4025EA8E6B00D4A2F6 /* HTTPMethod.swift */; };
 		7A952D4425EA8E7D00D4A2F6 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D4325EA8E7D00D4A2F6 /* EndPointType.swift */; };
 		7A952D9925EC37D700D4A2F6 /* ImagesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D9825EC37D700D4A2F6 /* ImagesData.swift */; };
-		7A952D9E25ED983300D4A2F6 /* NowPlayingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D9D25ED983300D4A2F6 /* NowPlayingData.swift */; };
+		7A952D9E25ED983300D4A2F6 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952D9D25ED983300D4A2F6 /* MovieData.swift */; };
 		7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC40DBE25E392F400FD4E60 /* RequestItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,7 @@
 		7A952D4025EA8E6B00D4A2F6 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		7A952D4325EA8E7D00D4A2F6 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		7A952D9825EC37D700D4A2F6 /* ImagesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesData.swift; sourceTree = "<group>"; };
-		7A952D9D25ED983300D4A2F6 /* NowPlayingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingData.swift; sourceTree = "<group>"; };
+		7A952D9D25ED983300D4A2F6 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		7AC40DBE25E392F400FD4E60 /* RequestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				7A952D9825EC37D700D4A2F6 /* ImagesData.swift */,
-				7A952D9D25ED983300D4A2F6 /* NowPlayingData.swift */,
+				7A952D9D25ED983300D4A2F6 /* MovieData.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -317,7 +317,7 @@
 				7A68A43925E84F8A007B6B37 /* HomeRepository.swift in Sources */,
 				7A68A41E25E84334007B6B37 /* Coordinator.swift in Sources */,
 				7A68A42C25E84B24007B6B37 /* Constants.swift in Sources */,
-				7A952D9E25ED983300D4A2F6 /* NowPlayingData.swift in Sources */,
+				7A952D9E25ED983300D4A2F6 /* MovieData.swift in Sources */,
 				7A68A43C25E84FDB007B6B37 /* NetworkManager.swift in Sources */,
 				7A2B008625E3016C00D253BD /* FavoriteAssembler.swift in Sources */,
 				7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */,

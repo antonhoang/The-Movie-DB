@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct NowPlayingDataMovie: Codable {
-  var results: [NowPlayingMovie]
+struct MovieData: Codable {
+  var results: [Movie]
 }
 
-struct NowPlayingMovie: Codable {
+struct Movie: Codable {
   let id: Int
   let original_title: String
   let poster_path: String?
@@ -20,7 +20,7 @@ struct NowPlayingMovie: Codable {
   
   
   init(from decoder: Decoder) throws {
-    let value = try decoder.container(keyedBy: NowPlayingMovie.CodingKeys.self)
+    let value = try decoder.container(keyedBy: Movie.CodingKeys.self)
     id = try value.decode(Int.self, forKey: .id)
     original_title = try value.decode(String.self, forKey: .original_title)
     poster_path = try value.decodeIfPresent(String?.self, forKey: .poster_path) ?? ""
