@@ -44,10 +44,10 @@ final class HomeRepository: HomeRepositoryProtocol {
   func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler) {
        
     let endPoint = RequestItem.getImageConfiguration
-    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some({ (ic) in
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some { (imageData) in
       
       do {
-        guard let imageConfig = try ic.get().images else { return }
+        guard let imageConfig = try imageData.get().images else { return }
         
         switch secureType {
         case .base:
@@ -66,7 +66,7 @@ final class HomeRepository: HomeRepositoryProtocol {
       } catch let error {
         print(error)
       }
-    }))
+    })
   }
   
   func fetchLatestMovies() {
@@ -77,12 +77,12 @@ final class HomeRepository: HomeRepositoryProtocol {
   func fetchNowPlayingMovies(handler: MovieVOHandler) {
     let endPoint = RequestItem.getNowPlayingMovies    
     network.sendDataRequest(endPoint: endPoint, response: MovieData.self) {
-      (movieData) in
-      
+      [weak self] (movieData) in
+      guard let sSelf = self else { return }
       do {
         _ = try movieData.get().results.map { movie in
           if let posterPath = movie.poster_path {
-            self.fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
+            sSelf.fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
               imagePath in
               let imageUrlPath = imagePath + posterPath
               let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)

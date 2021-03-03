@@ -7,17 +7,17 @@
 
 import Foundation
 
-typealias Handler<T> = ((Result<T, Error>) -> Void)?
+typealias DataHandler<T> = ((Result<T, Error>) -> Void)?
 
 protocol NetworkManagerProtocol {
-  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: Handler<T>)
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>)
 }
 
 final class NetworkManager: NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
   
-  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: Handler<T>) {
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>) {
     if let request = buildRequestWithURL(endPoint: endPoint) {
       let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         

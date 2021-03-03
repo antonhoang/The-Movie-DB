@@ -24,7 +24,7 @@ final class HomeViewModel: HomeViewModelProtocol {
   func getMoviesList() {
 //    repository.fetchLatestMovies()
     repository.fetchNowPlayingMovies(handler: .some { item in
-      print($0)
+      print(item)
     })
 //    repository.fetchPopularMovies()
 //    repository.fetchImageConfiguration()
