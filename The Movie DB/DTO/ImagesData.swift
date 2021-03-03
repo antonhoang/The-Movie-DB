@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum LogoSizes: String {
-  case w154
-  case w300
-  case original
-}
-
 struct ImagesData: Codable {
   var images: Images?
 }
