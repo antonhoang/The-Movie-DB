@@ -18,11 +18,6 @@ enum SecureType {
   case secure
 }
 
-enum PosterType {
-  case small
-  case regular
-}
-
 typealias ImageHandler = ((String) -> Void)?
 typealias MovieVOHandler = ((MovieVO) -> Void)?
 
