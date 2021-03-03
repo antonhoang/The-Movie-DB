@@ -23,7 +23,6 @@ typealias MovieVOHandler = ((MovieVO) -> Void)?
 
 protocol HomeRepositoryProtocol {
   func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler)
-  func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler)
 }
 
 final class HomeRepository: HomeRepositoryProtocol {
@@ -45,7 +44,25 @@ final class HomeRepository: HomeRepositoryProtocol {
     })
   }
   
-  func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler) {
+  fileprivate func responseData(with response: Result<MovieData, Error>, handler: MovieVOHandler) {
+    do {
+      _ = try response.get().results.map { movie in
+        if let posterPath = movie.poster_path {
+          fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
+            imagePath in
+            let imageUrlPath = imagePath + posterPath
+            let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
+            handler?(movieVO)
+          })
+        }
+      }
+
+    } catch let error {
+      print(error)
+    }
+  }
+  
+  fileprivate func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler) {
     let endPoint = RequestItem.getImageConfiguration
     network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some { (imageData) in
       
@@ -70,24 +87,6 @@ final class HomeRepository: HomeRepositoryProtocol {
         print(error)
       }
     })
-  }
-  
-  fileprivate func responseData(with response: Result<MovieData, Error>, handler: MovieVOHandler) {
-    do {
-      _ = try response.get().results.map { movie in
-        if let posterPath = movie.poster_path {
-          fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
-            imagePath in
-            let imageUrlPath = imagePath + posterPath
-            let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
-            handler?(movieVO)
-          })
-        }
-      }
-
-    } catch let error {
-      print(error)
-    }
   }
   
   func fetchMovieFromDB() {
