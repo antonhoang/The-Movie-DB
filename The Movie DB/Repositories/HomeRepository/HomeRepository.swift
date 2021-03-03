@@ -22,11 +22,7 @@ typealias ImageHandler = ((String) -> Void)?
 typealias MovieVOHandler = ((MovieVO) -> Void)?
 
 protocol HomeRepositoryProtocol {
-  func fetchLatestMovies()
-  func fetchPopularMovies()
-  func fetchTopRatedMovies()
-  func fetchUpcomingMovies()
-  func fetchNowPlayingMovies(handler: MovieVOHandler)
+  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler)
   func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler)
 }
 
@@ -41,8 +37,15 @@ final class HomeRepository: HomeRepositoryProtocol {
     self.storage = storage
   }
   
+  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler) {
+    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .some {
+      [weak self] movieData in
+      guard let sSelf = self else { return }
+      sSelf.responseData(with: movieData, handler: handler)
+    })
+  }
+  
   func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler) {
-       
     let endPoint = RequestItem.getImageConfiguration
     network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some { (imageData) in
       
@@ -69,47 +72,22 @@ final class HomeRepository: HomeRepositoryProtocol {
     })
   }
   
-  func fetchLatestMovies() {
-    let endPoint = RequestItem.getLatestMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .none)
-  }
-  
-  func fetchNowPlayingMovies(handler: MovieVOHandler) {
-    let endPoint = RequestItem.getNowPlayingMovies    
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self) {
-      [weak self] (movieData) in
-      guard let sSelf = self else { return }
-      do {
-        _ = try movieData.get().results.map { movie in
-          if let posterPath = movie.poster_path {
-            sSelf.fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
-              imagePath in
-              let imageUrlPath = imagePath + posterPath
-              let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
-              handler?(movieVO)
-            })
-          }
+  fileprivate func responseData(with response: Result<MovieData, Error>, handler: MovieVOHandler) {
+    do {
+      _ = try response.get().results.map { movie in
+        if let posterPath = movie.poster_path {
+          fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
+            imagePath in
+            let imageUrlPath = imagePath + posterPath
+            let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
+            handler?(movieVO)
+          })
         }
-  
-      } catch let error {
-        print(error)
       }
+
+    } catch let error {
+      print(error)
     }
-  }
-  
-  func fetchPopularMovies() {
-    let endPoint = RequestItem.getPopularMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: nil)
-  }
-  
-  func fetchTopRatedMovies() {
-    let endPoint = RequestItem.getTopRatedMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .none)
-  }
-  
-  func fetchUpcomingMovies() {
-    let endPoint = RequestItem.getUpcomingMovies
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .none)
   }
   
   func fetchMovieFromDB() {
