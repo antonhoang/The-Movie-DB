@@ -30,40 +30,55 @@ final class HomeViewModel: HomeViewModelProtocol {
     fetchTopRatedMovies()
     fetchUpcomingMovies()
     fetchNowPlayingMovies()
+    
+    g.notify(queue: .main, work: DispatchWorkItem(block: {
+      print("FINISH")
+    }))
   }
   
+  let g = DispatchGroup()
+  
   func fetchLatestMovies() {
+    
     repository.fetchMovies(with: .getLatestMovies, handler: .some {
       item in
-      print(1)
+      print("-------------> 5", item)
     })
   }
   
   func fetchPopularMovies() {
+    g.enter()
     repository.fetchMovies(with: .getPopularMovies, handler: .some {
       item in
-      print(2)
+      print("-------------> 2", item)
+      self.g.leave()
     })
   }
   
   func fetchTopRatedMovies() {
+    g.enter()
     repository.fetchMovies(with: .getTopRatedMovies, handler: .some {
       item in
-      print(3)
+      print("-------------> 3", item)
+      self.g.leave()
     })
   }
   
   func fetchUpcomingMovies() {
+    g.enter()
     repository.fetchMovies(with: .getUpcomingMovies, handler: .some {
       item in
-      print(4)
+      print("-------------> 4", item)
+      self.g.leave()
     })
   }
   
   func fetchNowPlayingMovies() {
+    g.enter()
     repository.fetchMovies(with: .getNowPlayingMovies, handler: .some {
       item in
       print(5)
+      self.g.leave()
     })
   }
 }

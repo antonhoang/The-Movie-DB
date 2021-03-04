@@ -20,9 +20,10 @@ enum SecureType {
 
 typealias ImageHandler = ((String) -> Void)?
 typealias MovieVOHandler = ((MovieVO) -> Void)?
+typealias MovieVOHandlers = (([MovieVO]) -> Void)?
 
 protocol HomeRepositoryProtocol {
-  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler)
+  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandlers)
 }
 
 final class HomeRepository: HomeRepositoryProtocol {
@@ -36,13 +37,18 @@ final class HomeRepository: HomeRepositoryProtocol {
     self.storage = storage
   }
   
-  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler) {
-    
+  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandlers) {
     
     network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .some {
       [weak self] movieData in
       guard let sSelf = self else { return }
-      sSelf.responseData(with: movieData, handler: handler)
+      var ar = [MovieVO]()
+      sSelf.responseData(with: movieData, handler: .some {
+        movieVO in
+        ar.append(movieVO)
+      })
+      
+      handler?(ar)
     })
   }
   

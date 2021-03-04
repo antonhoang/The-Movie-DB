@@ -28,7 +28,7 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
   
   private let queue: OperationQueue = {
     $0.qualityOfService = .background
-    $0.maxConcurrentOperationCount = 4
+    $0.maxConcurrentOperationCount = 1
     
     return $0
   }(OperationQueue())
