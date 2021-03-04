@@ -37,6 +37,8 @@ final class HomeRepository: HomeRepositoryProtocol {
   }
   
   func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler) {
+    
+    
     network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .some {
       [weak self] movieData in
       guard let sSelf = self else { return }
@@ -46,8 +48,9 @@ final class HomeRepository: HomeRepositoryProtocol {
   
   fileprivate func responseData(with response: Result<MovieData, Error>, handler: MovieVOHandler) {
     do {
-      _ = try response.get().results.map { movie in
+       _ = try response.get().results.map { movie in
         if let posterPath = movie.poster_path {
+          
           fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
             imagePath in
             let imageUrlPath = imagePath + posterPath

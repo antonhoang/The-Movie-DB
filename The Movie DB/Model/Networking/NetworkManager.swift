@@ -13,13 +13,37 @@ protocol NetworkManagerProtocol {
   func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>)
 }
 
-final class NetworkManager: NetworkManagerProtocol {
+
+extension NetworkManager: URLSessionDelegate {
+  func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    
+    if let serverTrust = challenge.protectionSpace.serverTrust {
+      completionHandler(.useCredential, URLCredential(trust: serverTrust))
+    }
+  }
+}
+final class NetworkManager: NSObject, NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
   
+  private let queue: OperationQueue = {
+    $0.qualityOfService = .background
+    $0.maxConcurrentOperationCount = 4
+    
+    return $0
+  }(OperationQueue())
+  
+  private var session: URLSession?
+
   func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>) {
+    
+    let configuration = URLSessionConfiguration.default
+    configuration.allowsCellularAccess = true
+    
+    session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
+
     if let request = buildRequestWithURL(endPoint: endPoint) {
-      let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      let task = session?.dataTask(with: request) { (data, response, error) in
         
         guard let data = data else { return }
         let decoder = JSONDecoder()
@@ -32,7 +56,7 @@ final class NetworkManager: NetworkManagerProtocol {
         }
       }
       
-      task.resume()
+      task?.resume()
     }
   }
   

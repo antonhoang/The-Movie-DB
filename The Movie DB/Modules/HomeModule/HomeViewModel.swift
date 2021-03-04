@@ -21,41 +21,49 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   init(repository: HomeRepositoryProtocol) {
     self.repository = repository
+    fetchAllMovies()
+  }
+  
+
+  func fetchAllMovies() {
     fetchPopularMovies()
+    fetchTopRatedMovies()
+    fetchUpcomingMovies()
+    fetchNowPlayingMovies()
   }
   
   func fetchLatestMovies() {
     repository.fetchMovies(with: .getLatestMovies, handler: .some {
       item in
-      print(item)
+      print(1)
     })
   }
   
   func fetchPopularMovies() {
     repository.fetchMovies(with: .getPopularMovies, handler: .some {
       item in
-      print(item)
+      print(2)
     })
   }
   
   func fetchTopRatedMovies() {
     repository.fetchMovies(with: .getTopRatedMovies, handler: .some {
       item in
-      print(item)
+      print(3)
     })
   }
   
   func fetchUpcomingMovies() {
     repository.fetchMovies(with: .getUpcomingMovies, handler: .some {
       item in
-      print(item)
+      print(4)
     })
   }
   
   func fetchNowPlayingMovies() {
     repository.fetchMovies(with: .getNowPlayingMovies, handler: .some {
       item in
-      print(item)
+      print(5)
     })
   }
 }
