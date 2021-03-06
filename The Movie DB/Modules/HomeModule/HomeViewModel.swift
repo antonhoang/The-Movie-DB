@@ -15,6 +15,7 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   let repository: HomeRepositoryProtocol
   var items: Observable<[MovieVO]> = Observable([])
+  var allMovies: [MovieVO] = []
 
   init(repository: HomeRepositoryProtocol) {
     self.repository = repository
@@ -25,31 +26,30 @@ final class HomeViewModel: HomeViewModelProtocol {
     let group = DispatchGroup()
     group.enter()
     repository.fetchMovies(with: .getPopularMovies, handler: .some { [weak self] item in
-      self?.items.value.append(contentsOf: item)
+      self?.allMovies.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
     repository.fetchMovies(with: .getTopRatedMovies, handler: .some { [weak self] item in
-      self?.items.value.append(contentsOf: item)
+      self?.allMovies.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
     repository.fetchMovies(with: .getUpcomingMovies, handler: .some { [weak self] item in
-      self?.items.value.append(contentsOf: item)
+      self?.allMovies.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
     repository.fetchMovies(with: .getNowPlayingMovies, handler: .some { [weak self] item in
-      self?.items.value.append(contentsOf: item)
+      self?.allMovies.append(contentsOf: item)
       group.leave()
     })
     
     group.notify(queue: .main, work: DispatchWorkItem(qos: .background, flags: .barrier, block: { [weak self] in
-      
-      print("FINISH")
+      self?.items.value = self?.allMovies ?? []
     }))
   }
   
