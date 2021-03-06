@@ -11,6 +11,7 @@ typealias DataHandler<T> = ((Result<T, Error>) -> Void)?
 
 protocol NetworkManagerProtocol {
   func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>)
+  func invalidateSession()
 }
 
 
@@ -46,6 +47,10 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
   
   deinit {
     print(#function)
+    session?.invalidateAndCancel()
+  }
+  
+  func invalidateSession() {
     session?.invalidateAndCancel()
   }
   
