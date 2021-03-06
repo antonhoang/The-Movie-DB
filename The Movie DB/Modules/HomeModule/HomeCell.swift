@@ -23,18 +23,55 @@ final class HomeCell: UITableViewCell {
     return $0
   }(UILabel())
   
-  
-  fileprivate let titleLabel: UILabel = {
+  fileprivate lazy var voteAverage: UILabel = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.textColor = .white
     $0.numberOfLines = 0
-    $0.font = .preferredFont(forTextStyle: .headline)
+    $0.font = .boldSystemFont(ofSize: 15)
+    $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+    return $0
+  }(UILabel())
+  
+  fileprivate lazy var voteCount: UILabel = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.textColor = .white
+    $0.numberOfLines = 0
+    $0.font = .boldSystemFont(ofSize: 15)
+    $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+    return $0
+  }(UILabel())
+  
+  fileprivate let verticalInfoStackView: UIStackView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.axis = .vertical
+    $0.spacing = 4
+    $0.distribution = .fillEqually
+    $0.alignment = .trailing
+    return $0
+  }(UIStackView())
+  
+  fileprivate let horizontalInfoStackView: UIStackView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.axis = .horizontal
+    $0.distribution = .equalSpacing
+    $0.spacing = 2
+    $0.alignment = .top
+    $0.isLayoutMarginsRelativeArrangement = true
+    $0.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+    return $0
+  }(UIStackView())
+  
+  fileprivate lazy var titleLabel: UILabel = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.textColor = .white
+    $0.numberOfLines = 2
+    $0.preferredMaxLayoutWidth = self.bounds.size.width
+    $0.font = .boldSystemFont(ofSize: 18)
     return $0
   }(UILabel())
   
   fileprivate let infoStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .vertical
     $0.distribution = .fill
     $0.alignment = .top
     return $0
@@ -66,39 +103,51 @@ final class HomeCell: UITableViewCell {
       loadImage(imagePath: imagePath)
     }
     
-    DispatchQueue.main.async {
-      self.titleLabel.text = movieVO.original_title
-      self.overviewLabel.text = movieVO.overview
-    }
-
+    voteAverage.text = String(describing: movieVO.vote_average)
+    voteCount.text = String(describing: movieVO.vote_count)
+    titleLabel.text = movieVO.original_title
+    overviewLabel.text = movieVO.overview
   }
   
   fileprivate func setupImageView() {
     contentView.addSubview(movieImageView)
     NSLayoutConstraint.activate([
       movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-      movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
       movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
       movieImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2.8)
     ])
   }
   
   fileprivate func setupStackView() {
+    contentView.addSubview(horizontalInfoStackView)
     contentView.addSubview(infoStackView)
-    infoStackView.addArrangedSubview(titleLabel)
+    
+    horizontalInfoStackView.addArrangedSubview(titleLabel)
+    horizontalInfoStackView.addArrangedSubview(verticalInfoStackView)
+    
+    verticalInfoStackView.addArrangedSubview(voteAverage)
+    verticalInfoStackView.addArrangedSubview(voteCount)
+    
     infoStackView.addArrangedSubview(overviewLabel)
+    
     NSLayoutConstraint.activate([
-      infoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-      infoStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 8),
-      infoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4)
+      horizontalInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+      horizontalInfoStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 8),
+      horizontalInfoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      horizontalInfoStackView.heightAnchor.constraint(equalTo: movieImageView.heightAnchor, multiplier: 0.2),
+ 
+      infoStackView.topAnchor.constraint(equalTo: horizontalInfoStackView.bottomAnchor, constant: 4),
+      infoStackView.leadingAnchor.constraint(equalTo: horizontalInfoStackView.leadingAnchor),
+      infoStackView.trailingAnchor.constraint(equalTo: horizontalInfoStackView.trailingAnchor),
+      infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
     ])
+    
   }
   
   fileprivate func commonInit() {
     backgroundColor = .black
     setupImageView()
-    
     setupStackView()
   }
   
