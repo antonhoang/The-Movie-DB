@@ -22,6 +22,7 @@ extension NetworkManager: URLSessionDelegate {
     }
   }
 }
+
 final class NetworkManager: NSObject, NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
@@ -29,24 +30,27 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
   fileprivate let queue: OperationQueue = {
     $0.qualityOfService = .background
     $0.maxConcurrentOperationCount = 1
-    
     return $0
   }(OperationQueue())
   
   fileprivate var session: URLSession?
   
-  deinit {
-    print(#function)
-    session?.invalidateAndCancel()
-  }
-
-  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>) {
+  override init() {
+    super.init()
     
     let configuration = URLSessionConfiguration.default
     configuration.allowsCellularAccess = true
     
     session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
-
+  }
+  
+  deinit {
+    print(#function)
+    session?.invalidateAndCancel()
+  }
+  
+  func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>) {
+    
     if let request = buildRequestWithURL(endPoint: endPoint) {
       let task = session?.dataTask(with: request) { (data, response, error) in
         
