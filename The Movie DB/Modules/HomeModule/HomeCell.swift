@@ -10,7 +10,6 @@ import UIKit
 final class HomeCell: UITableViewCell {
   
   fileprivate let imageMovie: UIImageView = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFit
     return $0
   }(UIImageView())
@@ -29,8 +28,38 @@ final class HomeCell: UITableViewCell {
     imageMovie.image = nil // or placeholder
   }
   
+  func configureCell(movieVO: MovieVO) {
+    if let imagePath = movieVO.imageUrlPath {
+      loadImage(imagePath: imagePath)
+    }
+  }
+  
   fileprivate func commonInit() {
     contentView.addSubview(imageMovie)
+    imageMovie.anchor(top: contentView.topAnchor,
+                      leading: contentView.leadingAnchor,
+                      bottom: contentView.bottomAnchor,
+                      trailing: nil)
+  }
+  
+  func loadImage(imagePath: String) {
+    guard let imageURL = URL(string: imagePath) else { return }
+    var data: Data?
+    let queue = DispatchQueue.global(qos: .utility)
     
+    let workItem = DispatchWorkItem {
+      do {
+        data = try Data(contentsOf: imageURL)
+      } catch let error {
+        print(error)
+      }
+    }
+    
+    queue.async(execute: workItem)
+    workItem.notify(queue: .main) { [weak self] in
+      if let imageData = data {
+        self?.imageMovie.image = UIImage(data: imageData)
+      }
+    }
   }
 }

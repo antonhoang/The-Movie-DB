@@ -57,27 +57,6 @@ final class HomeViewModel: HomeViewModelProtocol {
     }))
   }
   
-  func loadImage(imageURL: URL) {
-    
-    var data: Data?
-    let queue = DispatchQueue.global(qos: .utility)
-    
-    let workItem = DispatchWorkItem {
-      do {
-        data = try Data(contentsOf: imageURL)
-      } catch let error {
-        print(error)
-      }
-    }
-    
-    queue.async(execute: workItem)
-    workItem.notify(queue: .main) {
-      if let imageData = data {
-        
-      }
-    }
-  }
-  
   func fetchLatestMovies() {
     
     repository.fetchMovies(with: .getLatestMovies, handler: .some {

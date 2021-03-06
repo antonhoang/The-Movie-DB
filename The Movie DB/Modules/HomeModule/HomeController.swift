@@ -17,7 +17,7 @@ final class HomeController: UIViewController {
   
   fileprivate lazy var tableView: UITableView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+    $0.register(HomeCell.self, forCellReuseIdentifier: cellID)
     $0.delegate = self
     $0.dataSource = self
     return $0
@@ -51,7 +51,9 @@ extension HomeController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? HomeCell else {
+      assert(false)
+    }
     cell.textLabel?.text = "\(indexPath.row)"
     return cell
   }
