@@ -17,9 +17,9 @@ final class HomeCell: UITableViewCell {
   
   fileprivate let overviewLabel: UILabel = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.textColor = .white
+    $0.textColor = .lightText
     $0.numberOfLines = 0
-    $0.font = .preferredFont(forTextStyle: .body)
+    $0.font = .systemFont(ofSize: 14, weight: .medium)
     return $0
   }(UILabel())
   
@@ -27,23 +27,14 @@ final class HomeCell: UITableViewCell {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.textColor = .white
     $0.numberOfLines = 0
-    $0.font = .boldSystemFont(ofSize: 15)
-    $0.setContentCompressionResistancePriority(.required, for: .horizontal)
-    return $0
-  }(UILabel())
-  
-  fileprivate lazy var voteCount: UILabel = {
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.textColor = .white
-    $0.numberOfLines = 0
-    $0.font = .boldSystemFont(ofSize: 15)
+    $0.font = .monospacedDigitSystemFont(ofSize: 18, weight: .heavy)
     $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     return $0
   }(UILabel())
   
   fileprivate let verticalInfoStackView: UIStackView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.axis = .vertical
+    $0.axis = .horizontal
     $0.spacing = 4
     $0.distribution = .fillEqually
     $0.alignment = .trailing
@@ -66,7 +57,7 @@ final class HomeCell: UITableViewCell {
     $0.textColor = .white
     $0.numberOfLines = 2
     $0.preferredMaxLayoutWidth = self.bounds.size.width
-    $0.font = .boldSystemFont(ofSize: 18)
+    $0.font = .boldSystemFont(ofSize: 20)
     return $0
   }(UILabel())
   
@@ -106,9 +97,18 @@ final class HomeCell: UITableViewCell {
     }
     
     voteAverage.text = String(describing: movieVO.vote_average)
-    voteCount.text = String(describing: movieVO.vote_count)
     titleLabel.text = movieVO.original_title
     overviewLabel.text = movieVO.overview
+    
+    if movieVO.vote_average >= 7 {
+      voteAverage.textColor = .systemGreen
+    } else if movieVO.vote_average >= 5 {
+      voteAverage.textColor = .yellow
+    } else if movieVO.vote_average >= 3 {
+      voteAverage.textColor = .systemOrange
+    } else if movieVO.vote_average < 3 {
+      voteAverage.textColor = .systemRed
+    }
   }
   
   fileprivate func setupImageView() {
@@ -129,17 +129,16 @@ final class HomeCell: UITableViewCell {
     horizontalInfoStackView.addArrangedSubview(verticalInfoStackView)
     
     verticalInfoStackView.addArrangedSubview(voteAverage)
-    verticalInfoStackView.addArrangedSubview(voteCount)
     
     infoStackView.addArrangedSubview(overviewLabel)
     
     NSLayoutConstraint.activate([
-      horizontalInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+      horizontalInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
       horizontalInfoStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 5),
       horizontalInfoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       horizontalInfoStackView.heightAnchor.constraint(equalTo: movieImageView.heightAnchor, multiplier: 0.2),
  
-      infoStackView.topAnchor.constraint(equalTo: horizontalInfoStackView.bottomAnchor, constant: 5),
+      infoStackView.topAnchor.constraint(equalTo: horizontalInfoStackView.bottomAnchor),
       infoStackView.leadingAnchor.constraint(equalTo: horizontalInfoStackView.leadingAnchor),
       infoStackView.trailingAnchor.constraint(equalTo: horizontalInfoStackView.trailingAnchor),
       infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
