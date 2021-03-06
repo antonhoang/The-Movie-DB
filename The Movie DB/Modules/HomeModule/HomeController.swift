@@ -14,12 +14,16 @@ final class HomeController: UIViewController {
   
   fileprivate let cellID = Constants.CellIdentifiers.homeCellId.rawValue
   fileprivate let screenTitle = Constants.ScreenTitles.home.rawValue
+  fileprivate var model: [MovieVO] = []
   
   fileprivate lazy var tableView: UITableView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.register(HomeCell.self, forCellReuseIdentifier: cellID)
     $0.delegate = self
     $0.dataSource = self
+    $0.separatorStyle = .none
+    $0.backgroundColor = .black
+    $0.rowHeight = UIScreen.main.bounds.height / 3.2
     return $0
   }(UITableView())
 
@@ -27,13 +31,16 @@ final class HomeController: UIViewController {
     super.viewDidLoad()
     setupUI()
     setupTableView()
-    setupObservers()
+    dataBindings()
   }
   
-  func setupObservers() {
-  
-    viewModel?.items.bind(observer: { (moviesVO) in
-      print("--------------->", moviesVO)
+  func dataBindings() {
+    viewModel?.items.bind(observer: { [weak self] (moviesVO) in
+      guard let self = self, !moviesVO.isEmpty else { return }
+      self.model = moviesVO
+      DispatchQueue.main.async {
+        self.tableView.reloadData()        
+      }
     })
   }
   
@@ -55,14 +62,14 @@ final class HomeController: UIViewController {
 
 extension HomeController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 10
+    return model.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? HomeCell else {
       assert(false)
     }
-    cell.textLabel?.text = "\(indexPath.row)"
+    cell.configureCell(movieVO: model[indexPath.row])
     return cell
   }
   

@@ -10,6 +10,7 @@ import UIKit
 final class HomeCell: UITableViewCell {
   
   fileprivate let imageMovie: UIImageView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentMode = .scaleAspectFit
     return $0
   }(UIImageView())
@@ -28,6 +29,10 @@ final class HomeCell: UITableViewCell {
     imageMovie.image = nil // or placeholder
   }
   
+  override func layoutSubviews() {
+    super.layoutSubviews()
+  }
+  
   func configureCell(movieVO: MovieVO) {
     if let imagePath = movieVO.imageUrlPath {
       loadImage(imagePath: imagePath)
@@ -35,14 +40,16 @@ final class HomeCell: UITableViewCell {
   }
   
   fileprivate func commonInit() {
+    backgroundColor = .black
     contentView.addSubview(imageMovie)
-    imageMovie.anchor(top: contentView.topAnchor,
-                      leading: contentView.leadingAnchor,
-                      bottom: contentView.bottomAnchor,
-                      trailing: nil)
+    NSLayoutConstraint.activate([
+      imageMovie.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+      imageMovie.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      imageMovie.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2)
+    ])
   }
   
-  func loadImage(imagePath: String) {
+  fileprivate func loadImage(imagePath: String) {
     guard let imageURL = URL(string: imagePath) else { return }
     var data: Data?
     let queue = DispatchQueue.global(qos: .utility)
@@ -56,9 +63,11 @@ final class HomeCell: UITableViewCell {
     }
     
     queue.async(execute: workItem)
-    workItem.notify(queue: .main) { [weak self] in
+    workItem.notify(queue: .main) {
       if let imageData = data {
-        self?.imageMovie.image = UIImage(data: imageData)
+        UIView.transition(with: self.imageMovie, duration: 0.3, options: .transitionCrossDissolve) { [weak self] in
+          self?.imageMovie.image = UIImage(data: imageData)
+        }
       }
     }
   }

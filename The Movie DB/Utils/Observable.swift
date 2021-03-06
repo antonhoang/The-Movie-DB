@@ -10,7 +10,7 @@ import Foundation
 final class Observable<ObservableType> {
   
   typealias Observer = (ObservableType) -> Void
-  var observer: Observer?
+  fileprivate var observer: Observer?
   
   init(_ value: ObservableType) {
     self.value = value
