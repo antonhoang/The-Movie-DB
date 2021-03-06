@@ -57,7 +57,7 @@ final class HomeCell: UITableViewCell {
     $0.spacing = 2
     $0.alignment = .top
     $0.isLayoutMarginsRelativeArrangement = true
-    $0.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+    $0.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 10)
     return $0
   }(UIStackView())
   
@@ -74,6 +74,8 @@ final class HomeCell: UITableViewCell {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.distribution = .fill
     $0.alignment = .top
+    $0.isLayoutMarginsRelativeArrangement = true
+    $0.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 10, right: 10)
     return $0
   }(UIStackView())
   
@@ -112,9 +114,9 @@ final class HomeCell: UITableViewCell {
   fileprivate func setupImageView() {
     contentView.addSubview(movieImageView)
     NSLayoutConstraint.activate([
-      movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-      movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
-      movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+      movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+      movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+      movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       movieImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2.8)
     ])
   }
@@ -132,12 +134,12 @@ final class HomeCell: UITableViewCell {
     infoStackView.addArrangedSubview(overviewLabel)
     
     NSLayoutConstraint.activate([
-      horizontalInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-      horizontalInfoStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 8),
+      horizontalInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+      horizontalInfoStackView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 5),
       horizontalInfoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       horizontalInfoStackView.heightAnchor.constraint(equalTo: movieImageView.heightAnchor, multiplier: 0.2),
  
-      infoStackView.topAnchor.constraint(equalTo: horizontalInfoStackView.bottomAnchor, constant: 4),
+      infoStackView.topAnchor.constraint(equalTo: horizontalInfoStackView.bottomAnchor, constant: 5),
       infoStackView.leadingAnchor.constraint(equalTo: horizontalInfoStackView.leadingAnchor),
       infoStackView.trailingAnchor.constraint(equalTo: horizontalInfoStackView.trailingAnchor),
       infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
