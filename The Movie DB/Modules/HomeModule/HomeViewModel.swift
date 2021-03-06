@@ -21,22 +21,57 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   init(repository: HomeRepositoryProtocol) {
     self.repository = repository
-    fetchAllMovies()
+//    fetchLatestMovies()
+//    fetchPopularMovies()
+//    fetchTopRatedMovies()
+//    fetchUpcomingMovies()
+//    fetchNowPlayingMovies()
+        fetchAllMovies()
   }
   
 
   func fetchAllMovies() {
-    fetchPopularMovies()
-    fetchTopRatedMovies()
-    fetchUpcomingMovies()
-    fetchNowPlayingMovies()
+//    fetchPopularMovies()
+//    fetchTopRatedMovies()
+//    fetchUpcomingMovies()
+//    fetchNowPlayingMovies()
     
-    g.notify(queue: .main, work: DispatchWorkItem(block: {
+    let group = DispatchGroup()
+    var items = [MovieVO]()
+    group.enter()
+    repository.fetchMovies(with: .getPopularMovies, handler: .some {
+      item in
+      items.append(contentsOf: item)
+      group.leave()
+    })
+    
+    group.enter()
+    repository.fetchMovies(with: .getTopRatedMovies, handler: .some {
+      item in
+      items.append(contentsOf: item)
+      group.leave()
+    })
+    
+    group.enter()
+    repository.fetchMovies(with: .getUpcomingMovies, handler: .some {
+      item in
+      items.append(contentsOf: item)
+      group.leave()
+    })
+    
+    group.enter()
+    repository.fetchMovies(with: .getNowPlayingMovies, handler: .some {
+      item in
+      items.append(contentsOf: item)
+      group.leave()
+    })
+    
+    group.notify(queue: .main, work: DispatchWorkItem(qos: .background, flags: .barrier, block: {
+      print(items)
       print("FINISH")
     }))
   }
   
-  let g = DispatchGroup()
   
   func fetchLatestMovies() {
     
@@ -47,38 +82,31 @@ final class HomeViewModel: HomeViewModelProtocol {
   }
   
   func fetchPopularMovies() {
-    g.enter()
     repository.fetchMovies(with: .getPopularMovies, handler: .some {
       item in
       print("-------------> 2", item)
-      self.g.leave()
     })
   }
   
   func fetchTopRatedMovies() {
-    g.enter()
     repository.fetchMovies(with: .getTopRatedMovies, handler: .some {
       item in
       print("-------------> 3", item)
-      self.g.leave()
     })
   }
   
   func fetchUpcomingMovies() {
-    g.enter()
     repository.fetchMovies(with: .getUpcomingMovies, handler: .some {
       item in
       print("-------------> 4", item)
-      self.g.leave()
     })
   }
   
   func fetchNowPlayingMovies() {
-    g.enter()
     repository.fetchMovies(with: .getNowPlayingMovies, handler: .some {
       item in
-      print(5)
-      self.g.leave()
+      print("-------------> 1", item)
+
     })
   }
 }

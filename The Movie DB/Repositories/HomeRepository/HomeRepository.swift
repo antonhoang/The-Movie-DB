@@ -19,11 +19,10 @@ enum SecureType {
 }
 
 typealias ImageHandler = ((String) -> Void)?
-typealias MovieVOHandler = ((MovieVO) -> Void)?
-typealias MovieVOHandlers = (([MovieVO]) -> Void)?
+typealias MovieVOHandler = (([MovieVO]) -> Void)?
 
 protocol HomeRepositoryProtocol {
-  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandlers)
+  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler)
 }
 
 final class HomeRepository: HomeRepositoryProtocol {
@@ -37,33 +36,34 @@ final class HomeRepository: HomeRepositoryProtocol {
     self.storage = storage
   }
   
-  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandlers) {
+  func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler) {
     
     network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .some {
       [weak self] movieData in
       guard let sSelf = self else { return }
-      var ar = [MovieVO]()
-      sSelf.responseData(with: movieData, handler: .some {
-        movieVO in
-        ar.append(movieVO)
-      })
-      
-      handler?(ar)
+      sSelf.responseData(with: movieData, handler: handler)
     })
   }
   
   fileprivate func responseData(with response: Result<MovieData, Error>, handler: MovieVOHandler) {
     do {
+      let group = DispatchGroup()
+      var moviesVO: [MovieVO] = []
        _ = try response.get().results.map { movie in
         if let posterPath = movie.poster_path {
           
+          group.enter()
           fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
             imagePath in
             let imageUrlPath = imagePath + posterPath
             let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
-            handler?(movieVO)
+            moviesVO.append(movieVO)
+            group.leave()
           })
         }
+      }
+      group.notify(queue: .global(qos: .background)) {
+        handler?(moviesVO)
       }
 
     } catch let error {
