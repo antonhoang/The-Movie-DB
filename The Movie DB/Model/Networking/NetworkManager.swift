@@ -41,13 +41,14 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
     
     let configuration = URLSessionConfiguration.default
     configuration.allowsCellularAccess = true
-    
+    configuration.urlCache = URLCache(memoryCapacity: 512000,
+                                      diskCapacity: 10000000)
     session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
   }
   
   deinit {
     print(#function)
-    session?.invalidateAndCancel()
+    invalidateSession()
   }
   
   func invalidateSession() {
