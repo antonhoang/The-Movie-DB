@@ -115,7 +115,7 @@ final class HomeCell: UITableViewCell {
     contentView.addSubview(movieImageView)
     NSLayoutConstraint.activate([
       movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-      movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+      movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
       movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       movieImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2.8)
     ])
