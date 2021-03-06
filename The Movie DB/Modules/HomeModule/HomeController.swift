@@ -16,6 +16,7 @@ final class HomeController: UIViewController {
   fileprivate let screenTitle = Constants.ScreenTitles.home.rawValue
   
   fileprivate lazy var tableView: UITableView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
     $0.delegate = self
     $0.dataSource = self
@@ -30,7 +31,6 @@ final class HomeController: UIViewController {
   
   fileprivate func setupTableView() {
     view.addSubview(tableView)
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: view.topAnchor),
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

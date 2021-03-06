@@ -10,6 +10,12 @@ import Foundation
 final class DetailsAssembler: AssemblerProtocol {
   
   func assembly() -> DetailsController {
-    return DetailsController()
+    let detailsController = DetailsController()
+    let networkManager = NetworkManager()
+    let storageManager = StorageManager()
+    let homeRepository = HomeRepository(network: networkManager, storage: storageManager)
+    let detailsViewModel = DetailsViewModel(repository: homeRepository)
+    detailsController.viewModel = detailsViewModel
+    return detailsController
   }
 }

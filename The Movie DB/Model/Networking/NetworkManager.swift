@@ -26,14 +26,19 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
   
   fileprivate let requestTimeout: Double = 25.0
   
-  private let queue: OperationQueue = {
+  fileprivate let queue: OperationQueue = {
     $0.qualityOfService = .background
     $0.maxConcurrentOperationCount = 1
     
     return $0
   }(OperationQueue())
   
-  private var session: URLSession?
+  fileprivate var session: URLSession?
+  
+  deinit {
+    print(#function)
+    session?.invalidateAndCancel()
+  }
 
   func sendDataRequest<T: Codable>(endPoint: EndPointType, response: T.Type, handler: DataHandler<T>) {
     

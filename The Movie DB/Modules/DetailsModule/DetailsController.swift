@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 final class DetailsController: UIViewController {
+  
+  var viewModel: DetailsViewModelProtocol?
+  var coordinator: DetailsCoordinatorFlow?
 
   override func viewDidLoad() {
     super.viewDidLoad()

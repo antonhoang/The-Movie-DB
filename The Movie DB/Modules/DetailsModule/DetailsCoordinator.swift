@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-final class DetailsCoordinator: CoordinatorProtocol {
+protocol DetailsCoordinatorFlow {
+  
+}
+
+final class DetailsCoordinator: CoordinatorProtocol, DetailsCoordinatorFlow {
   
   let navController: UINavigationController
   
@@ -17,7 +21,8 @@ final class DetailsCoordinator: CoordinatorProtocol {
   }
   
   func start() {
-    let homeVC = DetailsAssembler().assembly()
-    navController.pushViewController(homeVC, animated: true)
+    let detailsVC = DetailsAssembler().assembly()
+    detailsVC.coordinator = self
+    navController.pushViewController(detailsVC, animated: true)
   }
 }
