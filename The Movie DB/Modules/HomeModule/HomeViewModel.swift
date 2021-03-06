@@ -21,47 +21,32 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   init(repository: HomeRepositoryProtocol) {
     self.repository = repository
-//    fetchLatestMovies()
-//    fetchPopularMovies()
-//    fetchTopRatedMovies()
-//    fetchUpcomingMovies()
-//    fetchNowPlayingMovies()
-        fetchAllMovies()
+    fetchAllMovies()
   }
   
-
   func fetchAllMovies() {
-//    fetchPopularMovies()
-//    fetchTopRatedMovies()
-//    fetchUpcomingMovies()
-//    fetchNowPlayingMovies()
-    
     let group = DispatchGroup()
     var items = [MovieVO]()
     group.enter()
-    repository.fetchMovies(with: .getPopularMovies, handler: .some {
-      item in
+    repository.fetchMovies(with: .getPopularMovies, handler: .some { item in
       items.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
-    repository.fetchMovies(with: .getTopRatedMovies, handler: .some {
-      item in
+    repository.fetchMovies(with: .getTopRatedMovies, handler: .some { item in
       items.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
-    repository.fetchMovies(with: .getUpcomingMovies, handler: .some {
-      item in
+    repository.fetchMovies(with: .getUpcomingMovies, handler: .some { item in
       items.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
-    repository.fetchMovies(with: .getNowPlayingMovies, handler: .some {
-      item in
+    repository.fetchMovies(with: .getNowPlayingMovies, handler: .some { item in
       items.append(contentsOf: item)
       group.leave()
     })
@@ -92,7 +77,6 @@ final class HomeViewModel: HomeViewModelProtocol {
       }
     }
   }
-  
   
   func fetchLatestMovies() {
     
