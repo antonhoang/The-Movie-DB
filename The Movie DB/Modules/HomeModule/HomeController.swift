@@ -27,6 +27,14 @@ final class HomeController: UIViewController {
     super.viewDidLoad()
     setupUI()
     setupTableView()
+    setupObservers()
+  }
+  
+  func setupObservers() {
+  
+    viewModel?.items.bind(observer: { (moviesVO) in
+      print("--------------->", moviesVO)
+    })
   }
   
   fileprivate func setupTableView() {

@@ -8,17 +8,14 @@
 import Foundation
 
 protocol HomeViewModelProtocol {
-  func fetchLatestMovies()
-  func fetchPopularMovies()
-  func fetchTopRatedMovies()
-  func fetchUpcomingMovies()
-  func fetchNowPlayingMovies()
+  var items: Observable<[MovieVO]> { get }
 }
 
 final class HomeViewModel: HomeViewModelProtocol {
   
   let repository: HomeRepositoryProtocol
-  
+  var items: Observable<[MovieVO]> = Observable([])
+
   init(repository: HomeRepositoryProtocol) {
     self.repository = repository
     fetchAllMovies()
@@ -26,33 +23,32 @@ final class HomeViewModel: HomeViewModelProtocol {
   
   func fetchAllMovies() {
     let group = DispatchGroup()
-    var items = [MovieVO]()
     group.enter()
-    repository.fetchMovies(with: .getPopularMovies, handler: .some { item in
-      items.append(contentsOf: item)
+    repository.fetchMovies(with: .getPopularMovies, handler: .some { [weak self] item in
+      self?.items.value.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
-    repository.fetchMovies(with: .getTopRatedMovies, handler: .some { item in
-      items.append(contentsOf: item)
+    repository.fetchMovies(with: .getTopRatedMovies, handler: .some { [weak self] item in
+      self?.items.value.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
-    repository.fetchMovies(with: .getUpcomingMovies, handler: .some { item in
-      items.append(contentsOf: item)
+    repository.fetchMovies(with: .getUpcomingMovies, handler: .some { [weak self] item in
+      self?.items.value.append(contentsOf: item)
       group.leave()
     })
     
     group.enter()
-    repository.fetchMovies(with: .getNowPlayingMovies, handler: .some { item in
-      items.append(contentsOf: item)
+    repository.fetchMovies(with: .getNowPlayingMovies, handler: .some { [weak self] item in
+      self?.items.value.append(contentsOf: item)
       group.leave()
     })
     
-    group.notify(queue: .main, work: DispatchWorkItem(qos: .background, flags: .barrier, block: {
-      print(items)
+    group.notify(queue: .main, work: DispatchWorkItem(qos: .background, flags: .barrier, block: { [weak self] in
+      
       print("FINISH")
     }))
   }

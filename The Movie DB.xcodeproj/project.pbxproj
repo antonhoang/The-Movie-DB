@@ -37,6 +37,7 @@
 		7A952DA425F0342C00D4A2F6 /* MovieVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DA325F0342C00D4A2F6 /* MovieVO.swift */; };
 		7A952DB025F3B96400D4A2F6 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DAF25F3B96400D4A2F6 /* HomeCell.swift */; };
 		7A952DB325F3BA4F00D4A2F6 /* LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DB225F3BA4F00D4A2F6 /* LayoutConstraints.swift */; };
+		7A952DB825F40DD600D4A2F6 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DB725F40DD600D4A2F6 /* Observable.swift */; };
 		7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC40DBE25E392F400FD4E60 /* RequestItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		7A952DA325F0342C00D4A2F6 /* MovieVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVO.swift; sourceTree = "<group>"; };
 		7A952DAF25F3B96400D4A2F6 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		7A952DB225F3BA4F00D4A2F6 /* LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraints.swift; sourceTree = "<group>"; };
+		7A952DB725F40DD600D4A2F6 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		7AC40DBE25E392F400FD4E60 /* RequestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 		7A2B003C25E2E18200D253BD /* The Movie DB */ = {
 			isa = PBXGroup;
 			children = (
+				7A952DB625F40DC500D4A2F6 /* Utils */,
 				7A952D9725EC37C500D4A2F6 /* DTOs */,
 				7A68A43625E84F6E007B6B37 /* Repositories */,
 				7A68A42A25E84B1A007B6B37 /* Helpers */,
@@ -270,6 +273,14 @@
 			path = VO;
 			sourceTree = "<group>";
 		};
+		7A952DB625F40DC500D4A2F6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7A952DB725F40DD600D4A2F6 /* Observable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,6 +366,7 @@
 				7A2B004225E2E18200D253BD /* HomeController.swift in Sources */,
 				7A2B007E25E300FE00D253BD /* HomeAssembler.swift in Sources */,
 				7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */,
+				7A952DB825F40DD600D4A2F6 /* Observable.swift in Sources */,
 				7A68A43F25E85150007B6B37 /* StorageManager.swift in Sources */,
 				7A2B003E25E2E18200D253BD /* AppDelegate.swift in Sources */,
 				7A2B007B25E300F500D253BD /* HomeCoordinator.swift in Sources */,
