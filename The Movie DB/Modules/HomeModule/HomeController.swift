@@ -34,6 +34,25 @@ final class HomeController: UIViewController {
     dataBindings()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupNavigationBar(false, backgroundColor: .black,
+                       barTintColor: .black, shadowImage: nil)
+  }
+  
+  func setupNavigationBar(_ isTranslucent: Bool,
+                          backgroundColor: UIColor,
+                          barTintColor: UIColor,
+                          shadowImage: UIImage?) {
+    navigationController?.navigationBar.isTranslucent = isTranslucent
+    navigationController?.navigationBar.backgroundColor = .clear
+    navigationController?.navigationBar.barTintColor = .clear
+    navigationController?.navigationBar.tintColor = .white
+    navigationController?.navigationBar.setBackgroundImage(shadowImage, for: .default)
+    navigationController?.navigationBar.shadowImage = shadowImage
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+  }
+  
   func dataBindings() {
     viewModel?.items.bind(observer: { [weak self] (moviesVO) in
       guard let self = self, !moviesVO.isEmpty else { return }
@@ -56,7 +75,6 @@ final class HomeController: UIViewController {
   
   fileprivate func setupUI() {
     navigationItem.title = screenTitle
-    view.backgroundColor = .systemTeal
   }
 }
 

@@ -16,18 +16,18 @@ protocol DetailsRepositoryProtocol {
 
 final class DetailsRepository: DetailsRepositoryProtocol {
   
-  let network: NetworkManagerProtocol
+  let networkManager: NetworkManagerProtocol
   let imageManager: ImageManagerProtocol
 
   init(network: NetworkManagerProtocol,
        imageManager: ImageManagerProtocol) {
-    self.network = network
+    self.networkManager = network
     self.imageManager = imageManager
   }
   
   func getDetails(movieId: Int, handler: DetailsVOHandler) {
     let endPoint = RequestItem.getDetailsMovie(movie_id: movieId)
-    network.sendDataRequest(endPoint: endPoint, response: DetailsData.self) { [weak self] (detailsData) in
+    networkManager.sendDataRequest(endPoint: endPoint, response: DetailsData.self) { [weak self] (detailsData) in
       guard let self = self else { return }
       self.responseData(with: detailsData, handler: handler)
     }

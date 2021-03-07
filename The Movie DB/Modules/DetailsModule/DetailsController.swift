@@ -52,6 +52,7 @@ final class DetailsController: UIViewController {
     super.viewDidLoad()
     setupUI()
     dataBindings()
+    setupNavigationBar(true, backgroundColor: .clear, barTintColor: .clear, shadowImage: UIImage())
   }
   
   override func viewDidLayoutSubviews() {
@@ -62,6 +63,19 @@ final class DetailsController: UIViewController {
                                            bottom: view.safeAreaInsets.bottom,
                                            right: 0)
   }
+  
+  func setupNavigationBar(_ isTranslucent: Bool,
+                          backgroundColor: UIColor,
+                          barTintColor: UIColor,
+                          shadowImage: UIImage?) {
+    navigationController?.navigationBar.isTranslucent = isTranslucent
+    navigationController?.navigationBar.backgroundColor = .clear
+    navigationController?.navigationBar.barTintColor = .clear
+    navigationController?.navigationBar.tintColor = .white
+    navigationController?.navigationBar.setBackgroundImage(shadowImage, for: .default)
+    navigationController?.navigationBar.shadowImage = shadowImage
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+  }
    
   fileprivate func dataBindings() {
     viewModel?.detailsVO.bind(observer: {
@@ -71,7 +85,6 @@ final class DetailsController: UIViewController {
   }
   
   fileprivate func setupUI() {
-    navigationItem.title = "Details"
     view.backgroundColor = .systemGreen
     setupScrollView()
     setupImageContainerView()
@@ -86,7 +99,7 @@ final class DetailsController: UIViewController {
     scrollView.addSubview(imageView)
     
     NSLayoutConstraint.activate([
-      scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      scrollView.topAnchor.constraint(equalTo: view.topAnchor),
       scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -107,7 +120,7 @@ final class DetailsController: UIViewController {
       imageView.bottomAnchor.constraint(equalTo: imageContainer.bottomAnchor)
     ])
     
-    let topImageConstraint = imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+    let topImageConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor)
     topImageConstraint.isActive = true
     topImageConstraint.priority = .defaultHigh
     
