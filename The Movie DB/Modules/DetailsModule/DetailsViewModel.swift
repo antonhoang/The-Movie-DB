@@ -9,12 +9,14 @@ import Foundation
 
 protocol DetailsViewModelProtocol {
   var movieVO: MovieVO? { get }
+  var detailsVO: Observable<DetailsVO>? { get }
 }
 
 final class DetailsViewModel: DetailsViewModelProtocol {
   
   let repository: DetailsRepositoryProtocol
   var movieVO: MovieVO?
+  var detailsVO: Observable<DetailsVO>?
   
   init(repository: DetailsRepositoryProtocol) {
     self.repository = repository
@@ -27,7 +29,11 @@ final class DetailsViewModel: DetailsViewModelProtocol {
   
   func getMovieDetails() {
     if let movieId = movieVO?.id {
-      repository.getDetails(movieId: movieId)
+      repository.getDetails(movieId: movieId, handler: .some{
+        [weak self] (detailsVO) in
+        guard let self = self else { return }
+        self.detailsVO?.value = detailsVO
+      })
     }
   }
   

@@ -20,6 +20,7 @@ struct Images: Codable {
   var profile_sizes: [String]?
   
   var w154: String?
+  var w300: String?
     
   init(from decoder: Decoder) throws {
     let value = try decoder.container(keyedBy: Images.CodingKeys.self)
@@ -42,6 +43,10 @@ struct Images: Codable {
     
     if let logoW154 = dict[LogoSizes.w154.rawValue]?.size {
       w154 = logoW154
+    }
+    
+    if let logoW300 = dict[LogoSizes.w300.rawValue]?.size {
+      w300 = logoW300
     }
   }
 }

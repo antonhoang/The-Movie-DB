@@ -18,7 +18,8 @@ final class DetailsAssembler: AssemblerProtocol {
   func assembly() -> DetailsController {
     let detailsController = DetailsController()
     let networkManager = NetworkManager()
-    let detailsRepository = DetailsRepository(network: networkManager)
+    let imageManager = ImageManager(network: networkManager)
+    let detailsRepository = DetailsRepository(network: networkManager, imageManager: imageManager)
     let detailsViewModel = DetailsViewModel(repository: detailsRepository)
     detailsViewModel.movieVO = movieVO 
     detailsController.viewModel = detailsViewModel

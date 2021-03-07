@@ -18,7 +18,6 @@ enum SecureType {
   case secure
 }
 
-typealias ImageHandler = ((String) -> Void)?
 typealias MovieVOHandler = (([MovieVO]) -> Void)?
 
 protocol HomeRepositoryProtocol {
@@ -27,21 +26,23 @@ protocol HomeRepositoryProtocol {
 
 final class HomeRepository: HomeRepositoryProtocol {
   
-  let network: NetworkManagerProtocol
-  let storage: StorageManagerProtocol
+  let networkManager: NetworkManagerProtocol
+  let storageManager: StorageManagerProtocol
+  let imageManager: ImageManagerProtocol
   
   init(network: NetworkManagerProtocol,
-       storage: StorageManagerProtocol) {
-    self.network = network
-    self.storage = storage
+       storage: StorageManagerProtocol,
+       imageManager: ImageManagerProtocol) {
+    self.networkManager = network
+    self.storageManager = storage
+    self.imageManager = imageManager
   }
   
   func fetchMovies(with endPoint: RequestItem, handler: MovieVOHandler) {
-    
-    network.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .some {
+    networkManager.sendDataRequest(endPoint: endPoint, response: MovieData.self, handler: .some {
       [weak self] movieData in
-      guard let sSelf = self else { return }
-      sSelf.responseData(with: movieData, handler: handler)
+      guard let self = self else { return }
+      self.responseData(with: movieData, handler: handler)
     })
   }
   
@@ -53,7 +54,7 @@ final class HomeRepository: HomeRepositoryProtocol {
         if let posterPath = movie.poster_path {
           
           group.enter()
-          fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
+          imageManager.fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
             imagePath in
             let imageUrlPath = imagePath + posterPath
             let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
@@ -71,34 +72,7 @@ final class HomeRepository: HomeRepositoryProtocol {
     }
   }
   
-  fileprivate func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler) {
-    let endPoint = RequestItem.getImageConfiguration
-    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some { (imageData) in
-      
-      do {
-        guard let imageConfig = try imageData.get().images else { return }
-        
-        switch secureType {
-        case .base:
-          if let url = imageConfig.base_url {
-            let imagePath = url + size.rawValue
-            handler?(imagePath)
-          }
-          
-        case .secure:
-          if let url = imageConfig.secure_base_url {
-            let imagePath = url + size.rawValue
-            handler?(imagePath)
-          }
-        }
-        
-      } catch let error {
-        print(error)
-      }
-    })
-  }
-  
   func fetchMovieFromDB() {
-    storage.fetchData()
+    storageManager.fetchData()
   }
 }
