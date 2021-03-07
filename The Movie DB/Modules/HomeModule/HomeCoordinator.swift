@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol HomeCoordinatorFlow {
-  func coordinateToDetails()
+  func coordinateToDetails(with movieVO: MovieVO)
 }
 
 final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorFlow {
@@ -26,8 +26,8 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorFlow {
     navController.pushViewController(homeVC, animated: false)
   }
   
-  func coordinateToDetails() {
-    let detailsCoordinator = DetailsCoordinator(navController: navController)
+  func coordinateToDetails(with movieVO: MovieVO) {
+    let detailsCoordinator = DetailsCoordinator(navController: navController, movieVO: movieVO)
     coordinate(to: detailsCoordinator)
   }
 }

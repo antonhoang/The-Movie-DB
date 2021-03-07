@@ -9,12 +9,18 @@ import Foundation
 
 final class DetailsAssembler: AssemblerProtocol {
   
+  let movieVO: MovieVO
+  
+  init(movieVO: MovieVO) {
+    self.movieVO = movieVO
+  }
+  
   func assembly() -> DetailsController {
     let detailsController = DetailsController()
     let networkManager = NetworkManager()
-    let storageManager = StorageManager()
-    let homeRepository = HomeRepository(network: networkManager, storage: storageManager)
-    let detailsViewModel = DetailsViewModel(repository: homeRepository)
+    let detailsRepository = DetailsRepository(network: networkManager)
+    let detailsViewModel = DetailsViewModel(repository: detailsRepository)
+    detailsViewModel.movieVO = movieVO 
     detailsController.viewModel = detailsViewModel
     return detailsController
   }

@@ -15,13 +15,15 @@ protocol DetailsCoordinatorFlow {
 final class DetailsCoordinator: CoordinatorProtocol, DetailsCoordinatorFlow {
   
   let navController: UINavigationController
+  let movieVO: MovieVO
   
-  init(navController: UINavigationController) {
+  init(navController: UINavigationController, movieVO: MovieVO) {
     self.navController = navController
+    self.movieVO = movieVO
   }
   
   func start() {
-    let detailsVC = DetailsAssembler().assembly()
+    let detailsVC = DetailsAssembler(movieVO: movieVO).assembly()
     detailsVC.coordinator = self
     navController.pushViewController(detailsVC, animated: true)
   }

@@ -75,7 +75,8 @@ extension HomeController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    coordinator?.coordinateToDetails()
+    let movieVO = model[indexPath.row]
+    coordinator?.coordinateToDetails(with: movieVO)
   }
 }
 
