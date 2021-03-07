@@ -14,7 +14,7 @@ final class DetailsController: UIViewController {
   var coordinator: DetailsCoordinatorFlow?
   
   fileprivate let imageView: UIImageView = {
-    $0.image = UIImage(named: Constants.Images.popcorn)
+    $0.image = UIImage(named: Constants.Images.pic10)
     $0.backgroundColor = .systemGreen
     $0.contentMode = .scaleAspectFill
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -22,8 +22,10 @@ final class DetailsController: UIViewController {
   }(UIImageView())
   
   fileprivate let scrollView: UIScrollView = {
+    $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentInsetAdjustmentBehavior = .never
     $0.backgroundColor = .systemTeal
+    $0.showsVerticalScrollIndicator = false
     return $0
   }(UIScrollView())
   
@@ -74,8 +76,12 @@ final class DetailsController: UIViewController {
     scrollView.addSubview(contentView)
     scrollView.addSubview(imageView)
     
-    scrollView.fillSuperview()
-    
+    NSLayoutConstraint.activate([
+      scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
   }
   
   fileprivate func setupImageContainerView() {
@@ -92,7 +98,7 @@ final class DetailsController: UIViewController {
       imageView.bottomAnchor.constraint(equalTo: imageContainer.bottomAnchor)
     ])
     
-    let topImageConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor)
+    let topImageConstraint = imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
     topImageConstraint.isActive = true
     topImageConstraint.priority = .defaultHigh
 
