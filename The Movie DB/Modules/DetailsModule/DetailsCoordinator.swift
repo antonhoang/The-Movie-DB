@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-protocol DetailsCoordinatorFlow {
-  
-}
+protocol DetailsCoordinatorFlow { }
 
 final class DetailsCoordinator: CoordinatorProtocol, DetailsCoordinatorFlow {
   

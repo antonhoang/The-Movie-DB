@@ -19,7 +19,7 @@ final class DetailsViewModel: DetailsViewModelProtocol {
   init(repository: DetailsRepositoryProtocol) {
     self.repository = repository
     
-    let queue = DispatchQueue(label: "details-queue")
+    let queue = DispatchQueue(label: "details-queue", qos: .default)
     queue.async { [weak self] in
       self?.getMovieDetails()
     }
