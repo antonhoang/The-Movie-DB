@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
   
@@ -22,6 +23,10 @@ struct Constants {
     case home = "Home"
     case details = "Details"
     case favorite = "Favorite"
+  }
+  
+  enum Images {
+    static let popcorn = UIImage(named: "popcorn")
   }
   
 }
