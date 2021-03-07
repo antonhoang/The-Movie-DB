@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DetailsViewModelProtocol {
- 
+  var movieVO: MovieVO? { get }
 }
 
 final class DetailsViewModel: DetailsViewModelProtocol {

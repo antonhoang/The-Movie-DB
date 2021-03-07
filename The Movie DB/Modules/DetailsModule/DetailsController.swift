@@ -13,8 +13,10 @@ final class DetailsController: UIViewController {
   var viewModel: DetailsViewModelProtocol?
   var coordinator: DetailsCoordinatorFlow?
   
-  fileprivate let imageView: UIImageView = {
-    $0.image = UIImage(named: Constants.Images.pic10)
+  fileprivate lazy var imageView: UIImageView = {
+    if let imagePath = viewModel?.movieVO?.imageUrlPath {
+      $0.loadImage(imagePath: imagePath)
+    }
     $0.backgroundColor = .systemGreen
     $0.contentMode = .scaleAspectFill
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -48,17 +50,19 @@ final class DetailsController: UIViewController {
     $0.backgroundColor = .systemOrange
     return $0
   }(UIView())
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
   
   override func viewDidLayoutSubviews() {
-      super.viewDidLayoutSubviews()
-      
-      scrollView.scrollIndicatorInsets = view.safeAreaInsets
-      scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.safeAreaInsets.bottom, right: 0)
+    super.viewDidLayoutSubviews()
+    scrollView.scrollIndicatorInsets = view.safeAreaInsets
+    scrollView.contentInset = UIEdgeInsets(top: 0,
+                                           left: 0,
+                                           bottom: view.safeAreaInsets.bottom,
+                                           right: 0)
   }
   
   fileprivate func setupUI() {
@@ -101,11 +105,11 @@ final class DetailsController: UIViewController {
     let topImageConstraint = imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
     topImageConstraint.isActive = true
     topImageConstraint.priority = .defaultHigh
-
+    
     let heightImageConstraint = imageView.heightAnchor.constraint(greaterThanOrEqualTo: imageContainer.heightAnchor)
     heightImageConstraint.isActive = true
     heightImageConstraint.priority = .required
-
+    
     NSLayoutConstraint.activate([
       contentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 0),
       contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

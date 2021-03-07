@@ -93,7 +93,7 @@ final class HomeCell: UITableViewCell {
   
   func configureCell(movieVO: MovieVO) {
     if let imagePath = movieVO.imageUrlPath {
-      loadImage(imagePath: imagePath)
+      movieImageView.loadImage(imagePath: imagePath)
     }
     
     voteAverage.text = String(describing: movieVO.vote_average)
@@ -151,28 +151,6 @@ final class HomeCell: UITableViewCell {
     setupImageView()
     setupStackView()
   }
-  
-  fileprivate func loadImage(imagePath: String) {
-    guard let imageURL = URL(string: imagePath) else { return }
-    
-    var data: Data?
-    let queue = DispatchQueue.global(qos: .utility)
-    
-    let workItem = DispatchWorkItem {
-      do {
-        data = try Data(contentsOf: imageURL)
-      } catch let error {
-        print(error)
-      }
-    }
-    
-    queue.async(execute: workItem)
-    workItem.notify(queue: .main) {
-      if let imageData = data {
-        UIView.transition(with: self.movieImageView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
-          self?.movieImageView.image = UIImage(data: imageData)
-        }
-      }
-    }
-  }
 }
+
+

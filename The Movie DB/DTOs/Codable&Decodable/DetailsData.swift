@@ -14,4 +14,5 @@ struct DetailsData: Codable {
   let status: String
   let runtime: Int
   let budget: Float
+  let backdrop_path: String
 }
