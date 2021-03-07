@@ -9,12 +9,14 @@
 import Foundation
 
 struct DetailsVO {
-  let homepage: String
-  let tagline: String
-  let status: String
-  let runtime: Int
-  let budget: Float
-  let imageUrlPath: String
+  var homepage: String?
+  var tagline: String?
+  var status: String?
+  var runtime: Int?
+  var budget: Float?
+  var imageUrlPath: String?
+  
+  init() { }
   
   init(details: DetailsData, imageUrlPath: String) {
     self.homepage = details.homepage

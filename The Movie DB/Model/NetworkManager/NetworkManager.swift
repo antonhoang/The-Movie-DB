@@ -86,6 +86,7 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
     }
     
     if let url = components.url {
+      print(url)
       return url
     }
     return nil

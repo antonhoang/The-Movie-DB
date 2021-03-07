@@ -26,5 +26,9 @@ final class Observable<ObservableType> {
     self.observer = observer
     observer?(value)
   }
+  
+  func accept(value: ObservableType) {
+    self.value = value
+  }
 }
 

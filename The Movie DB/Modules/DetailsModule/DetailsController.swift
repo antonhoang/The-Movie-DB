@@ -14,9 +14,6 @@ final class DetailsController: UIViewController {
   var coordinator: DetailsCoordinatorFlow?
   
   fileprivate lazy var imageView: UIImageView = {
-    if let imagePath = viewModel?.movieVO?.imageUrlPath {
-      $0.loadImage(imagePath: imagePath)
-    }
     $0.backgroundColor = .systemGreen
     $0.contentMode = .scaleAspectFill
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +51,7 @@ final class DetailsController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    dataBindings()
   }
   
   override func viewDidLayoutSubviews() {
@@ -63,6 +61,13 @@ final class DetailsController: UIViewController {
                                            left: 0,
                                            bottom: view.safeAreaInsets.bottom,
                                            right: 0)
+  }
+   
+  fileprivate func dataBindings() {
+    viewModel?.detailsVO.bind(observer: {
+      [weak self] (detailsVO) in
+      self?.imageView.loadImage(imagePath: detailsVO.imageUrlPath ?? "")
+    })
   }
   
   fileprivate func setupUI() {

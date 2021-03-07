@@ -10,6 +10,7 @@ import Foundation
 enum LogoSizes: String {
   case w154
   case w300
+  case w780
   case original
 }
 
@@ -54,7 +55,7 @@ final class HomeRepository: HomeRepositoryProtocol {
         if let posterPath = movie.poster_path {
           
           group.enter()
-          imageManager.fetchImageConfiguration(with: .secure, size: .w154, handler: .some {
+          imageManager.fetchImageConfiguration(with: .secure, size: .w300, handler: .some {
             imagePath in
             let imageUrlPath = imagePath + posterPath
             let movieVO = MovieVO(movie: movie, imageUrlPath: imageUrlPath)
