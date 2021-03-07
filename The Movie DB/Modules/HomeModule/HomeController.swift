@@ -23,9 +23,7 @@ final class HomeController: UIViewController {
     $0.dataSource = self
     $0.separatorStyle = .none
     $0.backgroundColor = .black
-    $0.rowHeight = UIScreen.main.bounds.height / 3.2
-    $0.setNeedsLayout()
-    
+    $0.rowHeight = UIScreen.main.bounds.height / 3.2    
     return $0
   }(UITableView())
 
