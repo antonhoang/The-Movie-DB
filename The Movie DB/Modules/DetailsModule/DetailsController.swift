@@ -50,6 +50,12 @@ final class DetailsController: BaseController {
     dataBindings()
     setupNavigationBar(true, backgroundColor: .clear, barTintColor: .clear, shadowImage: UIImage())
   }
+    
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    setupNavigationBar(false, backgroundColor: Constants.Colors.dark,
+                       barTintColor: Constants.Colors.dark, shadowImage: UIImage())
+  }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()

@@ -15,6 +15,7 @@ final class HomeController: BaseController {
   fileprivate let cellID = Constants.CellIdentifiers.homeCellId.rawValue
   fileprivate let screenTitle = Constants.ScreenTitles.home.rawValue
   fileprivate var model: [MovieVO] = []
+  fileprivate let statusBarColor = Constants.Colors.dark
   
   fileprivate lazy var tableView: UITableView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -36,8 +37,8 @@ final class HomeController: BaseController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setupNavigationBar(false, backgroundColor: Constants.Colors.dark,
-                       barTintColor: Constants.Colors.dark, shadowImage: UIImage())
+    setupNavigationBar(false, backgroundColor: statusBarColor,
+                       barTintColor: statusBarColor, shadowImage: UIImage())
   }
   
   func dataBindings() {
