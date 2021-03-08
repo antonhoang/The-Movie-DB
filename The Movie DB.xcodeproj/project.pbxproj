@@ -44,6 +44,7 @@
 		7A952DDC25F5582800D4A2F6 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DDB25F5582800D4A2F6 /* ImageManager.swift */; };
 		7A952DE325F5607B00D4A2F6 /* DetailsVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DE225F5607B00D4A2F6 /* DetailsVO.swift */; };
 		7A952DE825F6207100D4A2F6 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DE725F6207100D4A2F6 /* BaseController.swift */; };
+		7A952DEB25F644F200D4A2F6 /* DetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DEA25F644F200D4A2F6 /* DetailsContentView.swift */; };
 		7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC40DBE25E392F400FD4E60 /* RequestItem.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		7A952DDB25F5582800D4A2F6 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		7A952DE225F5607B00D4A2F6 /* DetailsVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVO.swift; sourceTree = "<group>"; };
 		7A952DE725F6207100D4A2F6 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		7A952DEA25F644F200D4A2F6 /* DetailsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsContentView.swift; sourceTree = "<group>"; };
 		7AC40DBE25E392F400FD4E60 /* RequestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				7A2B009625E301AE00D253BD /* DetailsCoordinator.swift */,
 				7A2B008F25E301A100D253BD /* DetailsController.swift */,
 				7A2B009925E301B700D253BD /* DetailsViewModel.swift */,
+				7A952DEA25F644F200D4A2F6 /* DetailsContentView.swift */,
 			);
 			path = DetailsModule;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				7A68A42525E8457F007B6B37 /* Assembler.swift in Sources */,
 				7A952DDC25F5582800D4A2F6 /* ImageManager.swift in Sources */,
 				7A952D4425EA8E7D00D4A2F6 /* EndPointType.swift in Sources */,
+				7A952DEB25F644F200D4A2F6 /* DetailsContentView.swift in Sources */,
 				7A2B009025E301A100D253BD /* DetailsController.swift in Sources */,
 				7A952DC825F501FC00D4A2F6 /* DetailsData.swift in Sources */,
 				7A2B009725E301AE00D253BD /* DetailsCoordinator.swift in Sources */,

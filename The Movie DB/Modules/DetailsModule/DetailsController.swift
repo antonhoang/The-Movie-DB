@@ -27,22 +27,15 @@ final class DetailsController: BaseController {
     return $0
   }(UIScrollView())
   
-  
-  fileprivate let info: UILabel = {
-    $0.numberOfLines = 0
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    return $0
-  }(UILabel())
-  
   fileprivate let imageContainer: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
   }(UIView())
   
-  fileprivate let contentView: UIView = {
+  fileprivate let detailsContentView: DetailsContentView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
-  }(UIView())
+  }(DetailsContentView())
   
   fileprivate let backButton: UIButton = {
     let image = UIImage(named: Constants.Images.leftArrow2)?.withRenderingMode(.alwaysTemplate)
@@ -103,7 +96,7 @@ final class DetailsController: BaseController {
     view.addSubview(scrollView)
     
     scrollView.addSubview(imageContainer)
-    scrollView.addSubview(contentView)
+    scrollView.addSubview(detailsContentView)
     scrollView.addSubview(imageView)
     
     NSLayoutConstraint.activate([
@@ -137,22 +130,11 @@ final class DetailsController: BaseController {
     heightImageConstraint.priority = .required
     
     NSLayoutConstraint.activate([
-      contentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 0),
-      contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+      detailsContentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 0),
+      detailsContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      detailsContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      detailsContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
     ])
-    
-    let text =  """
-                Lorem ipsum dolor sit amet, in alia adhuc aperiri nam. Movet scripta tractatos cu eum, sale commodo meliore ea eam, per commodo atomorum ea. Unum graeci iriure nec an, ea sit habeo movet electram. Id eius assum persius pro, id cum falli accusam. Has eu fierent partiendo, doming expetenda interesset cu mel, tempor possit vocent in nam. Iusto tollit ad duo, est at vidit vivendo liberavisse, vide munere nonumy sed ex.
-                        
-                Quod possit expetendis id qui, consequat vituperata ad eam. Per cu elit latine vivendum. Ei sit nullam aliquam, an ferri epicuri quo. Ex vim tibique accumsan erroribus. In per libris verear adipiscing. Purto aliquid lobortis ea quo, ea utinam oportere qui.
-                """
-    
-    
-    info.text = text + text + text
-    contentView.addSubview(info)
-    info.fillSuperview(padding: UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14))
   }
   
   fileprivate func setupContentBlockView() { }
