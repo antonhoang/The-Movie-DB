@@ -11,17 +11,24 @@ import UIKit
 final class AppCoordinator: CoordinatorProtocol {
   
   let window: UIWindow
-  let navController: UINavigationController
+//  let navController: UINavigationController
+//  
+//  init(window: UIWindow, navController: UINavigationController) {
+//    self.window = window
+//    self.navController = navController
+//  }
   
-  init(window: UIWindow, navController: UINavigationController) {
+  init(window: UIWindow) {
     self.window = window
-    self.navController = navController
   }
   
   func start() {
-    let homeCoordinator = HomeCoordinator(navController: navController)
-    coordinate(to: homeCoordinator)
-    window.rootViewController = navController
-    window.makeKeyAndVisible()
+    let baseCoordinator = BaseSliderCoordinator(window: window)
+    coordinate(to: baseCoordinator)
+    
+//    let homeCoordinator = HomeCoordinator(navController: navController)
+//    coordinate(to: homeCoordinator)
+//    window.rootViewController = navController
+//    window.makeKeyAndVisible()
   }
 }

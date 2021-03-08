@@ -41,8 +41,7 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
     
     let configuration = URLSessionConfiguration.default
     configuration.allowsCellularAccess = true
-    configuration.urlCache = URLCache(memoryCapacity: 512000,
-                                      diskCapacity: 10000000)
+    configuration.urlCache = URLCache(memoryCapacity: 0, diskCapacity: 512 * 1024 * 1024)
     session = URLSession(configuration: configuration, delegate: self, delegateQueue: queue)
   }
   
@@ -91,7 +90,6 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
     }
     
     if let url = components.url {
-      print(url)
       return url
     }
     return nil
