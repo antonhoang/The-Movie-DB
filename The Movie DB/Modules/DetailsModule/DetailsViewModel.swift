@@ -32,9 +32,7 @@ final class DetailsViewModel: DetailsViewModelProtocol {
       repository.getDetails(movieId: movieId, handler: .some{
         [weak self] (detVO) in
         guard let self = self else { return }
-        self.detailsVO.value = detVO
         self.detailsVO.accept(value: detVO)
-        print(self.detailsVO.value)
       })
     }
   }

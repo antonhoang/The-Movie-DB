@@ -71,7 +71,12 @@ final class DetailsController: BaseController {
   fileprivate func dataBindings() {
     viewModel?.detailsVO.bind(observer: {
       [weak self] (detailsVO) in
-      self?.imageView.loadImage(imagePath: detailsVO.imageUrlPath ?? "")
+      DispatchQueue.main.async { [weak self] in
+        self?.imageView.loadImage(imagePath: detailsVO.imageUrlPath)
+        self?.detailsContentView.setContent(title: detailsVO.original_title,
+                                            tagline: detailsVO.tagline,
+                                            overview: detailsVO.overview)
+      }
     })
   }
   
@@ -130,7 +135,7 @@ final class DetailsController: BaseController {
     heightImageConstraint.priority = .required
     
     NSLayoutConstraint.activate([
-      detailsContentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 0),
+      detailsContentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor),
       detailsContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       detailsContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       detailsContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)

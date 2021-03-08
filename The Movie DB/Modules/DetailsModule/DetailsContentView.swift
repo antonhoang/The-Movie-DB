@@ -15,6 +15,7 @@ final class DetailsContentView: UIView {
     $0.textColor = .white
     $0.numberOfLines = 0
     $0.font = .boldSystemFont(ofSize: 22)
+    $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
   }(UILabel())
   
@@ -22,6 +23,7 @@ final class DetailsContentView: UIView {
     $0.textColor = .white
     $0.numberOfLines = 0
     $0.font = .italicSystemFont(ofSize: 18)
+    $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
   }(UILabel())
   
@@ -43,20 +45,17 @@ final class DetailsContentView: UIView {
     super.init(coder: coder)
   }
   
+  func setContent(title: String, tagline: String, overview: String) {
+    titleLabel.text = title
+    taglineLabel.text = tagline
+    overviewLabel.text = overview
+  }
+  
   fileprivate func commonInit() {
     addSubview(titleLabel)
     addSubview(taglineLabel)
     addSubview(overviewLabel)
-    
-    let text =  """
-                Lorem ipsum dolor sit amet, in alia adhuc aperiri nam. Movet scripta tractatos cu eum, sale commodo meliore ea eam, per commodo atomorum ea. Unum graeci iriure nec an, ea sit habeo movet electram. Id eius assum persius pro, id cum falli accusam. Has eu fierent partiendo, doming expetenda interesset cu mel, tempor possit vocent in nam. Iusto tollit ad duo, est at vidit vivendo liberavisse, vide munere nonumy sed ex.
-                        
-                Quod possit expetendis id qui, consequat vituperata ad eam. Per cu elit latine vivendum. Ei sit nullam aliquam, an ferri epicuri quo. Ex vim tibique accumsan erroribus. In per libris verear adipiscing. Purto aliquid lobortis ea quo, ea utinam oportere qui.
-                """
-    
-    
-    overviewLabel.text = text + text + text
-    
+        
     NSLayoutConstraint.activate([
       titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
       titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
@@ -65,7 +64,7 @@ final class DetailsContentView: UIView {
       taglineLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
       taglineLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       taglineLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-      
+
       overviewLabel.topAnchor.constraint(equalTo: taglineLabel.bottomAnchor, constant: 12),
       overviewLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       overviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
