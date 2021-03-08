@@ -14,7 +14,6 @@ final class DetailsController: BaseController {
   var coordinator: DetailsCoordinatorFlow?
   
   fileprivate lazy var imageView: UIImageView = {
-    $0.backgroundColor = .systemGreen
     $0.contentMode = .scaleAspectFill
     $0.translatesAutoresizingMaskIntoConstraints = false
     return $0
@@ -23,8 +22,8 @@ final class DetailsController: BaseController {
   fileprivate let scrollView: UIScrollView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentInsetAdjustmentBehavior = .never
-    $0.backgroundColor = .systemTeal
     $0.showsVerticalScrollIndicator = false
+    $0.backgroundColor = Constants.Colors.dark
     return $0
   }(UIScrollView())
   
@@ -32,19 +31,16 @@ final class DetailsController: BaseController {
   fileprivate let info: UILabel = {
     $0.numberOfLines = 0
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.backgroundColor = .systemYellow
     return $0
   }(UILabel())
   
   fileprivate let imageContainer: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.backgroundColor = .systemBlue
     return $0
   }(UIView())
   
   fileprivate let contentView: UIView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
-    $0.backgroundColor = .systemOrange
     return $0
   }(UIView())
   
@@ -72,7 +68,6 @@ final class DetailsController: BaseController {
   }
   
   fileprivate func setupUI() {
-    view.backgroundColor = .systemGreen
     setupScrollView()
     setupImageContainerView()
     setupContentBlockView()

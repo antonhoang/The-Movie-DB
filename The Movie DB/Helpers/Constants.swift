@@ -30,4 +30,8 @@ struct Constants {
     static let pic10 = "pic10"
   }
   
+  enum Colors {
+    static let dark = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1)
+  }
+  
 }

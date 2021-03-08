@@ -20,8 +20,8 @@ class BaseController: UIViewController {
                           barTintColor: UIColor,
                           shadowImage: UIImage?) {
     navigationController?.navigationBar.isTranslucent = isTranslucent
-    navigationController?.navigationBar.backgroundColor = .clear
-    navigationController?.navigationBar.barTintColor = .clear
+    navigationController?.navigationBar.backgroundColor = backgroundColor
+    navigationController?.navigationBar.barTintColor = barTintColor
     navigationController?.navigationBar.tintColor = .white
     navigationController?.navigationBar.setBackgroundImage(shadowImage, for: .default)
     navigationController?.navigationBar.shadowImage = shadowImage
