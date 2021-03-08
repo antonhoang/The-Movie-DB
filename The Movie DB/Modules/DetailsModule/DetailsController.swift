@@ -8,22 +8,100 @@
 import Foundation
 import UIKit
 
+class GradientView: UIImageView {
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupView()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    setupView()
+  }
+  
+  private func setupView() {
+    autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    
+    guard let theLayer = self.layer as? CAGradientLayer else {
+      return;
+    }
+    
+    theLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+    theLayer.locations = [0.0, 1.0]
+    theLayer.frame = self.bounds
+  }
+  
+  override class var layerClass: AnyClass {
+    return CAGradientLayer.self
+  }
+}
+
+
+//MARK: - Lifecycle methods methods
+extension GradientImageView {
+  override public class var layerClass: Swift.AnyClass {
+    return CAGradientLayer.self
+  }
+  
+  override func didMoveToSuperview() {
+    super.didMoveToSuperview()
+    if superview != nil {
+      setupUI()
+      updateGradient()
+      gradientLayer.frame = overlayView.bounds
+    }
+  }
+  
+  override func layoutSublayers(of layer: CALayer) {
+    super.layoutSublayers(of: layer)
+    gradientLayer.frame = bounds
+    //        gradientLayer.frame = overlayView.frame
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    gradientLayer.frame = bounds
+    
+    //    gradientLayer.frame = overlayView.bounds
+  }
+  
+  func setupUI() {
+    addSubview(overlayView)
+    if let superview = overlayView.superview {
+      NSLayoutConstraint.activate([
+        overlayView.topAnchor.constraint(equalTo: superview.topAnchor),
+        overlayView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+        overlayView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+        overlayView.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+      ])
+      
+      overlayView.layer.addSublayer(gradientLayer)
+    }
+  }
+  
+  func updateGradient() {
+    gradientLayer.colors = cgColors
+    switch gradientDirection {
+    case .upDown:
+      gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+      gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+    }
+  }
+}
+
 final class DetailsController: BaseController {
   
   var viewModel: DetailsViewModelProtocol?
   var coordinator: DetailsCoordinatorFlow?
   
-  fileprivate lazy var imageView: UIImageView = {
-    $0.contentMode = .scaleAspectFill
-    $0.translatesAutoresizingMaskIntoConstraints = false
-    return $0
-  }(UIImageView())
+
   
   fileprivate let scrollView: UIScrollView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.contentInsetAdjustmentBehavior = .never
     $0.showsVerticalScrollIndicator = false
-    $0.backgroundColor = Constants.Colors.dark
+    $0.backgroundColor = .black
     return $0
   }(UIScrollView())
   
@@ -52,11 +130,21 @@ final class DetailsController: BaseController {
     navigationController?.popViewController(animated: true)
   }
   
+  fileprivate lazy var imageView: UIImageView = {
+    $0.contentMode = .scaleAspectFill
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    return $0
+  }(UIImageView())
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    
+    let gv = GradientView(frame: imageView.frame)
+    imageView.insertSubview(gv, at: 0)
     dataBindings()
     navigationController?.navigationBar.isHidden = true
+    
   }
   
   override func viewDidLayoutSubviews() {
@@ -67,7 +155,7 @@ final class DetailsController: BaseController {
                                            bottom: view.safeAreaInsets.bottom,
                                            right: 0)
   }
-   
+  
   fileprivate func dataBindings() {
     viewModel?.detailsVO.bind(observer: {
       [weak self] (detailsVO) in

@@ -48,7 +48,7 @@ final class DetailsContentView: UIView {
   func setContent(title: String, tagline: String, overview: String) {
     titleLabel.text = title
     taglineLabel.text = tagline
-    overviewLabel.text = overview
+    overviewLabel.text = overview + overview + overview
   }
   
   fileprivate func commonInit() {
@@ -57,7 +57,7 @@ final class DetailsContentView: UIView {
     addSubview(overviewLabel)
         
     NSLayoutConstraint.activate([
-      titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+      titleLabel.topAnchor.constraint(equalTo: topAnchor),
       titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
       titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
       
