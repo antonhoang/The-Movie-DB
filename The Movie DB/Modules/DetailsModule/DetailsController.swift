@@ -42,7 +42,6 @@ final class DetailsController: BaseController {
   }(UIButton())
   
   @objc fileprivate func handleBackButton() {
-    print(#function)
     navigationController?.popViewController(animated: true)
   }
   
@@ -55,12 +54,7 @@ final class DetailsController: BaseController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-    
-    let gv = GradientView(frame: imageView.frame)
-    imageView.insertSubview(gv, at: 0)
     dataBindings()
-    navigationController?.navigationBar.isHidden = true
-    navigationItem.setHidesBackButton(true, animated: true)
   }
   
   override func viewDidLayoutSubviews() {
@@ -85,10 +79,16 @@ final class DetailsController: BaseController {
   }
   
   fileprivate func setupUI() {
+    setupNavigationBar()
     setupScrollView()
     setupImageContainerView()
-    setupContentBlockView()
+    setupDetailsContentView()
     setupBackButton()
+  }
+  
+  fileprivate func setupNavigationBar() {
+    navigationController?.navigationBar.isHidden = true
+    navigationItem.setHidesBackButton(true, animated: true)
   }
   
   fileprivate func setupBackButton() {
@@ -103,7 +103,6 @@ final class DetailsController: BaseController {
   
   fileprivate func setupScrollView() {
     view.addSubview(scrollView)
-    
     scrollView.addSubview(imageContainer)
     scrollView.addSubview(detailsContentView)
     scrollView.addSubview(imageView)
@@ -116,7 +115,19 @@ final class DetailsController: BaseController {
     ])
   }
   
+  fileprivate func setupDetailsContentView() {
+    NSLayoutConstraint.activate([
+      detailsContentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor),
+      detailsContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      detailsContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      detailsContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+    ])
+  }
+  
   fileprivate func setupImageContainerView() {
+    let gradientView = GradientView(frame: imageView.frame)
+    imageView.insertSubview(gradientView, at: 0)
+    
     NSLayoutConstraint.activate([
       imageContainer.topAnchor.constraint(equalTo: scrollView.topAnchor),
       imageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -137,14 +148,5 @@ final class DetailsController: BaseController {
     let heightImageConstraint = imageView.heightAnchor.constraint(greaterThanOrEqualTo: imageContainer.heightAnchor)
     heightImageConstraint.isActive = true
     heightImageConstraint.priority = .required
-    
-    NSLayoutConstraint.activate([
-      detailsContentView.topAnchor.constraint(equalTo: imageContainer.bottomAnchor),
-      detailsContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      detailsContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      detailsContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-    ])
   }
-  
-  fileprivate func setupContentBlockView() { }
 }

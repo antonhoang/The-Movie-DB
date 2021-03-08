@@ -30,9 +30,9 @@ final class DetailsViewModel: DetailsViewModelProtocol {
   func getMovieDetails() {
     if let movieId = movieVO?.id {
       repository.getDetails(movieId: movieId, handler: .some{
-        [weak self] (detVO) in
+        [weak self] (details) in
         guard let self = self else { return }
-        self.detailsVO.accept(value: detVO)
+        self.detailsVO.accept(value: details)
       })
     }
   }
