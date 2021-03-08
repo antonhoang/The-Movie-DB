@@ -48,10 +48,12 @@ final class HomeRepository: HomeRepositoryProtocol {
   }
   
   fileprivate func responseData(with response: Result<MovieData, Error>, handler: MovieVOHandler) {
-    do {
-      let group = DispatchGroup()
-      var moviesVO: [MovieVO] = []
-       _ = try response.get().results.map { movie in
+    let group = DispatchGroup()
+    var moviesVO: [MovieVO] = []
+    
+    switch response {
+    case .success(let movieData):
+      _ = movieData.results.map { movie in
         if let posterPath = movie.poster_path {
           
           group.enter()
@@ -67,8 +69,7 @@ final class HomeRepository: HomeRepositoryProtocol {
       group.notify(queue: .global(qos: .background)) {
         handler?(moviesVO)
       }
-
-    } catch let error {
+    case .failure(let error):
       print(error)
     }
   }

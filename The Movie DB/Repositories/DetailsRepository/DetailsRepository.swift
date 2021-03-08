@@ -34,15 +34,15 @@ final class DetailsRepository: DetailsRepositoryProtocol {
   }
   
   fileprivate func responseData(with response: Result<DetailsData, Error>, handler: DetailsVOHandler) {
-    do {
-      let details = try response.get()
+    switch response {
+    case .success(let details):
       imageManager.fetchImageConfiguration(with: .secure, size: .w780, handler: .some {
         imagePath in
         let imageUrlPath = imagePath + details.backdrop_path
         let detailVO = DetailsVO(details: details, imageUrlPath: imageUrlPath)
         handler?(detailVO)
       })
-    } catch let error {
+    case .failure(let error):
       print(error)
     }
   }
