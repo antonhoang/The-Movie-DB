@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class DetailsController: UIViewController {
+final class DetailsController: BaseController {
   
   var viewModel: DetailsViewModelProtocol?
   var coordinator: DetailsCoordinatorFlow?
@@ -62,19 +62,6 @@ final class DetailsController: UIViewController {
                                            left: 0,
                                            bottom: view.safeAreaInsets.bottom,
                                            right: 0)
-  }
-  
-  func setupNavigationBar(_ isTranslucent: Bool,
-                          backgroundColor: UIColor,
-                          barTintColor: UIColor,
-                          shadowImage: UIImage?) {
-    navigationController?.navigationBar.isTranslucent = isTranslucent
-    navigationController?.navigationBar.backgroundColor = .clear
-    navigationController?.navigationBar.barTintColor = .clear
-    navigationController?.navigationBar.tintColor = .white
-    navigationController?.navigationBar.setBackgroundImage(shadowImage, for: .default)
-    navigationController?.navigationBar.shadowImage = shadowImage
-    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
   }
    
   fileprivate func dataBindings() {

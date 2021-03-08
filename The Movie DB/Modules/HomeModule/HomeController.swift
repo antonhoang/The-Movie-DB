@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeController: UIViewController {
+final class HomeController: BaseController {
   
   var coordinator: HomeCoordinatorFlow?
   var viewModel: HomeViewModelProtocol?
@@ -40,18 +40,7 @@ final class HomeController: UIViewController {
                        barTintColor: .black, shadowImage: nil)
   }
   
-  func setupNavigationBar(_ isTranslucent: Bool,
-                          backgroundColor: UIColor,
-                          barTintColor: UIColor,
-                          shadowImage: UIImage?) {
-    navigationController?.navigationBar.isTranslucent = isTranslucent
-    navigationController?.navigationBar.backgroundColor = .clear
-    navigationController?.navigationBar.barTintColor = .clear
-    navigationController?.navigationBar.tintColor = .white
-    navigationController?.navigationBar.setBackgroundImage(shadowImage, for: .default)
-    navigationController?.navigationBar.shadowImage = shadowImage
-    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-  }
+
   
   func dataBindings() {
     viewModel?.items.bind(observer: { [weak self] (moviesVO) in
