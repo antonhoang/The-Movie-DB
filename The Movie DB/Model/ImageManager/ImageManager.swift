@@ -24,11 +24,11 @@ final class ImageManager: ImageManagerProtocol {
   
   internal func fetchImageConfiguration(with secureType: SecureType, size: LogoSizes, handler: ImageHandler) {
     let endPoint = RequestItem.getImageConfiguration
-    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some { (imageData) in
+    network.sendDataRequest(endPoint: endPoint, response: ImagesData.self, handler: .some { (response) in
       
-      do {
-        guard let imageConfig = try imageData.get().images else { return }
-        
+      switch response {
+      case .success(let imageData):
+        guard let imageConfig = imageData.images else { return }
         switch secureType {
         case .base:
           if let url = imageConfig.base_url {
@@ -42,8 +42,7 @@ final class ImageManager: ImageManagerProtocol {
             handler?(imagePath)
           }
         }
-        
-      } catch let error {
+      case .failure(let error):
         print(error)
       }
     })
