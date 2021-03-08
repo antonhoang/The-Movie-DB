@@ -40,8 +40,6 @@ final class HomeController: BaseController {
                        barTintColor: Constants.Colors.dark, shadowImage: UIImage())
   }
   
-
-  
   func dataBindings() {
     viewModel?.items.bind(observer: { [weak self] (moviesVO) in
       guard let self = self, !moviesVO.isEmpty else { return }
@@ -64,6 +62,13 @@ final class HomeController: BaseController {
   
   fileprivate func setupUI() {
     navigationItem.title = screenTitle
+    let image = UIImage(named: Constants.Images.popcorn)?.withRenderingMode(.alwaysOriginal)
+    let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handleMenu(_:)))
+    navigationItem.leftBarButtonItem = button
+  }
+  
+  @objc fileprivate func handleMenu(_ sender: UIBarButtonItem) {
+    print(#function)
   }
 }
 
