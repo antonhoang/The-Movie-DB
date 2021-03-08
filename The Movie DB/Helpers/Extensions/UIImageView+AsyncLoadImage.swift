@@ -27,8 +27,10 @@ extension UIImageView {
     queue.async(execute: workItem)
     workItem.notify(queue: .main) {
       if let imageData = data {
-        UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
-          self?.image = UIImage(data: imageData)
+        DispatchQueue.main.async {
+          UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
+            self?.image = UIImage(data: imageData)
+          }
         }
       }
     }

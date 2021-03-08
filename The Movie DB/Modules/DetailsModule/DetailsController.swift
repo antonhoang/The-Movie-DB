@@ -69,8 +69,8 @@ final class DetailsController: BaseController {
   fileprivate func dataBindings() {
     viewModel?.detailsVO.bind(observer: {
       [weak self] (detailsVO) in
+      self?.imageView.loadImage(imagePath: detailsVO.imageUrlPath)
       DispatchQueue.main.async { [weak self] in
-        self?.imageView.loadImage(imagePath: detailsVO.imageUrlPath)
         self?.detailsContentView.setContent(title: detailsVO.original_title,
                                             tagline: detailsVO.tagline,
                                             overview: detailsVO.overview)

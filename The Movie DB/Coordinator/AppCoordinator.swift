@@ -11,13 +11,7 @@ import UIKit
 final class AppCoordinator: CoordinatorProtocol {
   
   let window: UIWindow
-//  let navController: UINavigationController
-//  
-//  init(window: UIWindow, navController: UINavigationController) {
-//    self.window = window
-//    self.navController = navController
-//  }
-  
+
   init(window: UIWindow) {
     self.window = window
   }
@@ -25,10 +19,5 @@ final class AppCoordinator: CoordinatorProtocol {
   func start() {
     let baseCoordinator = BaseSliderCoordinator(window: window)
     coordinate(to: baseCoordinator)
-    
-//    let homeCoordinator = HomeCoordinator(navController: navController)
-//    coordinate(to: homeCoordinator)
-//    window.rootViewController = navController
-//    window.makeKeyAndVisible()
   }
 }

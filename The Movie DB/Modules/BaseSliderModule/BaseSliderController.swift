@@ -38,12 +38,11 @@ final class BaseSliderController: UIViewController {
   var isMenuOpen: Bool = false
   let velocityThreshold: CGFloat = 500.0
   
-  fileprivate let licoinNavController = UINavigationController()
+  fileprivate let homeNavController = UINavigationController()
   fileprivate let postNavController = UINavigationController()
   fileprivate let feedNavController = UINavigationController()
   fileprivate let profileNavController = UINavigationController()
-  fileprivate var tabBarCurrent: UIViewController!
-  fileprivate var rightViewController: UIViewController = UINavigationController(rootViewController: HomeController())
+  fileprivate lazy var rightViewController: UIViewController = UINavigationController(rootViewController: coordinator.openHome(navController: homeNavController))
 
   override func viewDidLoad() {
     super.viewDidLoad()
