@@ -27,7 +27,8 @@ struct Constants {
   
   enum Images {
     static let popcorn = "popcorn"
-    static let pic10 = "pic10"
+    static let leftArrow = "left-arrow"
+    static let leftArrow2 = "left-arrow2"
   }
   
   enum Colors {

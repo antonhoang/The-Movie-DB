@@ -45,10 +45,10 @@ final class DetailsController: BaseController {
   }(UIView())
   
   fileprivate let backButton: UIButton = {
-    let image = UIImage(named: Constants.Images.popcorn)?.withRenderingMode(.alwaysOriginal)
+    let image = UIImage(named: Constants.Images.leftArrow2)?.withRenderingMode(.alwaysTemplate)
     $0.setImage(image, for: .normal)
+    $0.tintColor = .systemYellow
     $0.contentMode = .scaleAspectFit
-    $0.isUserInteractionEnabled = true
     $0.translatesAutoresizingMaskIntoConstraints = false
     $0.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
     return $0
@@ -90,10 +90,12 @@ final class DetailsController: BaseController {
   }
   
   fileprivate func setupBackButton() {
-    scrollView.addSubview(backButton)
+    view.addSubview(backButton)
     NSLayoutConstraint.activate([
-      backButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15),
-      backButton.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 15),
+      backButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 25),
+      backButton.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 12),
+      backButton.heightAnchor.constraint(equalToConstant: 22),
+      backButton.widthAnchor.constraint(equalToConstant: 22)
     ])
   }
   
