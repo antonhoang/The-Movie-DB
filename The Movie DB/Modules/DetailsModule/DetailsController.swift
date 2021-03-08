@@ -60,7 +60,7 @@ final class DetailsController: BaseController {
     imageView.insertSubview(gv, at: 0)
     dataBindings()
     navigationController?.navigationBar.isHidden = true
-    
+    navigationItem.setHidesBackButton(true, animated: true)
   }
   
   override func viewDidLayoutSubviews() {
