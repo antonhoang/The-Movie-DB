@@ -44,17 +44,26 @@ final class DetailsController: BaseController {
     return $0
   }(UIView())
   
+  fileprivate let backButton: UIButton = {
+    let image = UIImage(named: Constants.Images.popcorn)?.withRenderingMode(.alwaysOriginal)
+    $0.setImage(image, for: .normal)
+    $0.contentMode = .scaleAspectFit
+    $0.isUserInteractionEnabled = true
+    $0.translatesAutoresizingMaskIntoConstraints = false
+    $0.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
+    return $0
+  }(UIButton())
+  
+  @objc fileprivate func handleBackButton() {
+    print(#function)
+    navigationController?.popViewController(animated: true)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
     dataBindings()
-    setupNavigationBar(true, backgroundColor: .clear, barTintColor: .clear, shadowImage: UIImage())
-  }
-    
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    setupNavigationBar(false, backgroundColor: Constants.Colors.dark,
-                       barTintColor: Constants.Colors.dark, shadowImage: UIImage())
+    navigationController?.navigationBar.isHidden = true
   }
   
   override func viewDidLayoutSubviews() {
@@ -77,6 +86,15 @@ final class DetailsController: BaseController {
     setupScrollView()
     setupImageContainerView()
     setupContentBlockView()
+    setupBackButton()
+  }
+  
+  fileprivate func setupBackButton() {
+    scrollView.addSubview(backButton)
+    NSLayoutConstraint.activate([
+      backButton.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 15),
+      backButton.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 15),
+    ])
   }
   
   fileprivate func setupScrollView() {

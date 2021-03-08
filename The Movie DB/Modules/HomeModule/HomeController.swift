@@ -33,12 +33,13 @@ final class HomeController: BaseController {
     setupUI()
     setupTableView()
     dataBindings()
+    setupNavigationBar(false, backgroundColor: statusBarColor,
+                       barTintColor: statusBarColor, shadowImage: UIImage())
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    setupNavigationBar(false, backgroundColor: statusBarColor,
-                       barTintColor: statusBarColor, shadowImage: UIImage())
+    navigationController?.navigationBar.isHidden = false
   }
   
   func dataBindings() {
