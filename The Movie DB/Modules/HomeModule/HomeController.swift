@@ -15,7 +15,7 @@ final class HomeController: BaseController {
   fileprivate let cellID = Constants.CellIdentifiers.homeCellId.rawValue
   fileprivate let screenTitle = Constants.ScreenTitles.home.rawValue
   fileprivate var model: [MovieVO] = []
-  fileprivate let statusBarColor = Constants.Colors.dark
+  fileprivate let statusBarColor = UIColor.black
   
   fileprivate lazy var tableView: UITableView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -23,11 +23,15 @@ final class HomeController: BaseController {
     $0.delegate = self
     $0.dataSource = self
     $0.separatorStyle = .none
-    $0.backgroundColor = Constants.Colors.dark
+    $0.backgroundColor = .black
     $0.rowHeight = UIScreen.main.bounds.height / 3.2    
     return $0
   }(UITableView())
 
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    .lightContent
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -35,6 +39,7 @@ final class HomeController: BaseController {
     dataBindings()
     setupNavigationBar(false, backgroundColor: statusBarColor,
                        barTintColor: statusBarColor, shadowImage: UIImage())
+    navigationController?.navigationBar.barStyle = .black
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +47,7 @@ final class HomeController: BaseController {
     navigationController?.navigationBar.isHidden = false
   }
   
-  func dataBindings() {
+  fileprivate func dataBindings() {
     viewModel?.items.bind(observer: { [weak self] (moviesVO) in
       guard let self = self, !moviesVO.isEmpty else { return }
       self.model = moviesVO
@@ -84,6 +89,7 @@ extension HomeController: UITableViewDataSource, UITableViewDelegate {
       assert(false)
     }
     cell.configureCell(movieVO: model[indexPath.row])
+    cell.selectionStyle = .none
     return cell
   }
   
