@@ -91,6 +91,12 @@ final class HomeCell: UITableViewCell {
     super.layoutSubviews()
   }
   
+  fileprivate func commonInit() {
+    backgroundColor = .black
+    setupImageView()
+    setupStackView()
+  }
+  
   func configureCell(movieVO: MovieVO) {
     if let imagePath = movieVO.imageUrlPath {
       movieImageView.loadImage(imagePath: imagePath)
@@ -127,9 +133,7 @@ final class HomeCell: UITableViewCell {
     
     horizontalInfoStackView.addArrangedSubview(titleLabel)
     horizontalInfoStackView.addArrangedSubview(verticalInfoStackView)
-    
     verticalInfoStackView.addArrangedSubview(voteAverage)
-    
     infoStackView.addArrangedSubview(overviewLabel)
     
     NSLayoutConstraint.activate([
@@ -143,13 +147,6 @@ final class HomeCell: UITableViewCell {
       infoStackView.trailingAnchor.constraint(equalTo: horizontalInfoStackView.trailingAnchor),
       infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
     ])
-    
-  }
-  
-  fileprivate func commonInit() {
-    backgroundColor = .black
-    setupImageView()
-    setupStackView()
   }
 }
 

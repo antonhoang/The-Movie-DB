@@ -52,6 +52,11 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
   }
   
   func invalidateSession() {
+    session?.getTasksWithCompletionHandler({ (sessionsTasks, uploadTasks, downloadTasks) in
+      sessionsTasks
+        .filter { $0.state == .running }
+        .forEach { $0.cancel() }
+    })
     session?.invalidateAndCancel()
   }
   
@@ -109,8 +114,6 @@ final class NetworkManager: NSObject, NetworkManagerProtocol {
     
     return nil
   }
-  
-
 }
 
 
