@@ -37,7 +37,6 @@ final class AuthController: UIViewController {
   
   //MARK: - Setup views
   fileprivate func setupScrollableImage() {
-//    let imageV = UIImageView(image: UIImage(named: "1"))
     let imageV = UIImageView(image: UIImage(named: "11"))
     scrollView.addSubview(imageV)
     imageV.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +46,7 @@ final class AuthController: UIViewController {
       imageV.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
       imageV.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
     ])
+    scrollView.sendSubviewToBack(imageV)
   }
   
   private func setupUI() {

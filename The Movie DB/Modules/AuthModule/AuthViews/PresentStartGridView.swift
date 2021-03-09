@@ -25,6 +25,11 @@ final class PresentStartGridView: CommonInitView {
     let titleLabel = UILabel()
     addSubview(titleLabel)
     titleLabel.setupLabelWith(text: "Buy my attention", textColor: .white, font: .boldSystemFont(ofSize: 35))
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+      titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+    ])
 //    titleLabel.topLeft(to: self,
 //                       topSpace: BMA.Margin.marginForShape20Percent,
 //                       leftSpace: BMA.Margin.marginForShape5Percent)
