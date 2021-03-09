@@ -46,7 +46,7 @@ final class BaseSliderController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .red
+    view.backgroundColor = .clear
     setupViews()
     setupViewControllers()
   }

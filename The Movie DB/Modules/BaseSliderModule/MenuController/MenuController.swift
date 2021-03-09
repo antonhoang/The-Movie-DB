@@ -17,26 +17,25 @@ struct MenuItem {
 final class MenuController: UIViewController {
         
   let menuItems = [
-      MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "News"),
-      MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Favourites"),
-      MenuItem(icon: #imageLiteral(resourceName: "bookmarks"), title: "Settings"),
-      MenuItem(icon: #imageLiteral(resourceName: "moments"), title: "BMA"),
+    MenuItem(icon: #imageLiteral(resourceName: "bookmarks"), title: "Posts"),
+    MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "List"),
+    MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Favourites"),
   ]
   
-  let tableView: UITableView = {
+  fileprivate lazy var tableView: UITableView = {
     $0.backgroundColor = .clear
     $0.separatorStyle = .none
     $0.bounces = false
     $0.showsVerticalScrollIndicator = false
+    $0.register(MenuCell.self, forCellReuseIdentifier: "c")
+    $0.delegate = self
+    $0.dataSource = self
     return $0
   }(UITableView())
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    tableView.register(MenuCell.self, forCellReuseIdentifier: "c")
-    tableView.delegate = self
-    tableView.dataSource = self
+
     view.addSubview(tableView)
     tableView.fillSuperview()
   }
@@ -51,7 +50,6 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return menuItems.count
   }
-  
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = MenuCell(style: .default, reuseIdentifier: "c")

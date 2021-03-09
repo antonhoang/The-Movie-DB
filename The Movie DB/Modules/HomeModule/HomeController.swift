@@ -75,7 +75,8 @@ final class HomeController: BaseController {
   }
   
   @objc fileprivate func handleMenu(_ sender: UIBarButtonItem) {
-    print(#function)
+    let slider = UIWindow.key?.rootViewController as? BaseSliderController
+    slider?.openMenu()
   }
 }
 
