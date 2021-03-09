@@ -39,6 +39,17 @@
 		7A36A61325F6A59D006F958A /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A61225F6A59D006F958A /* SpacerView.swift */; };
 		7A36A61625F6A5AB006F958A /* CustomMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A61525F6A5AB006F958A /* CustomMenuHeaderView.swift */; };
 		7A36A61925F6A69C006F958A /* UIWindow+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A61825F6A69C006F958A /* UIWindow+Key.swift */; };
+		7A36A63125F81E66006F958A /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A63025F81E66006F958A /* AuthCoordinator.swift */; };
+		7A36A63625F81EA1006F958A /* AuthAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A63525F81EA1006F958A /* AuthAssembler.swift */; };
+		7A36A63925F81EA8006F958A /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A63825F81EA8006F958A /* AuthController.swift */; };
+		7A36A63D25F81EB7006F958A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A63C25F81EB7006F958A /* AuthViewModel.swift */; };
+		7A36A64025F81F4E006F958A /* UIScrollView+DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A63F25F81F4E006F958A /* UIScrollView+DefaultSettings.swift */; };
+		7A36A64425F8208A006F958A /* PresentStartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A64325F8208A006F958A /* PresentStartGridView.swift */; };
+		7A36A64725F82095006F958A /* PresentIntroducingGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A64625F82095006F958A /* PresentIntroducingGridView.swift */; };
+		7A36A64A25F8209D006F958A /* PresentFinishGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A64925F8209D006F958A /* PresentFinishGridView.swift */; };
+		7A36A64E25F820FC006F958A /* CommonInitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A64D25F820FC006F958A /* CommonInitView.swift */; };
+		7A36A65225F82134006F958A /* UILabel+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A65125F82134006F958A /* UILabel+Setup.swift */; };
+		7A36A65525F821D5006F958A /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36A65425F821D5006F958A /* UIView+Shadow.swift */; };
 		7A68A41E25E84334007B6B37 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A41D25E84333007B6B37 /* Coordinator.swift */; };
 		7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A42025E8438B007B6B37 /* AppCoordinator.swift */; };
 		7A68A42525E8457F007B6B37 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68A42425E8457F007B6B37 /* Assembler.swift */; };
@@ -99,6 +110,17 @@
 		7A36A61225F6A59D006F958A /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
 		7A36A61525F6A5AB006F958A /* CustomMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuHeaderView.swift; sourceTree = "<group>"; };
 		7A36A61825F6A69C006F958A /* UIWindow+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Key.swift"; sourceTree = "<group>"; };
+		7A36A63025F81E66006F958A /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		7A36A63525F81EA1006F958A /* AuthAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembler.swift; sourceTree = "<group>"; };
+		7A36A63825F81EA8006F958A /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		7A36A63C25F81EB7006F958A /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		7A36A63F25F81F4E006F958A /* UIScrollView+DefaultSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+DefaultSettings.swift"; sourceTree = "<group>"; };
+		7A36A64325F8208A006F958A /* PresentStartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentStartGridView.swift; sourceTree = "<group>"; };
+		7A36A64625F82095006F958A /* PresentIntroducingGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentIntroducingGridView.swift; sourceTree = "<group>"; };
+		7A36A64925F8209D006F958A /* PresentFinishGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentFinishGridView.swift; sourceTree = "<group>"; };
+		7A36A64D25F820FC006F958A /* CommonInitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonInitView.swift; sourceTree = "<group>"; };
+		7A36A65125F82134006F958A /* UILabel+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Setup.swift"; sourceTree = "<group>"; };
+		7A36A65425F821D5006F958A /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		7A68A41D25E84333007B6B37 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7A68A42025E8438B007B6B37 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		7A68A42425E8457F007B6B37 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
@@ -173,6 +195,8 @@
 		7A2B007225E3008F00D253BD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7A36A64C25F820EC006F958A /* CommonViews */,
+				7A36A63325F81E6D006F958A /* AuthModule */,
 				7A36A5E825F6A3D2006F958A /* BaseSliderModule */,
 				7A952DE625F6205800D4A2F6 /* BaseModule */,
 				7A2B008E25E3019000D253BD /* DetailsModule */,
@@ -301,6 +325,36 @@
 			path = MenuController;
 			sourceTree = "<group>";
 		};
+		7A36A63325F81E6D006F958A /* AuthModule */ = {
+			isa = PBXGroup;
+			children = (
+				7A36A64225F82067006F958A /* AuthViews */,
+				7A36A63025F81E66006F958A /* AuthCoordinator.swift */,
+				7A36A63525F81EA1006F958A /* AuthAssembler.swift */,
+				7A36A63825F81EA8006F958A /* AuthController.swift */,
+				7A36A63C25F81EB7006F958A /* AuthViewModel.swift */,
+			);
+			path = AuthModule;
+			sourceTree = "<group>";
+		};
+		7A36A64225F82067006F958A /* AuthViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A36A64325F8208A006F958A /* PresentStartGridView.swift */,
+				7A36A64625F82095006F958A /* PresentIntroducingGridView.swift */,
+				7A36A64925F8209D006F958A /* PresentFinishGridView.swift */,
+			);
+			path = AuthViews;
+			sourceTree = "<group>";
+		};
+		7A36A64C25F820EC006F958A /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A36A64D25F820FC006F958A /* CommonInitView.swift */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
 		7A68A42325E8456E007B6B37 /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +440,9 @@
 				7A952DD625F554BD00D4A2F6 /* UIImageView+AsyncLoadImage.swift */,
 				7A36A5E225F66AB8006F958A /* UIView+Gradient.swift */,
 				7A36A61825F6A69C006F958A /* UIWindow+Key.swift */,
+				7A36A63F25F81F4E006F958A /* UIScrollView+DefaultSettings.swift */,
+				7A36A65125F82134006F958A /* UILabel+Setup.swift */,
+				7A36A65425F821D5006F958A /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -488,12 +545,16 @@
 				7A36A5F825F6A466006F958A /* BaseSlider+Actions.swift in Sources */,
 				7A952DA425F0342C00D4A2F6 /* MovieVO.swift in Sources */,
 				7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */,
+				7A36A64A25F8209D006F958A /* PresentFinishGridView.swift in Sources */,
 				7A2B009425E301A700D253BD /* DetailsAssembler.swift in Sources */,
 				7A952DE825F6207100D4A2F6 /* BaseController.swift in Sources */,
+				7A36A64025F81F4E006F958A /* UIScrollView+DefaultSettings.swift in Sources */,
 				7A68A42525E8457F007B6B37 /* Assembler.swift in Sources */,
 				7A36A60A25F6A557006F958A /* MenuCell.swift in Sources */,
+				7A36A63125F81E66006F958A /* AuthCoordinator.swift in Sources */,
 				7A952DDC25F5582800D4A2F6 /* ImageManager.swift in Sources */,
 				7A952D4425EA8E7D00D4A2F6 /* EndPointType.swift in Sources */,
+				7A36A64425F8208A006F958A /* PresentStartGridView.swift in Sources */,
 				7A952DEB25F644F200D4A2F6 /* DetailsContentView.swift in Sources */,
 				7A36A5FF25F6A495006F958A /* MenuContainerView.swift in Sources */,
 				7A36A5EA25F6A40B006F958A /* BaseSliderCoordinator.swift in Sources */,
@@ -503,6 +564,7 @@
 				7A2B009725E301AE00D253BD /* DetailsCoordinator.swift in Sources */,
 				7A2B004225E2E18200D253BD /* HomeController.swift in Sources */,
 				7A36A60625F6A540006F958A /* MenuController.swift in Sources */,
+				7A36A64725F82095006F958A /* PresentIntroducingGridView.swift in Sources */,
 				7A952DC425F5002400D4A2F6 /* DetailsRepository.swift in Sources */,
 				7A2B007E25E300FE00D253BD /* HomeAssembler.swift in Sources */,
 				7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */,
@@ -512,16 +574,22 @@
 				7A36A61325F6A59D006F958A /* SpacerView.swift in Sources */,
 				7A36A5E325F66AB8006F958A /* UIView+Gradient.swift in Sources */,
 				7A2B003E25E2E18200D253BD /* AppDelegate.swift in Sources */,
+				7A36A63925F81EA8006F958A /* AuthController.swift in Sources */,
 				7A2B007B25E300F500D253BD /* HomeCoordinator.swift in Sources */,
 				7A2B004025E2E18200D253BD /* SceneDelegate.swift in Sources */,
 				7A36A5FC25F6A48C006F958A /* RightContainerView.swift in Sources */,
 				7A2B007725E300EA00D253BD /* HomeViewModel.swift in Sources */,
 				7A36A60225F6A49F006F958A /* DarkCoverView.swift in Sources */,
+				7A36A65225F82134006F958A /* UILabel+Setup.swift in Sources */,
 				7A2B008225E3016300D253BD /* FavoriteController.swift in Sources */,
+				7A36A63D25F81EB7006F958A /* AuthViewModel.swift in Sources */,
+				7A36A64E25F820FC006F958A /* CommonInitView.swift in Sources */,
+				7A36A63625F81EA1006F958A /* AuthAssembler.swift in Sources */,
 				7A36A61625F6A5AB006F958A /* CustomMenuHeaderView.swift in Sources */,
 				7A36A5F525F6A455006F958A /* BaseSliderViewModel.swift in Sources */,
 				7A952DB025F3B96400D4A2F6 /* HomeCell.swift in Sources */,
 				7A2B009A25E301B700D253BD /* DetailsViewModel.swift in Sources */,
+				7A36A65525F821D5006F958A /* UIView+Shadow.swift in Sources */,
 				7A952DB325F3BA4F00D4A2F6 /* LayoutConstraints.swift in Sources */,
 				7A952DE325F5607B00D4A2F6 /* DetailsVO.swift in Sources */,
 				7A952D4125EA8E6B00D4A2F6 /* HTTPMethod.swift in Sources */,

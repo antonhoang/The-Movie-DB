@@ -17,7 +17,9 @@ final class AppCoordinator: CoordinatorProtocol {
   }
   
   func start() {
-    let baseCoordinator = BaseSliderCoordinator(window: window)
-    coordinate(to: baseCoordinator)
+    let authCoordinator = AuthCoordinator(window: window)
+    coordinate(to: authCoordinator)
+//    let baseCoordinator = BaseSliderCoordinator(window: window)
+//    coordinate(to: baseCoordinator)
   }
 }
