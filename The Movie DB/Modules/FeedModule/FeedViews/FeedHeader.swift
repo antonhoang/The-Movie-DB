@@ -11,7 +11,7 @@ import UIKit
 
 final class FeedHeader: UICollectionReusableView {
   
-  private weak var headerTitle: UILabel!
+  fileprivate weak var headerTitle: UILabel!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -23,7 +23,7 @@ final class FeedHeader: UICollectionReusableView {
     setupHeaderTitle()
   }
   
-  private func setupHeaderTitle() {
+  fileprivate func setupHeaderTitle() {
     let headerTitle = UILabel()
     addSubview(headerTitle)
     self.headerTitle = headerTitle

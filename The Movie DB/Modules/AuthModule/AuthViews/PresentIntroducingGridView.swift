@@ -17,7 +17,7 @@ final class PresentIntroducingGridView: CommonInitView {
     setupDescription()
   }
   
-  private func setupBackground() {
+  fileprivate func setupBackground() {
     backgroundColor = .clear
     let titleLabel = UILabel()
     addSubview(titleLabel)
@@ -26,7 +26,7 @@ final class PresentIntroducingGridView: CommonInitView {
     titleLabel.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
   }
   
-  private func setupDescription() {
+  fileprivate func setupDescription() {
     let textDescription = UILabel()
     addSubview(textDescription)
     textDescription.textAlignment = .center

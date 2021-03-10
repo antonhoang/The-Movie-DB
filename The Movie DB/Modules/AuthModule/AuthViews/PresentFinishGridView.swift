@@ -25,7 +25,7 @@ final class PresentFinishGridView: CommonInitView {
     setupAppleButton()
   }
   
-  private func setupBackground() {
+  fileprivate func setupBackground() {
     backgroundColor = .clear
     let titleLabel = UILabel()
     addSubview(titleLabel)
@@ -34,7 +34,7 @@ final class PresentFinishGridView: CommonInitView {
     titleLabel.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
   }
   
-  private func setupAppleButton() {
+  fileprivate func setupAppleButton() {
     let appleButton = ASAuthorizationAppleIDButton()
     addSubview(appleButton)
     self.appleButton = appleButton
@@ -42,7 +42,7 @@ final class PresentFinishGridView: CommonInitView {
     appleButton.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
   }
   
-  @objc private func signInWithApple() {
+  @objc fileprivate func signInWithApple() {
     let provider = ASAuthorizationAppleIDProvider()
     let request = provider.createRequest()
     request.requestedScopes = [.fullName, .email]
@@ -53,7 +53,7 @@ final class PresentFinishGridView: CommonInitView {
     controller.performRequests()
   }
   
-  private func setupFinishButton() {
+  fileprivate func setupFinishButton() {
     let finishButton = CommonButton()
     addSubview(finishButton)
     self.finishButton = finishButton
