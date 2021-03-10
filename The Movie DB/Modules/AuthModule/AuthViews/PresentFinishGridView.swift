@@ -15,12 +15,13 @@ final class PresentFinishGridView: CommonInitView {
   //MARK: - Properties
 //  weak var finishButton: CommonButton!
   weak var appleButton: ASAuthorizationAppleIDButton!
-  
+  weak var finishButton: CommonButton! 
+
   //MARK: - Setup views
   
   override func сommonInit() {
     setupBackground()
-//    setupFinishButton()
+    setupFinishButton()
     setupAppleButton()
   }
   
@@ -53,13 +54,15 @@ final class PresentFinishGridView: CommonInitView {
   }
   
   private func setupFinishButton() {
-//    let finishButton = CommonButton()
-//    addSubview(finishButton)
-//    self.finishButton = finishButton
-//    finishButton.centerXWithBottom(to: self, with: BMA.UIScreenBounds.heightDivided5)
-//    finishButton.heightConstant(equal: BMA.UIScreenBounds.widthDivided5)
-//    finishButton.widthConstant(equal: BMA.UIScreenBounds.heightDivided5)
-//    finishButton.setTitle("Finish", for: .normal)
+    let finishButton = CommonButton()
+    addSubview(finishButton)
+    self.finishButton = finishButton
+    finishButton.setTitle("Finish", for: .normal)
+    finishButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      finishButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      finishButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+    ])
   }
 }
 

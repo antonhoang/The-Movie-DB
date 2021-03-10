@@ -75,17 +75,16 @@ final class AuthController: UIViewController {
     let presentView = PresentStartGridView()
     let secondView = PresentIntroducingGridView()
     let thirdView = PresentFinishGridView()
-//    thirdView.finishButton.touchUpInside = {
-//      [weak self] item in
-//      self?.coordinator?.coordinateToBaseSlider()
-//      self?.coordinator = nil
-//    }
+    thirdView.finishButton.touchUpInside = {
+      [weak self] item in
+      self?.coordinator?.coordinateToBaseSlider()
+      self?.coordinator = nil
+    }
     [presentView, secondView, thirdView].forEach {
       stackView.addArrangedSubview($0)
       $0.translatesAutoresizingMaskIntoConstraints = false
       $0.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
       $0.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-//      $0.fillByDimension(to: view)
       views.append($0)
     }
   }

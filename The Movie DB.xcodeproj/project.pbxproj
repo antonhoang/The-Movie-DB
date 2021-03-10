@@ -74,6 +74,7 @@
 		7A952DEB25F644F200D4A2F6 /* DetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A952DEA25F644F200D4A2F6 /* DetailsContentView.swift */; };
 		7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC40DBE25E392F400FD4E60 /* RequestItem.swift */; };
 		FD09D67D25F92B5B00A7E2E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FD09D67C25F92B5B00A7E2E6 /* Kingfisher */; };
+		FD09D68025F92C9200A7E2E6 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D67F25F92C9200A7E2E6 /* CommonButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		7A952DE725F6207100D4A2F6 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		7A952DEA25F644F200D4A2F6 /* DetailsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsContentView.swift; sourceTree = "<group>"; };
 		7AC40DBE25E392F400FD4E60 /* RequestItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestItem.swift; sourceTree = "<group>"; };
+		FD09D67F25F92C9200A7E2E6 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				7A36A64D25F820FC006F958A /* CommonInitView.swift */,
+				FD09D67F25F92C9200A7E2E6 /* CommonButton.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				7A2B008625E3016C00D253BD /* FavoriteAssembler.swift in Sources */,
 				7A36A5F825F6A466006F958A /* BaseSlider+Actions.swift in Sources */,
 				7A952DA425F0342C00D4A2F6 /* MovieVO.swift in Sources */,
+				FD09D68025F92C9200A7E2E6 /* CommonButton.swift in Sources */,
 				7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */,
 				7A36A64A25F8209D006F958A /* PresentFinishGridView.swift in Sources */,
 				7A2B009425E301A700D253BD /* DetailsAssembler.swift in Sources */,
