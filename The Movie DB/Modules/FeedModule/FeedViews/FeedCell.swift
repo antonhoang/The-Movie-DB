@@ -12,12 +12,12 @@ import UIKit
 final class FeedViewCell: UICollectionViewCell {
   //MARK: - Properties
   
-  private weak var feedViewContainer: UIView!
+  fileprivate weak var feedViewContainer: UIView!
   weak var userAvatar: UIImageView!
-  private weak var userFeedNews: UIView!
-  private weak var userFeedImageContent: UIImageView!
-  private weak var feedDescription: UILabel!
-  private weak var totalLikes: UILabel!
+  fileprivate weak var userFeedNews: UIView!
+  fileprivate weak var userFeedImageContent: UIImageView!
+  fileprivate weak var feedDescription: UILabel!
+  fileprivate weak var totalLikes: UILabel!
   
   
   //MARK: - Lifecycle
@@ -46,7 +46,7 @@ final class FeedViewCell: UICollectionViewCell {
     }
   }
   
-  private func сommonInit() {
+  fileprivate func сommonInit() {
     setupFeedViewContainer()
     setupUserAvatar()
     setupUserFeedNews()
@@ -56,11 +56,11 @@ final class FeedViewCell: UICollectionViewCell {
     setupFeedDescription()
   }
   
-  private func setupUI() {
+  fileprivate func setupUI() {
     backgroundColor = .clear
   }
   
-  private func setupFeedViewContainer() {
+  fileprivate func setupFeedViewContainer() {
     let feedViewContainer = UIView()
     addSubview(feedViewContainer)
     self.feedViewContainer = feedViewContainer
@@ -69,7 +69,7 @@ final class FeedViewCell: UICollectionViewCell {
 //    feedViewContainer.fillEqually(to: self)
   }
   
-  private func setupUserAvatar() {
+  fileprivate func setupUserAvatar() {
     let userImage = UIImage(named: "human8")!
     let userAvatar = RoundImage(frame: .zero)
     userAvatar.setupImage(with: userImage)
@@ -81,7 +81,7 @@ final class FeedViewCell: UICollectionViewCell {
 //    userAvatar.topLeft(to: feedViewContainer, leftSpace: BMA.Margin.marginForShape5Percent / 2)
   }
   
-  private func setupUserFeedNews() {
+  fileprivate func setupUserFeedNews() {
     let userFeedNews = UIView()
     feedViewContainer.addSubview(userFeedNews)
     self.userFeedNews = userFeedNews
@@ -91,7 +91,7 @@ final class FeedViewCell: UICollectionViewCell {
 //    userFeedNews.horizontal(to: feedViewContainer)
   }
   
-  private func setupUserFeedImageContent() {
+  fileprivate func setupUserFeedImageContent() {
     let userFeedImageContent = UIImageView(image: UIImage(named: "test1"))
     userFeedNews.addSubview(userFeedImageContent)
     self.userFeedImageContent = userFeedImageContent
@@ -99,7 +99,7 @@ final class FeedViewCell: UICollectionViewCell {
 //    userFeedImageContent.fillEqually(to: userFeedNews)
   }
   
-  private func setupFeedDescription() {
+  fileprivate func setupFeedDescription() {
     let feedDescription = UILabel()
     userFeedNews.addSubview(feedDescription)
     feedDescription.setupLabelWith(text: "Ghost in the shell - 汚職などの犯罪を事前に察知してその被害を最小限に抑える内務省直属の攻性公安警察組織「公安9課」（通称「攻殻機動隊」）の活動を描いた物語。作中の年表は別項、攻殻機動隊シリーズの年表を参",
@@ -115,7 +115,7 @@ final class FeedViewCell: UICollectionViewCell {
 //    feedDescription.bottom(to: feedViewContainer)
   }
   
-  private func setupTotalLikes() {
+  fileprivate func setupTotalLikes() {
     let totalLikes = UILabel()
     feedViewContainer.addSubview(totalLikes)
     self.totalLikes = totalLikes

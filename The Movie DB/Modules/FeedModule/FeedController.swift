@@ -13,8 +13,8 @@ final class FeedController: BaseController {
   var viewModel: FeedViewModelProtocol!
   var coordinator: FeedFlow!
   
-  private weak var feedCollectionView: UICollectionView!
-  private let feedTypes: [FeedViewType] = [.card, .list]
+  fileprivate weak var feedCollectionView: UICollectionView!
+  fileprivate let feedTypes: [FeedViewType] = [.card, .list]
   
   let images = ["human10", "human2", "human3",
                 "human9", "human6", "human7",
@@ -34,7 +34,7 @@ final class FeedController: BaseController {
     navigationController?.navigationBar.isHidden = true
   }
     
-  private func setupFeedCollectionView() {
+  fileprivate func setupFeedCollectionView() {
     let layout = UICollectionViewCompositionalLayout {
       (sectionNumber, enviroment) -> NSCollectionLayoutSection? in
 

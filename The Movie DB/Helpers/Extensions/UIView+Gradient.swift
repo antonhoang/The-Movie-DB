@@ -21,7 +21,7 @@ final class GradientView: UIView {
     setupView()
   }
   
-  private func setupView() {
+  fileprivate func setupView() {
     autoresizingMask = [.flexibleWidth, .flexibleHeight]
     
     guard let theLayer = self.layer as? CAGradientLayer else {

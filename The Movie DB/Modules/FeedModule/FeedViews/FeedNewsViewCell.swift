@@ -31,7 +31,7 @@ final class FeedNewsViewCell: UICollectionViewCell {
     feedStoryImageView.image = nil
   }
   
-  private func setupFeedStoryImageView() {
+  fileprivate func setupFeedStoryImageView() {
     let feedStoryImageView = UIImageView(image: UIImage(named: "human6"))
     addSubview(feedStoryImageView)
     self.feedStoryImageView = feedStoryImageView
@@ -47,12 +47,12 @@ final class FeedNewsViewCell: UICollectionViewCell {
   
   //MARK: - Setup views
 
-  private func commonInit() {
+  fileprivate func commonInit() {
     setupUI()
     setupFeedStoryImageView()
   }
   
-  private func setupUI() {
+  fileprivate func setupUI() {
     backgroundColor = .clear
   }
   

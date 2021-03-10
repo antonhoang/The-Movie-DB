@@ -15,12 +15,12 @@ final class AuthController: UIViewController {
   //MARK: - Properties
   weak var viewModel: AuthViewModelProtocol?
   var coordinator: AuthFlow?
-  private weak var scrollView: UIScrollView!
-  private weak var stackView: UIStackView!
-  private weak var pageControl: UIPageControl!
-  private weak var hand_0: UIImageView!
+  fileprivate weak var scrollView: UIScrollView!
+  fileprivate weak var stackView: UIStackView!
+  fileprivate weak var pageControl: UIPageControl!
+  fileprivate weak var hand_0: UIImageView!
   
-  private var views = [UIView]()
+  fileprivate var views = [UIView]()
   
   //MARK: - Lifecycle
   
@@ -49,11 +49,11 @@ final class AuthController: UIViewController {
     scrollView.sendSubviewToBack(imageV)
   }
   
-  private func setupUI() {
+  fileprivate func setupUI() {
     view.backgroundColor = .systemGreen
   }
   
-  private func setupScrollView() {
+  fileprivate func setupScrollView() {
     let scrollView = UIScrollView()
     view.addSubview(scrollView)
     self.scrollView = scrollView
@@ -63,7 +63,7 @@ final class AuthController: UIViewController {
 //    scrollView.fill(to: view, left: 0, right: 0)
   }
   
-  private func setupStackView() {
+  fileprivate func setupStackView() {
     let stackView = UIStackView()
     scrollView.addSubview(stackView)
     self.stackView = stackView
@@ -71,7 +71,7 @@ final class AuthController: UIViewController {
 //    stackView.fill(to: scrollView, left: 0, right: 0)
   }
   
-  private func setupViewsForStackView() {
+  fileprivate func setupViewsForStackView() {
     let presentView = PresentStartGridView()
     let secondView = PresentIntroducingGridView()
     let thirdView = PresentFinishGridView()
@@ -89,7 +89,7 @@ final class AuthController: UIViewController {
     }
   }
   
-  private func setupPagingControl() {
+  fileprivate func setupPagingControl() {
     let pageControl = UIPageControl()
     view.addSubview(pageControl)
     self.pageControl = pageControl
@@ -104,7 +104,7 @@ final class AuthController: UIViewController {
   
   //MARK: - Actions
   
-  @objc private func pageTapped(sender: UIPageControl) {
+  @objc fileprivate func pageTapped(sender: UIPageControl) {
     let pageWidth = scrollView.bounds.width
     let offset = sender.currentPage * Int(pageWidth)
 
