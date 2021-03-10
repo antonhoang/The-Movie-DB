@@ -85,6 +85,14 @@
 		FD09D69D25F92F7100A7E2E6 /* FeedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D69C25F92F7100A7E2E6 /* FeedHeader.swift */; };
 		FD09D6A025F934E500A7E2E6 /* UIImageView+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D69F25F934E500A7E2E6 /* UIImageView+Round.swift */; };
 		FD09D6A325F934FF00A7E2E6 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6A225F934FF00A7E2E6 /* RoundImage.swift */; };
+		FD09D6A825F937C600A7E2E6 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6A725F937C600A7E2E6 /* ProfileCoordinator.swift */; };
+		FD09D6AB25F937DB00A7E2E6 /* ProfileAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6AA25F937DB00A7E2E6 /* ProfileAssembler.swift */; };
+		FD09D6AE25F937ED00A7E2E6 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6AD25F937ED00A7E2E6 /* ProfileController.swift */; };
+		FD09D6B125F9380300A7E2E6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6B025F9380300A7E2E6 /* ProfileViewModel.swift */; };
+		FD09D6B425F9381500A7E2E6 /* ProfileViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6B325F9381500A7E2E6 /* ProfileViewType.swift */; };
+		FD09D6B825F9384100A7E2E6 /* ProfileListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6B725F9384100A7E2E6 /* ProfileListViewCell.swift */; };
+		FD09D6BC25F9385300A7E2E6 /* ProfileHeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6BB25F9385300A7E2E6 /* ProfileHeadViewCell.swift */; };
+		FD09D6BF25F9386500A7E2E6 /* ProfileStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD09D6BE25F9386500A7E2E6 /* ProfileStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +175,14 @@
 		FD09D69C25F92F7100A7E2E6 /* FeedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeader.swift; sourceTree = "<group>"; };
 		FD09D69F25F934E500A7E2E6 /* UIImageView+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Round.swift"; sourceTree = "<group>"; };
 		FD09D6A225F934FF00A7E2E6 /* RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
+		FD09D6A725F937C600A7E2E6 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		FD09D6AA25F937DB00A7E2E6 /* ProfileAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembler.swift; sourceTree = "<group>"; };
+		FD09D6AD25F937ED00A7E2E6 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		FD09D6B025F9380300A7E2E6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FD09D6B325F9381500A7E2E6 /* ProfileViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewType.swift; sourceTree = "<group>"; };
+		FD09D6B725F9384100A7E2E6 /* ProfileListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileListViewCell.swift; sourceTree = "<group>"; };
+		FD09D6BB25F9385300A7E2E6 /* ProfileHeadViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeadViewCell.swift; sourceTree = "<group>"; };
+		FD09D6BE25F9386500A7E2E6 /* ProfileStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +235,7 @@
 		7A2B007225E3008F00D253BD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FD09D6A625F937B100A7E2E6 /* ProfileModule */,
 				FD09D68225F92E0600A7E2E6 /* FeedModule */,
 				7A36A64C25F820EC006F958A /* CommonViews */,
 				7A36A63325F81E6D006F958A /* AuthModule */,
@@ -514,6 +531,29 @@
 			path = FeedViews;
 			sourceTree = "<group>";
 		};
+		FD09D6A625F937B100A7E2E6 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				FD09D6B625F9382D00A7E2E6 /* ProfileViews */,
+				FD09D6A725F937C600A7E2E6 /* ProfileCoordinator.swift */,
+				FD09D6AA25F937DB00A7E2E6 /* ProfileAssembler.swift */,
+				FD09D6AD25F937ED00A7E2E6 /* ProfileController.swift */,
+				FD09D6B025F9380300A7E2E6 /* ProfileViewModel.swift */,
+				FD09D6B325F9381500A7E2E6 /* ProfileViewType.swift */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		FD09D6B625F9382D00A7E2E6 /* ProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				FD09D6B725F9384100A7E2E6 /* ProfileListViewCell.swift */,
+				FD09D6BB25F9385300A7E2E6 /* ProfileHeadViewCell.swift */,
+				FD09D6BE25F9386500A7E2E6 /* ProfileStackView.swift */,
+			);
+			path = ProfileViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -595,6 +635,7 @@
 				7A36A5EE25F6A426006F958A /* BaseSliderAssembler.swift in Sources */,
 				7A36A60D25F6A573006F958A /* IconImageView.swift in Sources */,
 				7A68A43925E84F8A007B6B37 /* HomeRepository.swift in Sources */,
+				FD09D6AE25F937ED00A7E2E6 /* ProfileController.swift in Sources */,
 				7A68A41E25E84334007B6B37 /* Coordinator.swift in Sources */,
 				7A68A42C25E84B24007B6B37 /* Constants.swift in Sources */,
 				7A952D9E25ED983300D4A2F6 /* MovieData.swift in Sources */,
@@ -632,12 +673,15 @@
 				7A952DC425F5002400D4A2F6 /* DetailsRepository.swift in Sources */,
 				7A2B007E25E300FE00D253BD /* HomeAssembler.swift in Sources */,
 				7AC40DBF25E392F400FD4E60 /* RequestItem.swift in Sources */,
+				FD09D6BF25F9386500A7E2E6 /* ProfileStackView.swift in Sources */,
 				7A952DB825F40DD600D4A2F6 /* Observable.swift in Sources */,
 				7A68A43F25E85150007B6B37 /* StorageManager.swift in Sources */,
 				7A36A61925F6A69C006F958A /* UIWindow+Key.swift in Sources */,
 				FD09D69D25F92F7100A7E2E6 /* FeedHeader.swift in Sources */,
 				7A36A61325F6A59D006F958A /* SpacerView.swift in Sources */,
+				FD09D6B825F9384100A7E2E6 /* ProfileListViewCell.swift in Sources */,
 				7A36A5E325F66AB8006F958A /* UIView+Gradient.swift in Sources */,
+				FD09D6A825F937C600A7E2E6 /* ProfileCoordinator.swift in Sources */,
 				7A2B003E25E2E18200D253BD /* AppDelegate.swift in Sources */,
 				7A36A63925F81EA8006F958A /* AuthController.swift in Sources */,
 				7A2B007B25E300F500D253BD /* HomeCoordinator.swift in Sources */,
@@ -650,20 +694,24 @@
 				FD09D68425F92E2600A7E2E6 /* FeedViewType.swift in Sources */,
 				7A36A65225F82134006F958A /* UILabel+Setup.swift in Sources */,
 				7A2B008225E3016300D253BD /* FavoriteController.swift in Sources */,
+				FD09D6B425F9381500A7E2E6 /* ProfileViewType.swift in Sources */,
 				7A36A63D25F81EB7006F958A /* AuthViewModel.swift in Sources */,
 				7A36A64E25F820FC006F958A /* CommonInitView.swift in Sources */,
 				7A36A63625F81EA1006F958A /* AuthAssembler.swift in Sources */,
 				7A36A61625F6A5AB006F958A /* CustomMenuHeaderView.swift in Sources */,
 				7A36A5F525F6A455006F958A /* BaseSliderViewModel.swift in Sources */,
 				7A952DB025F3B96400D4A2F6 /* HomeCell.swift in Sources */,
+				FD09D6AB25F937DB00A7E2E6 /* ProfileAssembler.swift in Sources */,
 				7A2B009A25E301B700D253BD /* DetailsViewModel.swift in Sources */,
 				7A36A65525F821D5006F958A /* UIView+Shadow.swift in Sources */,
 				7A952DB325F3BA4F00D4A2F6 /* LayoutConstraints.swift in Sources */,
 				7A952DE325F5607B00D4A2F6 /* DetailsVO.swift in Sources */,
 				7A952D4125EA8E6B00D4A2F6 /* HTTPMethod.swift in Sources */,
+				FD09D6B125F9380300A7E2E6 /* ProfileViewModel.swift in Sources */,
 				7A952D9925EC37D700D4A2F6 /* ImagesData.swift in Sources */,
 				7A2B008C25E3017B00D253BD /* FavoriteViewModel.swift in Sources */,
 				7A2B008925E3017400D253BD /* FavoriteCoordinator.swift in Sources */,
+				FD09D6BC25F9385300A7E2E6 /* ProfileHeadViewCell.swift in Sources */,
 				7A36A5F225F6A438006F958A /* BaseSliderController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
