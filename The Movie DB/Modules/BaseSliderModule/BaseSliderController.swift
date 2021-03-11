@@ -135,6 +135,16 @@ final class BaseSliderController: UIViewController {
 //      rightContainerView.addSubview(vc.view)
 //      addChild(vc)
 //      rightViewController = vc
+    
+      let controllersInStack = feedNavController.viewControllers
+      if let feedController = controllersInStack.first(where: { $0 is FeedController }) {
+        let feedCoordinator = FeedCoordinator(navController: feedController.navigationController!)
+        coordinateToRightView(with: feedCoordinator.navController)
+      } else {
+        let feedCoordinator = FeedCoordinator(navController: feedNavController)
+        feedCoordinator.start()
+        coordinateToRightView(with: feedCoordinator.navController)
+      }
       
     case 1:
       print("")
