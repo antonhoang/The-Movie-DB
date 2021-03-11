@@ -20,7 +20,7 @@ final class FeedController: BaseController {
     $0.dataSource = self
     $0.delegate = self
     $0.register(FeedMovieCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedMovieCellID)
-    $0.register(FeedViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedCellID)
+    $0.register(FeedCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedCellID)
     $0.register(FeedHeader.self, forSupplementaryViewOfKind: Constants.HeaderIdentifier.cardHeaderId, withReuseIdentifier: Constants.HeaderIdentifier.cardHeaderId)
     return $0
   }(UICollectionView(frame: .zero, collectionViewLayout: setupFeedCollectionView()))
@@ -76,7 +76,6 @@ final class FeedController: BaseController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        // add leading and trailing insets to the section so groups are aligned to the center
         let sectionSideInset = (enviroment.container.contentSize.width - groupWidth) / 2
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: sectionSideInset, bottom: 0, trailing: sectionSideInset)
         
@@ -147,7 +146,7 @@ extension FeedController: UICollectionViewDataSource {
       
       return cell
     case .list:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedCellID, for: indexPath) as? FeedViewCell else { assert(false) }
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedCellID, for: indexPath) as? FeedCell else { assert(false) }
       cell.configureUser(imageName: images[indexPath.row], contentName: imagesContent[indexPath.row])
       return cell
     default:
