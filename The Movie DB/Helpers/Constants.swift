@@ -45,7 +45,7 @@ struct Constants {
     public static let presentViewCellID = "presentViewCellID"
     public static let likeCellID = "likeCellID"
     public static let feedCellID = "feedCellID"
-    public static let feedNewsCellID = "feedNewsCellID"
+    public static let feedMovieCellID = "feedMovieCellID"
     public static let feedNewsCellID2 = "feedNewsCellID2"
     public static let feedNewsContainerCellID = "feedNewsContainerCellID"
     public static let profileHeadCellID = "profileHeadCellID"

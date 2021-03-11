@@ -19,7 +19,7 @@ final class FeedController: BaseController {
     $0.showsHorizontalScrollIndicator = false
     $0.dataSource = self
     $0.delegate = self
-    $0.register(FeedNewsViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedNewsCellID)
+    $0.register(FeedMovieCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedMovieCellID)
     $0.register(FeedViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedCellID)
     $0.register(FeedHeader.self, forSupplementaryViewOfKind: Constants.HeaderIdentifier.cardHeaderId, withReuseIdentifier: Constants.HeaderIdentifier.cardHeaderId)
     return $0
@@ -141,8 +141,7 @@ extension FeedController: UICollectionViewDataSource {
     
     switch FeedViewType(rawValue: indexPath.section) {
     case .card:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedNewsCellID, for: indexPath) as? FeedNewsViewCell else { assert(false) }
-//      cell.configureCell(imageName: images[indexPath.row])
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedMovieCellID, for: indexPath) as? FeedMovieCell else { assert(false) }
       let movie = model[indexPath.row]
       cell.configureCell(movieVO: movie)
       

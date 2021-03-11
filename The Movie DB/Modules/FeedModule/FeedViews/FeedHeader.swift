@@ -29,6 +29,7 @@ final class FeedHeader: UICollectionReusableView {
     self.headerTitle = headerTitle
     headerTitle.frame = bounds
     headerTitle.font = UIFont.boldSystemFont(ofSize: 25)
-    headerTitle.text = "Most popular"
+    headerTitle.text = "Upcoming"
+    headerTitle.textColor = .white
   }
 }
