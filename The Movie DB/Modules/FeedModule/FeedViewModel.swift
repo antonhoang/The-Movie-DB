@@ -19,6 +19,12 @@ final class FeedViewModel: FeedViewModelProtocol {
   
   init(homeRepository: HomeRepositoryProtocol) {
     self.homeRepository = homeRepository
+    
+    let queue = DispatchQueue(label: "feed-queue", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .none)
+    queue.async {
+      [weak self] in
+      self?.getTopRatedMovies()
+    }
   }
   
   func getTopRatedMovies() {

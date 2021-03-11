@@ -27,6 +27,10 @@ final class FeedController: BaseController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupFeedCollectionView()
+    
+    viewModel.moviesVO.bind { movieVO in
+      print(movieVO)
+    }
   }
   
 //  override func viewWillAppear(_ animated: Bool) {
