@@ -121,6 +121,23 @@ final class BaseSliderController: UIViewController {
     addChild(child)
     rightViewController = child
   }
+  
+  func didSelectHeaderView() {
+    do {
+      closeMenu()
+    }
+    performRightViewCleanUp()
+    
+    let controllersInStack = profileNavController.viewControllers
+    if let profileController = controllersInStack.first(where: { $0 is ProfileController }) {
+      let profileCoordinator = ProfileCoordinator(navController: profileController.navigationController!, window: self.coordinator.window)
+      coordinateToRightView(with: profileCoordinator.navController)
+    } else {
+      let profileCoordinator = ProfileCoordinator(navController: profileNavController, window: self.coordinator.window)
+      profileCoordinator.start()
+      coordinateToRightView(with: profileCoordinator.navController)
+    }
+  }
     
   func didSelectItem(indexPath: IndexPath) {
     do {

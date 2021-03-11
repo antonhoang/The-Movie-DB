@@ -41,11 +41,21 @@ final class MenuController: UIViewController {
     view.addSubview(tableView)
     tableView.fillSuperview()
   }
+  
+  @objc func handleTapOnHeaderView() {
+    let slider = UIWindow.key?.rootViewController as? BaseSliderController
+    slider?.didSelectHeaderView()
+    if let ips = tableView.indexPathForSelectedRow {
+      tableView.deselectRow(at: ips, animated: true)
+    }
+  }
 }
 
 extension MenuController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let customHeaderView = CustomMenuHeaderView()
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnHeaderView))
+    customHeaderView.addGestureRecognizer(tapGesture)
     return customHeaderView
   }
   
