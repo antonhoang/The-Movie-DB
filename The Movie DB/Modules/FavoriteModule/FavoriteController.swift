@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
+final class FavoriteController: UIViewController {
+  
+  var viewModel: FavoriteViewModelProtocol?
+  var coordinator: FavoriteCoordinatorFlow?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+}

@@ -39,9 +39,8 @@ final class BaseSliderController: UIViewController {
   let velocityThreshold: CGFloat = 500.0
   
   fileprivate let homeNavController = UINavigationController()
-  fileprivate let postNavController = UINavigationController()
-  fileprivate let listNavController = UINavigationController()
   fileprivate let feedNavController = UINavigationController()
+  fileprivate let favoriteNavController = UINavigationController()
   fileprivate let profileNavController = UINavigationController()
   fileprivate lazy var rightViewController: UIViewController = UINavigationController(rootViewController: coordinator.openHome(navController: homeNavController))
 
@@ -153,7 +152,15 @@ final class BaseSliderController: UIViewController {
       }
       
     case 2:
-      print("")
+      let controllersInStack = favoriteNavController.viewControllers
+      if let favoriteController = controllersInStack.first(where: { $0 is FavoriteController }) {
+        let favoriteCoordinator = FavoriteCoordinator(navController: favoriteController.navigationController!)
+        coordinateToRightView(with: favoriteCoordinator.navController)
+      } else {
+        let favoriteCoordinator = FavoriteCoordinator(navController: favoriteNavController)
+        favoriteCoordinator.start()
+        coordinateToRightView(with: favoriteCoordinator.navController)
+      }
       
     default:
       break
