@@ -14,7 +14,7 @@ protocol HomeViewModelProtocol {
 final class HomeViewModel: HomeViewModelProtocol {
   
   let repository: HomeRepositoryProtocol
-  var items: Observable<[MovieVO]> = Observable([])
+  private(set) var items: Observable<[MovieVO]> = Observable([])
   var allMovies: [MovieVO] = []
 
   init(repository: HomeRepositoryProtocol) {

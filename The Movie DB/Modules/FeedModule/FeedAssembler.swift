@@ -11,7 +11,11 @@ import UIKit
 
 final class FeedAssembler: AssemblerProtocol {
   func assembly() -> FeedController {
-    let feedViewModel = FeedViewModel()
+    let networkManager = NetworkManager()
+    let storageManager = StorageManager()
+    let imageManager = ImageManager(network: networkManager)
+    let homeRepository = HomeRepository(network: networkManager, storage: storageManager, imageManager: imageManager)
+    let feedViewModel = FeedViewModel(homeRepository: homeRepository)
     let feedViewController = FeedController()
     feedViewController.viewModel = feedViewModel
     
