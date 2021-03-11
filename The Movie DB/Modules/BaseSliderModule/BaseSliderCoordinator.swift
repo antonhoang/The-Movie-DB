@@ -20,8 +20,19 @@ final class BaseSliderCoordinator: CoordinatorProtocol {
   func start() {
     let baseSliderController = BaseSliderAssembler().assembly()
     baseSliderController.coordinator = self
-    window.rootViewController = baseSliderController
+    switchRootViewController(vc: baseSliderController, options: .transitionFlipFromLeft)
+  }
+  
+  func switchRootViewController(vc: UIViewController, animated: Bool = true, options: UIView.AnimationOptions) {
+    window.rootViewController = vc
     window.makeKeyAndVisible()
+
+    UIView.transition(
+      with: window,
+      duration: 0.6,
+      options: [options],
+      animations: nil,
+      completion: nil)
   }
   
   func openHome(navController: UINavigationController) -> HomeController {

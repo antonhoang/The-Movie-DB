@@ -33,9 +33,6 @@ final class AuthCoordinator: CoordinatorProtocol, AuthFlow {
   func logout() {
     let authViewController = AuthAssembler().assembly()
     authViewController.coordinator = self
-//
-//    let appCoordinator = AppCoordinator(window: window)
-//    appCoordinator.switchRootViewController(vc: authViewController, animated: true, options: .transitionFlipFromLeft)
   }
   
   func coordinateToBaseSlider() {
