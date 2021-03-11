@@ -8,12 +8,14 @@
 import Foundation
 import UIKit
 
-final class FavoriteController: UIViewController {
+final class FavoriteController: BaseController {
   
   var viewModel: FavoriteViewModelProtocol?
   var coordinator: FavoriteCoordinatorFlow?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .systemTeal
+    
   }
 }

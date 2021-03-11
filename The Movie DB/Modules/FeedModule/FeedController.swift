@@ -29,10 +29,10 @@ final class FeedController: BaseController {
     setupFeedCollectionView()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    navigationController?.navigationBar.isHidden = true
-  }
+//  override func viewWillAppear(_ animated: Bool) {
+//    super.viewWillAppear(animated)
+//    navigationController?.navigationBar.isHidden = true
+//  }
     
   fileprivate func setupFeedCollectionView() {
     let layout = UICollectionViewCompositionalLayout {

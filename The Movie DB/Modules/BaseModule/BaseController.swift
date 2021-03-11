@@ -12,7 +12,18 @@ class BaseController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    setupMenuButton()
+  }
+  
+  func setupMenuButton() {
+    let image = UIImage(named: Constants.Images.popcorn)?.withRenderingMode(.alwaysOriginal)
+    let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handleMenu(_:)))
+    navigationItem.leftBarButtonItem = button
+  }
+  
+  @objc fileprivate func handleMenu(_ sender: UIBarButtonItem) {
+    let slider = UIWindow.key?.rootViewController as? BaseSliderController
+    slider?.openMenu()
   }
   
   func setupNavigationBar(_ isTranslucent: Bool,
