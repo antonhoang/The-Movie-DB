@@ -66,7 +66,6 @@ final class FeedViewCell: UICollectionViewCell {
     self.feedViewContainer = feedViewContainer
     feedViewContainer.backgroundColor = .clear
     feedViewContainer.fillSuperview()
-//    feedViewContainer.fillEqually(to: self)
   }
   
   fileprivate func setupUserAvatar() {

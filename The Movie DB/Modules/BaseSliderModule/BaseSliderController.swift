@@ -40,6 +40,7 @@ final class BaseSliderController: UIViewController {
   
   fileprivate let homeNavController = UINavigationController()
   fileprivate let postNavController = UINavigationController()
+  fileprivate let listNavController = UINavigationController()
   fileprivate let feedNavController = UINavigationController()
   fileprivate let profileNavController = UINavigationController()
   fileprivate lazy var rightViewController: UIViewController = UINavigationController(rootViewController: coordinator.openHome(navController: homeNavController))
@@ -130,12 +131,6 @@ final class BaseSliderController: UIViewController {
     
     switch indexPath.row {
     case 0:
-      print("")
-//      let vc = UINavigationController(rootViewController: SettingsController())
-//      rightContainerView.addSubview(vc.view)
-//      addChild(vc)
-//      rightViewController = vc
-    
       let controllersInStack = feedNavController.viewControllers
       if let feedController = controllersInStack.first(where: { $0 is FeedController }) {
         let feedCoordinator = FeedCoordinator(navController: feedController.navigationController!)
@@ -147,16 +142,15 @@ final class BaseSliderController: UIViewController {
       }
       
     case 1:
-      print("")
-//      let controllersInStack = licoinNavController.viewControllers
-//      if let licoinViewController = controllersInStack.first(where: { $0 is LicoinController }) {
-//        let licoinCoordinator = LicoinCoordinator(navController: licoinViewController.navigationController!)
-//        coordinateToRightView(with: licoinCoordinator.navController)
-//      } else {
-//        let licoinCoordinator = LicoinCoordinator(navController: licoinNavController)
-//        licoinCoordinator.start()
-//        coordinateToRightView(with: licoinCoordinator.navController)
-//      }
+      let controllersInStack = homeNavController.viewControllers
+      if let homeController = controllersInStack.first(where: { $0 is HomeController }) {
+        let homeCoordinator = HomeCoordinator(navController: homeController.navigationController!)
+        coordinateToRightView(with: homeCoordinator.navController)
+      } else {
+        let homeCoordinator = HomeCoordinator(navController: homeNavController)
+        homeCoordinator.start()
+        coordinateToRightView(with: homeCoordinator.navController)
+      }
       
     case 2:
       print("")
