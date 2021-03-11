@@ -12,8 +12,19 @@ import UIKit
 final class FeedController: BaseController {
   var viewModel: FeedViewModelProtocol!
   var coordinator: FeedFlow!
+    
+  fileprivate lazy var feedCollectionView: UICollectionView = {
+    $0.backgroundColor = .clear
+    $0.showsVerticalScrollIndicator = false
+    $0.showsHorizontalScrollIndicator = false
+    $0.dataSource = self
+    $0.delegate = self
+    $0.register(FeedNewsViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedNewsCellID)
+    $0.register(FeedViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedCellID)
+    $0.register(FeedHeader.self, forSupplementaryViewOfKind: Constants.HeaderIdentifier.cardHeaderId, withReuseIdentifier: Constants.HeaderIdentifier.cardHeaderId)
+    return $0
+  }(UICollectionView(frame: .zero, collectionViewLayout: setupFeedCollectionView()))
   
-  fileprivate weak var feedCollectionView: UICollectionView!
   fileprivate let feedTypes: [FeedViewType] = [.card, .list]
   
   let images = ["human10", "human2", "human3",
@@ -24,22 +35,30 @@ final class FeedController: BaseController {
                        "cyb4", "cyb5", "cyb6",
                        "cyb7", "cyb8", "cyb9"]
   
+  fileprivate var model: [MovieVO] = []
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupFeedCollectionView()
     
-    viewModel.moviesVO.bind { movieVO in
-      print(movieVO)
-    }
+    view.addSubview(feedCollectionView)
+    feedCollectionView.fillSuperview()
+    
+    dataBindings()
   }
   
-//  override func viewWillAppear(_ animated: Bool) {
-//    super.viewWillAppear(animated)
-//    navigationController?.navigationBar.isHidden = true
-//  }
+  fileprivate func dataBindings() {
+    viewModel.moviesVO.bind {
+      [weak self] movieVO in
+      guard !movieVO.isEmpty else { return }
+      self?.model = movieVO
+      DispatchQueue.main.async {
+        self?.feedCollectionView.reloadData()
+      }
+    }
+  }
     
-  fileprivate func setupFeedCollectionView() {
-    let layout = UICollectionViewCompositionalLayout {
+  fileprivate func setupFeedCollectionView() -> UICollectionViewCompositionalLayout {
+    return UICollectionViewCompositionalLayout {
       (sectionNumber, enviroment) -> NSCollectionLayoutSection? in
 
       switch FeedViewType(rawValue: sectionNumber) {
@@ -79,19 +98,6 @@ final class FeedController: BaseController {
       default: assert(false)
       }
     }
-    
-    let feedCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    view.addSubview(feedCollectionView)
-//    feedCollectionView.fillEqually(to: view)
-    feedCollectionView.fillSuperview()
-    feedCollectionView.backgroundColor = .clear
-    feedCollectionView.showsVerticalScrollIndicator = false
-    feedCollectionView.showsHorizontalScrollIndicator = false
-    feedCollectionView.dataSource = self
-    feedCollectionView.delegate = self
-    feedCollectionView.register(FeedNewsViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedNewsCellID)
-    feedCollectionView.register(FeedViewCell.self, forCellWithReuseIdentifier: Constants.CellIdentifier.feedCellID)
-    feedCollectionView.register(FeedHeader.self, forSupplementaryViewOfKind: Constants.HeaderIdentifier.cardHeaderId, withReuseIdentifier: Constants.HeaderIdentifier.cardHeaderId)
   }
 }
 
@@ -99,8 +105,8 @@ extension FeedController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch FeedViewType(indexPath: indexPath) {
     case .card:
-      let cardDetails = images[indexPath.row]
-      coordinator.coordinateToCard(imageStr: cardDetails)
+      let cardDetails = model[indexPath.row]
+//      coordinator.coordinateToCard(imageStr: cardDetails)
     case .list:
       print("list")
     default:
@@ -124,7 +130,7 @@ extension FeedController: UICollectionViewDataSource {
     
     switch FeedViewType(rawValue: section) {
     case .card:
-      return 9
+      return model.count
     case .list:
       return 9
     default: assert(false)
@@ -136,7 +142,10 @@ extension FeedController: UICollectionViewDataSource {
     switch FeedViewType(rawValue: indexPath.section) {
     case .card:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedNewsCellID, for: indexPath) as? FeedNewsViewCell else { assert(false) }
-      cell.configureCell(imageName: images[indexPath.row])
+//      cell.configureCell(imageName: images[indexPath.row])
+      let movie = model[indexPath.row]
+      cell.configureCell(movieVO: movie)
+      
       return cell
     case .list:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedCellID, for: indexPath) as? FeedViewCell else { assert(false) }

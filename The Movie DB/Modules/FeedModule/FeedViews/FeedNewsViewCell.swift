@@ -56,11 +56,23 @@ final class FeedNewsViewCell: UICollectionViewCell {
     backgroundColor = .clear
   }
   
-  func configureCell(imageName: String) {
-    UIView.transition(with: self.feedStoryImageView,
-                      duration: 0.3,
-                      options: [.curveEaseOut, .transitionCrossDissolve]) {
-      self.feedStoryImageView.image = UIImage(named: imageName)
+//  func configureCell(imageName: String) {
+//    UIView.transition(with: self.feedStoryImageView,
+//                      duration: 0.3,
+//                      options: [.curveEaseOut, .transitionCrossDissolve]) {
+//      self.feedStoryImageView.image = UIImage(named: imageName)
+//    }
+//  }
+  
+  func configureCell(movieVO: MovieVO) {
+    if let imagePath = movieVO.imageUrlPath {
+      feedStoryImageView.loadImage(imagePath: imagePath)
     }
+    
+//    UIView.transition(with: self.feedStoryImageView,
+//                      duration: 0.3,
+//                      options: [.curveEaseOut, .transitionCrossDissolve]) {
+//      self.feedStoryImageView.image = UIImage(named: imageName)
+//    }
   }
 }

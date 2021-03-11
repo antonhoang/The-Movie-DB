@@ -14,7 +14,7 @@ protocol FeedViewModelProtocol {
 
 final class FeedViewModel: FeedViewModelProtocol {
   
-  let homeRepository: HomeRepositoryProtocol
+  fileprivate let homeRepository: HomeRepositoryProtocol
   private(set) var moviesVO: Observable<[MovieVO]> = Observable([])
   
   init(homeRepository: HomeRepositoryProtocol) {
@@ -23,15 +23,15 @@ final class FeedViewModel: FeedViewModelProtocol {
     let queue = DispatchQueue(label: "feed-queue", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .none)
     queue.async {
       [weak self] in
-      self?.getTopRatedMovies()
+      self?.getUpcomingMovies()
     }
   }
   
-  func getTopRatedMovies() {
-    homeRepository.fetchMovies(with: .getTopRatedMovies, handler: .some {
+  func getUpcomingMovies() {
+    homeRepository.fetchMovies(with: .getUpcomingMovies, handler: .some {
       [weak self] moviesVO in
       guard let self = self else { return }
       self.moviesVO.accept(value: moviesVO)
-    })
+    }, imageTypeSize: .backdrop)
   }
 }
