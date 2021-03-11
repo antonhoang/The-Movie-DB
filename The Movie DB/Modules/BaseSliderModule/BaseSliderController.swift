@@ -154,46 +154,10 @@ final class BaseSliderController: UIViewController {
       
     case 2:
       print("")
-//      rightViewController = FeedAssembler().assembly()
-//      rightContainerView.addSubview(rightViewController.view)
-//      addChild(rightViewController)
-      
-//      let vc = UINavigationController(rootViewController: SettingsController())
-//      rightContainerView.addSubview(vc.view)
-//      addChild(vc)
-//      rightViewController = vc
-      
-    case 3:
-      print("")
-//      DispatchQueue.main.async {
-//        guard let tabBarVC = self.tabBarCurrent
-//        else {
-//          let tabBarCoordinator = TabBarCoordinator(window: self.coordinator.window)
-//          self.tabBarCurrent = tabBarCoordinator.tabBarController
-//          tabBarCoordinator.start()
-//          self.coordinateToRightView(with: self.tabBarCurrent)
-//          return
-//        }
-//        self.coordinateToRightView(with: tabBarVC)
-//      }
-            
-    case 4:
-      print("")
-//      let controllersInStack = postNavController.viewControllers
-//      if let postViewController = controllersInStack.first(where: { $0 is PostController }) {
-//        let postCoordinator = PostCoordinator(navController: postViewController.navigationController!)
-//        coordinateToRightView(with: postCoordinator.navController)
-//      } else {
-//        let postCoordinator = PostCoordinator(navController: postNavController)
-//        postCoordinator.start()
-//        coordinateToRightView(with: postCoordinator.navController)
-//      }
       
     default:
       break
     }
-    rightContainerView.addSubview(rightViewController.view)
-    addChild(rightViewController)
     rightContainerView.bringSubviewToFront(darkCoverView)
   }
 }
