@@ -149,7 +149,7 @@ extension FeedController: UICollectionViewDataSource {
       return cell
     case .list:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.feedCellID, for: indexPath) as? FeedCell else { assert(false) }
-      cell.configureUser(imageName: images[indexPath.row], contentName: imagesContent[indexPath.row])
+      cell.configureFeedPost(imageName: images[indexPath.row], contentName: imagesContent[indexPath.row])
       return cell
     default:
       assert(false)

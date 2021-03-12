@@ -12,19 +12,17 @@ import UIKit
 final class FeedCell: UICollectionViewCell {
   //MARK: - Properties
   
-  fileprivate weak var userAvatar: UIImageView!
+  fileprivate weak var userPostImage: UIImageView!
   fileprivate weak var userFeedNews: UIView!
   fileprivate weak var feedDescription: UILabel!
   
   fileprivate let verticalStackView: UIStackView = {
+    $0.backgroundColor = .black
     $0.axis = .vertical
     $0.distribution = .fill
     return $0
   }(UIStackView())
-  
-  func setupVerticalStackView() {
-    contentView.addSubview(verticalStackView)
-  }
+
   
   //MARK: - Lifecycle
   
@@ -43,14 +41,30 @@ final class FeedCell: UICollectionViewCell {
   }
   
   //MARK: - Setup views
-  
-  func configureUser(imageName: String, contentName: String) {
-  }
-  
   fileprivate func сommonInit() {
     setupUI()
+    setupVerticalStackView()
+    setupUserPostImage()
   }
   
+  fileprivate func setupVerticalStackView() {
+    contentView.addSubview(verticalStackView)
+    verticalStackView.fillSuperview()
+  }
+  
+  fileprivate func setupUserPostImage() {
+    let userPostImage = UIImageView()
+    userPostImage.contentMode = .scaleAspectFit
+    verticalStackView.addArrangedSubview(userPostImage)
+    self.userPostImage = userPostImage
+    userPostImage.fillSuperview()
+  }
+  
+  
+  func configureFeedPost(imageName: String, contentName: String) {
+    userPostImage.image = UIImage(named: imageName)
+  }
+    
   fileprivate func setupUI() {
     backgroundColor = .clear
   }
