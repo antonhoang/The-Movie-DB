@@ -141,9 +141,12 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     liconsStatsStackView.alignment = .fill
     liconsStatsStackView.spacing = marginHalf
     liconsStatsStackView.backgroundColor = .clear
-//    liconsStatsStackView.topOpposite(to: profileImage, with: marginHalf)
-//    liconsStatsStackView.horizontal(to: contentView, leftSpace: marginHalf, rightSpace: -marginHalf)
-//    liconsStatsStackView.bottom(to: contentView, with: marginFull)
+    
+    liconsStatsStackView.anchor(top: profileImage.bottomAnchor,
+                                leading: contentView.leadingAnchor,
+                                bottom: contentView.bottomAnchor,
+                                trailing: contentView.trailingAnchor,
+                                padding: UIEdgeInsets(top: marginHalf, left: marginHalf, bottom: marginFull, right: marginHalf))
   }
   
   fileprivate func setupProfileImage() {
@@ -154,10 +157,14 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     addSubview(profileImage)
     self.profileImage = profileImage
     let margin = Constants.Margin.marginForShape5Percent / 2
-//    profileImage.topToSafeArea(to: contentView, with: margin)
-//    profileImage.left(to: contentView, with: margin)
-//    profileImage.heightConstant(equal: Constants.Shape.Square.square50x(multiply: 1.5).height)
-//    profileImage.widthConstant(equal: Constants.Shape.Square.square50x(multiply: 1.5).width)
+    profileImage.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      profileImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin),
+      profileImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin),
+      profileImage.heightAnchor.constraint(equalToConstant: Constants.Shape.Square.square50x(multiply: 1.5).height),
+      profileImage.widthAnchor.constraint(equalToConstant: Constants.Shape.Square.square50x(multiply: 1.5).width)
+    ])
   }
   
   fileprivate func setupProfileHeader() {
@@ -169,9 +176,16 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     profileStackViewHeader.alignment = .fill
     profileStackViewHeader.spacing = marginHalf
     profileStackViewHeader.backgroundColor = .clear
-//    profileStackViewHeader.leftOpposite(to: profileImage, with: marginHalf)
-//    profileStackViewHeader.right(to: contentView, with: -marginHalf)
-//    profileStackViewHeader.vertical(to: profileImage, topSpace: marginHalf, bottomSpace: marginHalf)
+
+    profileStackViewHeader.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      profileStackViewHeader.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: marginHalf),
+      profileStackViewHeader.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -marginHalf),
+
+      profileStackViewHeader.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: marginHalf),
+      profileStackViewHeader.bottomAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -marginHalf)
+    ])
   }
   
   fileprivate func setupUI() { }
