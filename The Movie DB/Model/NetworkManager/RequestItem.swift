@@ -19,14 +19,14 @@ enum RequestItem {
   case getUpcomingMovies
   case getDetailsMovie(movie_id: Int)
   
-  
   //MARK: - Auth
   case createAccessToken
   case deleteAccessToken
   
   //MARK: - Favorite
   case markAsFavorite(accountId: String)
-  
+  case getFavoriteMovie(accountId: String)
+
 }
 
 extension RequestItem: EndPointType {
@@ -34,7 +34,8 @@ extension RequestItem: EndPointType {
   var scheme: String {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies,
-         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite:
+         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken,
+         .deleteAccessToken, .markAsFavorite, .getFavoriteMovie:
       return "https"
     }
   }
@@ -42,7 +43,8 @@ extension RequestItem: EndPointType {
   var host: String {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies,
-         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite:
+         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken,
+         .deleteAccessToken, .markAsFavorite, .getFavoriteMovie:
       return "api.themoviedb.org"
     }
   }
@@ -72,13 +74,15 @@ extension RequestItem: EndPointType {
       
     case .markAsFavorite(let accountId):
       return "/3/account/\(accountId)/favorite"
+    case .getFavoriteMovie(let accountId):
+      return "3/account/\(accountId)/favorite/movies"
     }
   }
   
   var httpMethod: HTTPMethod {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies,
-         .getDetailsMovie, .getImageConfiguration:
+         .getDetailsMovie, .getImageConfiguration, .getFavoriteMovie:
       return .get
     case .createAccessToken, .markAsFavorite:
       return .post
@@ -90,7 +94,7 @@ extension RequestItem: EndPointType {
   var headers: [String : String]? {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies,
-         .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite:
+         .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite, .getFavoriteMovie:
       return ["Authorization" : "Bearer \(Constants.APICreditials.bearer.rawValue)"]
     }
   }
@@ -98,7 +102,7 @@ extension RequestItem: EndPointType {
   var queryParameters: [String : String]? {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies,
-         .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken:
+         .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .getFavoriteMovie:
       return ["api_key" : "\(Constants.APICreditials.api_key.rawValue)",
               "language" : "en-US"]
     case .markAsFavorite:
