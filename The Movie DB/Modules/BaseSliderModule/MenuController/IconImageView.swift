@@ -13,4 +13,9 @@ final class IconImageView: UIImageView {
   override var intrinsicContentSize: CGSize {
     return .init(width: 44, height: 44)
   }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    roundImage()
+  }
 }

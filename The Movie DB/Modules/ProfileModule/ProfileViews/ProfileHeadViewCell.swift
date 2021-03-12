@@ -150,10 +150,10 @@ final class ProfileHeadViewCell: UICollectionViewCell {
   }
   
   fileprivate func setupProfileImage() {
-    let image = UIImage(named: "human5")!
-    let profileImage = RoundImage(frame: .zero)
-    profileImage.setupImage(with: image)
-    profileImage.contentMode = .scaleToFill
+    let image = UIImage(named: "profileImage")!
+    let profileImage = IconImageView()
+    profileImage.image = image
+    profileImage.contentMode = .scaleAspectFill
     addSubview(profileImage)
     self.profileImage = profileImage
     let margin = Constants.Margin.marginForShape5Percent / 2
@@ -182,7 +182,6 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     NSLayoutConstraint.activate([
       profileStackViewHeader.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: marginHalf),
       profileStackViewHeader.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -marginHalf),
-
       profileStackViewHeader.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: marginHalf),
       profileStackViewHeader.bottomAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -marginHalf)
     ])

@@ -44,6 +44,8 @@ final class FeedController: BaseController {
     feedCollectionView.fillSuperview()
     
     dataBindings()
+    navigationController?.navigationBar.barStyle = .black
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
   }
   
   fileprivate func dataBindings() {

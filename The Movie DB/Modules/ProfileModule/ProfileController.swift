@@ -27,6 +27,8 @@ final class ProfileController: BaseController {
     super.viewDidLoad()
     setupSettingButton()
     setupCollectionView()
+    navigationController?.navigationBar.barStyle = .black
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
   }
   
   override func viewWillAppear(_ animated: Bool) {
