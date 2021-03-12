@@ -12,12 +12,9 @@ import UIKit
 final class FeedCell: UICollectionViewCell {
   //MARK: - Properties
   
-  fileprivate weak var feedViewContainer: UIView!
-  weak var userAvatar: UIImageView!
+  fileprivate weak var userAvatar: UIImageView!
   fileprivate weak var userFeedNews: UIView!
-  fileprivate weak var userFeedImageContent: UIImageView!
   fileprivate weak var feedDescription: UILabel!
-  fileprivate weak var totalLikes: UILabel!
   
   fileprivate let verticalStackView: UIStackView = {
     $0.axis = .vertical

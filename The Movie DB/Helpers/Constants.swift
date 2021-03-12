@@ -18,6 +18,7 @@ struct Constants {
   enum CellIdentifiers: String, RawRepresentable {
     case homeCellId = "homeCellId"
     case menuCellId = "menuCellId"
+    case favoriteCellId = "favoriteCellId"
   }
   
   enum ScreenTitles: String, RawRepresentable {
