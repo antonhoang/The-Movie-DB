@@ -22,6 +22,13 @@ final class FeedCell: UICollectionViewCell {
     $0.distribution = .fill
     return $0
   }(UIStackView())
+  
+  fileprivate let horizontalStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.backgroundColor = .systemTeal
+    $0.distribution = .fill
+    return $0
+  }(UIStackView())
 
   
   //MARK: - Lifecycle
@@ -44,12 +51,17 @@ final class FeedCell: UICollectionViewCell {
   fileprivate func сommonInit() {
     setupUI()
     setupVerticalStackView()
+    setupHorizontalStackView()
     setupUserPostImage()
   }
   
   fileprivate func setupVerticalStackView() {
     contentView.addSubview(verticalStackView)
     verticalStackView.fillSuperview()
+  }
+  
+  fileprivate func setupHorizontalStackView() {
+    verticalStackView.addArrangedSubview(horizontalStackView)
   }
   
   fileprivate func setupUserPostImage() {
