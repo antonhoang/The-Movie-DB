@@ -16,19 +16,28 @@ final class FeedCell: UICollectionViewCell {
   fileprivate weak var userFeedNews: UIView!
   fileprivate weak var feedDescription: UILabel!
   
+  fileprivate let userAvatar: RoundImage = {
+    return $0
+  }(RoundImage(frame: .zero))
+  
+  fileprivate let userName: UILabel = {
+    $0.textColor = .black
+    return $0
+  }(UILabel())
+  
   fileprivate let verticalStackView: UIStackView = {
     $0.backgroundColor = .black
     $0.axis = .vertical
-    $0.distribution = .fill
+    $0.distribution = .fillEqually
     return $0
   }(UIStackView())
   
-  fileprivate let horizontalStackView: UIStackView = {
+  fileprivate lazy var horizontalStackView: UIStackView = {
     $0.axis = .horizontal
     $0.backgroundColor = .systemTeal
     $0.distribution = .fill
     return $0
-  }(UIStackView())
+  }(UIStackView(arrangedSubviews: [userAvatar, userName]))
 
   
   //MARK: - Lifecycle
@@ -72,9 +81,9 @@ final class FeedCell: UICollectionViewCell {
     userPostImage.fillSuperview()
   }
   
-  
   func configureFeedPost(imageName: String, contentName: String) {
     userPostImage.image = UIImage(named: imageName)
+    userName.text = "contentName"
   }
     
   fileprivate func setupUI() {
