@@ -11,6 +11,7 @@ import UIKit
 struct Constants {
   
   enum APICreditials: String {
+    // TODO: - Save to keychain
     case api_key = "a1e6469b9c841dbf821f4ef57f4d74f0"
     case bearer = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMWU2NDY5YjljODQxZGJmODIxZjRlZjU3ZjRkNzRmMCIsInN1YiI6IjYwMzM1OGY5OWFmMTcxMDAzZjQ1YjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.H-f-0iZNchiOoPmJc42k5p7vszMqsvOqd9K-6p1JiL0"
   }
