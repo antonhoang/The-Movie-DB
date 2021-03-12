@@ -23,21 +23,21 @@ final class ProfileHeadViewCell: UICollectionViewCell {
   let actionPublisher = PassthroughSubject<Action, Never>()
   
   //MARK: - Profile statistic header
-  private weak var profileImage: UIImageView!
-  private weak var liconsStatsStackView: UIStackView!
-  private weak var patronsInfoButton: UIButton!
-  private weak var subscriptionsInfoButton: UIButton!
-  private weak var patronsInfo: ProfileStackView!
-  private weak var subscriptionsInfo: ProfileStackView!
+  fileprivate weak var profileImage: UIImageView!
+  fileprivate weak var liconsStatsStackView: UIStackView!
+  fileprivate weak var patronsInfoButton: UIButton!
+  fileprivate weak var subscriptionsInfoButton: UIButton!
+  fileprivate weak var patronsInfo: ProfileStackView!
+  fileprivate weak var subscriptionsInfo: ProfileStackView!
   
   //MARK: - Profile licoins description
-  private weak var profileStackViewHeader: UIStackView!
-  private weak var licoinSendButton: UIButton!
-  private weak var licoinRecieveButton: UIButton!
-  private weak var profileDescription: UIView!
+  fileprivate weak var profileStackViewHeader: UIStackView!
+  fileprivate weak var licoinSendButton: UIButton!
+  fileprivate weak var licoinRecieveButton: UIButton!
+  fileprivate weak var profileDescription: UIView!
   
-  private let marginHalf = Constants.Margin.marginForShape5Percent / 2
-  private let marginFull = Constants.Margin.marginForShape5Percent
+  fileprivate let marginHalf = Constants.Margin.marginForShape5Percent / 2
+  fileprivate let marginFull = Constants.Margin.marginForShape5Percent
 
   //MARK: - Lifecycle
   
@@ -53,7 +53,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
   
   //MARK: - Setup views
   
-  private func commonInit() {
+  fileprivate func commonInit() {
     setupUI()
     setupProfileImage()
     setupProfileHeader()
@@ -73,7 +73,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     actionPublisher.send(.subscriptions)
   }
   
-  private func setupPatronsInfo() {
+  fileprivate func setupPatronsInfo() {
     let patronsInfoButton = UIButton()
     profileStackViewHeader.addArrangedSubview(patronsInfoButton)
     self.patronsInfoButton = patronsInfoButton
@@ -90,7 +90,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     patronsInfo.backgroundColor = .clear
   }
   
-  private func setupSubscriptionsInfo() {
+  fileprivate func setupSubscriptionsInfo() {
     let subscriptionsInfoButton = UIButton()
     profileStackViewHeader.addArrangedSubview(subscriptionsInfoButton)
     self.subscriptionsInfoButton = subscriptionsInfoButton
@@ -107,7 +107,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     subscriptionsInfo.backgroundColor = .clear
   }
   
-  private func setupProfileDescription() {
+  fileprivate func setupProfileDescription() {
     let profileDescription = UILabel()
     liconsStatsStackView.addArrangedSubview(profileDescription)
     self.profileDescription = profileDescription
@@ -116,7 +116,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     profileDescription.textColor = .white
   }
   
-  private func setupLicoinSendStatus() {
+  fileprivate func setupLicoinSendStatus() {
     let licoinSendButton = UIButton()
     liconsStatsStackView.addArrangedSubview(licoinSendButton)
     self.licoinSendButton = licoinSendButton
@@ -124,7 +124,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     licoinSendButton.setTitle("Sended", for: .normal)
   }
   
-  private func setupLicoinRecieveStatus() {
+  fileprivate func setupLicoinRecieveStatus() {
     let licoinRecieveButton = UIButton()
     liconsStatsStackView.addArrangedSubview(licoinRecieveButton)
     self.licoinRecieveButton = licoinRecieveButton
@@ -132,7 +132,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     licoinRecieveButton.setTitle("Recieved", for: .normal)
   }
   
-  private func setupLiconsStatsStackView() {
+  fileprivate func setupLiconsStatsStackView() {
     let liconsStatsStackView = UIStackView()
     contentView.addSubview(liconsStatsStackView)
     self.liconsStatsStackView = liconsStatsStackView
@@ -146,7 +146,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
 //    liconsStatsStackView.bottom(to: contentView, with: marginFull)
   }
   
-  private func setupProfileImage() {
+  fileprivate func setupProfileImage() {
     let image = UIImage(named: "human5")!
     let profileImage = RoundImage(frame: .zero)
     profileImage.setupImage(with: image)
@@ -160,7 +160,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
 //    profileImage.widthConstant(equal: Constants.Shape.Square.square50x(multiply: 1.5).width)
   }
   
-  private func setupProfileHeader() {
+  fileprivate func setupProfileHeader() {
     let profileStackViewHeader = UIStackView()
     addSubview(profileStackViewHeader)
     self.profileStackViewHeader = profileStackViewHeader
@@ -174,7 +174,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
 //    profileStackViewHeader.vertical(to: profileImage, topSpace: marginHalf, bottomSpace: marginHalf)
   }
   
-  private func setupUI() { }
+  fileprivate func setupUI() { }
   
   func configureCell(imageName: String, title: String) {
     patronsInfo.titleText = title
