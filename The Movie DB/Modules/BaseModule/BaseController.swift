@@ -13,6 +13,15 @@ class BaseController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupMenuButton()
+    setupViews()
+  }
+  
+  func setupViews() {
+    let gradient = Constants.BackgroundImage.gradient4()
+    gradient.contentMode = .scaleAspectFill
+    view.addSubview(gradient)
+    gradient.frame = view.bounds
+    gradient.autoresizingMask = [.flexibleWidth, .flexibleHeight]
   }
   
   func setupMenuButton() {

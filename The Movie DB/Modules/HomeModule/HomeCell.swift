@@ -92,7 +92,7 @@ final class HomeCell: UITableViewCell {
   }
   
   fileprivate func commonInit() {
-    backgroundColor = .black
+    backgroundColor = .clear
     setupImageView()
     setupStackView()
   }

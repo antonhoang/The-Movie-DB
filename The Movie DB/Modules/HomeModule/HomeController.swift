@@ -15,7 +15,7 @@ final class HomeController: BaseController {
   fileprivate let cellID = Constants.CellIdentifiers.homeCellId.rawValue
   fileprivate let screenTitle = Constants.ScreenTitles.home.rawValue
   fileprivate var model: [MovieVO] = []
-  fileprivate let statusBarColor = UIColor.black
+  fileprivate let statusBarColor = UIColor.white
   
   fileprivate lazy var tableView: UITableView = {
     $0.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +23,7 @@ final class HomeController: BaseController {
     $0.delegate = self
     $0.dataSource = self
     $0.separatorStyle = .none
-    $0.backgroundColor = .black
+    $0.backgroundColor = .clear
     $0.rowHeight = UIScreen.main.bounds.height / 3.2    
     return $0
   }(UITableView())
@@ -37,9 +37,8 @@ final class HomeController: BaseController {
     setupUI()
     setupTableView()
     dataBindings()
-    setupNavigationBar(false, backgroundColor: statusBarColor,
-                       barTintColor: statusBarColor, shadowImage: UIImage())
     navigationController?.navigationBar.barStyle = .black
+    navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
   }
   
   override func viewWillAppear(_ animated: Bool) {

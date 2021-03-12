@@ -32,7 +32,7 @@ final class FavoriteController: BaseController {
     $0.delegate = self
     $0.dataSource = self
     $0.separatorStyle = .none
-    $0.backgroundColor = .black
+    $0.backgroundColor = .clear
     $0.rowHeight = UIScreen.main.bounds.height / 3.2
     return $0
   }(UITableView())
