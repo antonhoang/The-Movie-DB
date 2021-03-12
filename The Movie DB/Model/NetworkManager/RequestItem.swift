@@ -24,6 +24,9 @@ enum RequestItem {
   case createAccessToken
   case deleteAccessToken
   
+  //MARK: - Favorite
+  case markAsFavorite(accountId: String)
+  
 }
 
 extension RequestItem: EndPointType {
@@ -31,7 +34,7 @@ extension RequestItem: EndPointType {
   var scheme: String {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies,
-         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken:
+         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite:
       return "https"
     }
   }
@@ -39,7 +42,7 @@ extension RequestItem: EndPointType {
   var host: String {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies,
-         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken:
+         .getUpcomingMovies, .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite:
       return "api.themoviedb.org"
     }
   }
@@ -66,6 +69,9 @@ extension RequestItem: EndPointType {
       return "/4/auth/access_token"
     case .deleteAccessToken:
       return "/4/auth/request_token"
+      
+    case .markAsFavorite(let accountId):
+      return "/3/account/\(accountId)/favorite"
     }
   }
   
@@ -74,7 +80,7 @@ extension RequestItem: EndPointType {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies,
          .getDetailsMovie, .getImageConfiguration:
       return .get
-    case .createAccessToken:
+    case .createAccessToken, .markAsFavorite:
       return .post
     case .deleteAccessToken:
       return .delete
@@ -84,7 +90,7 @@ extension RequestItem: EndPointType {
   var headers: [String : String]? {
     switch self {
     case .getLatestMovies, .getNowPlayingMovies, .getPopularMovies, .getTopRatedMovies, .getUpcomingMovies,
-         .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken:
+         .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken, .markAsFavorite:
       return ["Authorization" : "Bearer \(Constants.APICreditials.bearer.rawValue)"]
     }
   }
@@ -95,6 +101,9 @@ extension RequestItem: EndPointType {
          .getDetailsMovie, .getImageConfiguration, .createAccessToken, .deleteAccessToken:
       return ["api_key" : "\(Constants.APICreditials.api_key.rawValue)",
               "language" : "en-US"]
+    case .markAsFavorite:
+      return ["api_key" : "\(Constants.APICreditials.api_key.rawValue)",
+              "session_id" : "someId"]
     }
   }
 }
