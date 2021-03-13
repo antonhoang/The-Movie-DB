@@ -12,10 +12,8 @@ import UIKit
 final class FeedCell: UICollectionViewCell {
   //MARK: - Properties
   
-  fileprivate weak var userFeedNews: UIView!
-  fileprivate weak var feedDescription: UILabel!
   fileprivate let spacing: CGFloat = 8
-  fileprivate lazy var horizontalStackViewHeight: CGFloat = 48 + spacing
+  fileprivate lazy var horizontalStackViewHeight: CGFloat = 48 + spacing + spacing
   
   fileprivate let userPostImage: UIImageView = {
     $0.contentMode = .scaleAspectFit
@@ -32,25 +30,40 @@ final class FeedCell: UICollectionViewCell {
     return $0
   }(UILabel())
   
+  fileprivate let feedDescription: UILabel = {
+    $0.numberOfLines = 3
+    $0.font = .systemFont(ofSize: 14)
+    return $0
+  }(UILabel())
+  
   fileprivate lazy var verticalStackView: UIStackView = {
-    $0.backgroundColor = .white
+    $0.backgroundColor = .black
     $0.axis = .vertical
     $0.distribution = .fillProportionally
-    $0.spacing = spacing
     return $0
-  }(UIStackView(arrangedSubviews: [horizontalStackView, userPostImage]))
+  }(UIStackView(arrangedSubviews: [topHorizontalStackView,
+                                   userPostImage,
+                                   bottomHorizontalStackView]))
   
-  fileprivate lazy var horizontalStackView: UIStackView = {
+  fileprivate lazy var topHorizontalStackView: UIStackView = {
     $0.axis = .horizontal
     $0.backgroundColor = .white
     $0.isLayoutMarginsRelativeArrangement = true
-    $0.layoutMargins = UIEdgeInsets(top: spacing, left: 0, bottom: 0, right: 0)
+    $0.layoutMargins = UIEdgeInsets(top: spacing, left: 0, bottom: spacing, right: 0)
     return $0
-  }(UIStackView(arrangedSubviews: [SpacerView(space: 16),
+  }(UIStackView(arrangedSubviews: [SpacerView(space: spacing),
                                    userAvatar,
-                                   SpacerView(space: 16),
+                                   SpacerView(space: spacing),
                                    userName, UIView()]))
 
+  fileprivate lazy var bottomHorizontalStackView: UIStackView = {
+    $0.axis = .horizontal
+    $0.backgroundColor = .white
+    $0.distribution = .fillProportionally
+    return $0
+  }(UIStackView(arrangedSubviews: [SpacerView(space: spacing),
+                                   feedDescription,
+                                   SpacerView(space: spacing)]))
   
   //MARK: - Lifecycle
   
@@ -66,6 +79,10 @@ final class FeedCell: UICollectionViewCell {
   
   override func prepareForReuse() {
     super.prepareForReuse()
+    userAvatar.image = nil
+    userPostImage.image = nil
+    userName.text = nil
+    feedDescription.text = nil
   }
   
   //MARK: - Setup views
@@ -73,9 +90,12 @@ final class FeedCell: UICollectionViewCell {
     setupUI()
     setupVerticalStackView()
 
-    horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+    topHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+    
     NSLayoutConstraint.activate([
-      horizontalStackView.heightAnchor.constraint(equalToConstant: horizontalStackViewHeight)
+      topHorizontalStackView.heightAnchor.constraint(equalToConstant: horizontalStackViewHeight),
+      bottomHorizontalStackView.heightAnchor.constraint(equalToConstant: horizontalStackViewHeight * 1.2)
     ])
   }
   
@@ -85,9 +105,11 @@ final class FeedCell: UICollectionViewCell {
   }
   
   func configureFeedPost(imageName: String, contentName: String) {
-    userPostImage.image = UIImage(named: imageName)
+    userPostImage.image = UIImage(named: contentName)
     userAvatar.image = UIImage(named: imageName)
-    userName.text = "contentName"
+    userName.text = imageName
+    let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    feedDescription.text = text
   }
     
   fileprivate func setupUI() {
