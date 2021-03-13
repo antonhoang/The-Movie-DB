@@ -10,10 +10,32 @@ import UIKit
 
 class BaseController: UIViewController {
   
+  fileprivate let activityIndicator: UIActivityIndicatorView = {
+    return $0
+  }(UIActivityIndicatorView())
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupMenuButton()
     setupViews()
+    setupActivityIndicator()
+  }
+  
+  fileprivate func setupActivityIndicator() {
+    view.addSubview(activityIndicator)
+    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    ])
+  }
+  
+  func showLoader() {
+    activityIndicator.startAnimating()
+  }
+  
+  func hideLoader() {
+    activityIndicator.stopAnimating()
   }
   
   func setupViews() {

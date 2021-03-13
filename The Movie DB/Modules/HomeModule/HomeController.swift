@@ -34,6 +34,7 @@ final class HomeController: BaseController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    showLoader()
     setupUI()
     setupTableView()
     dataBindings()
@@ -50,6 +51,7 @@ final class HomeController: BaseController {
     viewModel?.items.bind(observer: { [weak self] (moviesVO) in
       guard let self = self, !moviesVO.isEmpty else { return }
       self.model = moviesVO
+      self.hideLoader()
       DispatchQueue.main.async {
         self.tableView.reloadData()        
       }

@@ -58,6 +58,8 @@ final class PresentFinishGridView: CommonInitView {
     addSubview(finishButton)
     self.finishButton = finishButton
     finishButton.setTitle("Share your opinion with us", for: .normal)
+    finishButton.titleLabel?.numberOfLines = 0
+    finishButton.titleLabel?.textAlignment = .center
     finishButton.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
     finishButton.titleLabel?.textColor = .white
     finishButton.titleLabel?.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
@@ -65,7 +67,9 @@ final class PresentFinishGridView: CommonInitView {
     finishButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       finishButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-      finishButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+      finishButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+      finishButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+      finishButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
     ])
   }
 }
