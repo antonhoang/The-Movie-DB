@@ -17,6 +17,7 @@ final class FeedCell: UICollectionViewCell {
   
   fileprivate let userPostImage: UIImageView = {
     $0.contentMode = .scaleAspectFit
+    $0.backgroundColor = .black
     return $0
   }(UIImageView())
   
@@ -26,18 +27,19 @@ final class FeedCell: UICollectionViewCell {
   }(RoundImage(frame: .zero))
   
   fileprivate let userName: UILabel = {
-    $0.textColor = .black
+    $0.textColor = .white
     return $0
   }(UILabel())
   
   fileprivate let feedDescription: UILabel = {
     $0.numberOfLines = 3
+    $0.textColor = .white
     $0.font = .systemFont(ofSize: 14)
     return $0
   }(UILabel())
   
   fileprivate lazy var verticalStackView: UIStackView = {
-    $0.backgroundColor = .black
+    $0.backgroundColor = .clear
     $0.axis = .vertical
     $0.distribution = .fillProportionally
     return $0
@@ -47,7 +49,7 @@ final class FeedCell: UICollectionViewCell {
   
   fileprivate lazy var topHorizontalStackView: UIStackView = {
     $0.axis = .horizontal
-    $0.backgroundColor = .white
+    $0.backgroundColor = .clear
     $0.isLayoutMarginsRelativeArrangement = true
     $0.layoutMargins = UIEdgeInsets(top: spacing, left: 0, bottom: spacing, right: 0)
     return $0
@@ -58,7 +60,7 @@ final class FeedCell: UICollectionViewCell {
 
   fileprivate lazy var bottomHorizontalStackView: UIStackView = {
     $0.axis = .horizontal
-    $0.backgroundColor = .white
+    $0.backgroundColor = .black
     $0.distribution = .fillProportionally
     return $0
   }(UIStackView(arrangedSubviews: [SpacerView(space: spacing),
