@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol FeedFlow {
-  func coordinateToCard(imageStr: String)
+  func coordinateToDetails(movieVO: MovieVO)
 }
 
 final class FeedCoordinator: CoordinatorProtocol, FeedFlow {
@@ -27,7 +27,9 @@ final class FeedCoordinator: CoordinatorProtocol, FeedFlow {
     navController.pushViewController(feedViewController, animated: false)
   }
   
-  func coordinateToCard(imageStr: String) {
+  func coordinateToDetails(movieVO: MovieVO) {
+    let detailsCoordinator = DetailsCoordinator(navController: navController, movieVO: movieVO)
+    coordinate(to: detailsCoordinator)
 //    let cardCoordinator = CardCoordinator(navController: navController, details: imageStr)
 //    coordinate(to: cardCoordinator)
   }

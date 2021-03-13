@@ -26,6 +26,7 @@ struct Constants {
     case home = "Home"
     case details = "Details"
     case favorite = "Favorite"
+    case feed = "Feed"
   }
   
   enum Images {

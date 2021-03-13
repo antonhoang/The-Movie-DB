@@ -15,6 +15,10 @@ final class FeedCell: UICollectionViewCell {
   fileprivate let spacing: CGFloat = 8
   fileprivate lazy var horizontalStackViewHeight: CGFloat = 48 + spacing + spacing
   
+  fileprivate let postStatusView: UIView = {
+    return $0 
+  }(UIView())
+  
   fileprivate let userPostImage: UIImageView = {
     $0.contentMode = .scaleAspectFit
     $0.backgroundColor = .black

@@ -12,7 +12,8 @@ import UIKit
 final class FeedController: BaseController {
   var viewModel: FeedViewModelProtocol!
   var coordinator: FeedFlow!
-    
+  fileprivate let screenTitle = Constants.ScreenTitles.favorite.rawValue
+
   fileprivate lazy var feedCollectionView: UICollectionView = {
     $0.backgroundColor = .clear
     $0.showsVerticalScrollIndicator = false
@@ -46,6 +47,7 @@ final class FeedController: BaseController {
     dataBindings()
     navigationController?.navigationBar.barStyle = .black
     navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    navigationItem.title = screenTitle
   }
   
   fileprivate func dataBindings() {
@@ -106,8 +108,8 @@ extension FeedController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     switch FeedViewType(indexPath: indexPath) {
     case .card:
-      let cardDetails = model[indexPath.row]
-//      coordinator.coordinateToCard(imageStr: cardDetails)
+      let movieVO = model[indexPath.row]
+      coordinator.coordinateToDetails(movieVO: movieVO)
     case .list:
       print("list")
     default:

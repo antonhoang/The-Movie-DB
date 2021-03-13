@@ -17,9 +17,8 @@ struct MenuItem {
 final class MenuController: UIViewController {
         
   fileprivate let menuItems = [
-    MenuItem(icon: #imageLiteral(resourceName: "bookmarks"), title: "Posts"),
-    MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "List"),
-    MenuItem(icon: #imageLiteral(resourceName: "lists"), title: "Favourites"),
+    MenuItem(icon: #imageLiteral(resourceName: "bookmarks"), title: "Feed"),
+    MenuItem(icon: #imageLiteral(resourceName: "profile"), title: "Home")
   ]
   
   fileprivate let menuCellId = Constants.CellIdentifiers.menuCellId.rawValue
