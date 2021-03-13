@@ -30,7 +30,5 @@ final class FeedCoordinator: CoordinatorProtocol, FeedFlow {
   func coordinateToDetails(movieVO: MovieVO) {
     let detailsCoordinator = DetailsCoordinator(navController: navController, movieVO: movieVO)
     coordinate(to: detailsCoordinator)
-//    let cardCoordinator = CardCoordinator(navController: navController, details: imageStr)
-//    coordinate(to: cardCoordinator)
   }
 }
