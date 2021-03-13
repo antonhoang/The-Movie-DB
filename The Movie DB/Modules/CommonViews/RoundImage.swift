@@ -11,16 +11,16 @@ import UIKit
 
 final class RoundImage: UIImageView {
   
+  override var intrinsicContentSize: CGSize {
+    return CGSize(width: 48, height: 48)
+  }
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
   }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
-  }
-  
-  func setupImage(with image: UIImage) {
-    self.image = image
   }
   
   override func layoutSubviews() {
