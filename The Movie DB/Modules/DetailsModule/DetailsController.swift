@@ -53,6 +53,7 @@ final class DetailsController: BaseController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    showLoader()
     setupUI()
     dataBindings()
   }
@@ -71,6 +72,7 @@ final class DetailsController: BaseController {
       [weak self] (detailsVO) in
       self?.imageView.loadImage(imagePath: detailsVO.imageUrlPath)
       DispatchQueue.main.async { [weak self] in
+        self?.hideLoader()
         self?.detailsContentView.setContent(title: detailsVO.original_title,
                                             tagline: detailsVO.tagline,
                                             overview: detailsVO.overview)
