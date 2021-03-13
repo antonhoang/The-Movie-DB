@@ -23,6 +23,8 @@ final class FeedCell: UICollectionViewCell {
   
   fileprivate let userAvatar: RoundImage = {
     $0.contentMode = .scaleAspectFill
+    $0.layer.borderWidth = 1
+    $0.layer.borderColor = UIColor.darkGray.cgColor
     return $0
   }(RoundImage(frame: .zero))
   
@@ -60,7 +62,7 @@ final class FeedCell: UICollectionViewCell {
 
   fileprivate lazy var bottomHorizontalStackView: UIStackView = {
     $0.axis = .horizontal
-    $0.backgroundColor = .black
+    $0.backgroundColor = .clear
     $0.distribution = .fillProportionally
     return $0
   }(UIStackView(arrangedSubviews: [SpacerView(space: spacing),
