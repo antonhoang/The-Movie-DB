@@ -31,7 +31,6 @@ final class AuthController: UIViewController {
     setupStackView()
     setupViewsForStackView()
     setupPagingControl()
-    
     setupScrollableImage()
   }
   
@@ -60,7 +59,6 @@ final class AuthController: UIViewController {
     scrollView.delegate = self
     scrollView.makeHorizontalPagingWithinIndicatorsAndBounce()
     scrollView.fillSuperview()
-//    scrollView.fill(to: view, left: 0, right: 0)
   }
   
   fileprivate func setupStackView() {
@@ -68,7 +66,6 @@ final class AuthController: UIViewController {
     scrollView.addSubview(stackView)
     self.stackView = stackView
     stackView.anchor(top: scrollView.topAnchor, leading: scrollView.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: scrollView.trailingAnchor)
-//    stackView.fill(to: scrollView, left: 0, right: 0)
   }
   
   fileprivate func setupViewsForStackView() {

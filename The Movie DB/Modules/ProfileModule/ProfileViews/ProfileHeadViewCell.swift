@@ -111,7 +111,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
     let profileDescription = UILabel()
     liconsStatsStackView.addArrangedSubview(profileDescription)
     self.profileDescription = profileDescription
-    profileDescription.text = "test test"
+    profileDescription.text = "Description"
     profileDescription.textAlignment = .center
     profileDescription.textColor = .white
   }
@@ -191,7 +191,7 @@ final class ProfileHeadViewCell: UICollectionViewCell {
   
   func configureCell(imageName: String, title: String) {
     patronsInfo.titleText = title
-    patronsInfo.subtitleText = "Patrons"
+    patronsInfo.subtitleText = "Followers"
     subscriptionsInfo.titleText = title
     subscriptionsInfo.subtitleText = "Subscriptions"
   }

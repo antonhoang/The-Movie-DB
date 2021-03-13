@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 protocol ProfileCoordinatorFlow {
+  func coordinateToSettings()
 //  func coordinateToProfileContent(with index: Int, content: [String])
-//  func coordinateToSettings()
 //  func coordinateToSubs(with type: SubscriberListCoordinator.SubscriberType)
 }
 
@@ -36,10 +36,10 @@ final class ProfileCoordinator: CoordinatorProtocol {
 //    coordinate(to: profileContentCoordinator)
 //  }
 //
-//  func coordinateToSettings() {
-//    let settingCoordinator = SettingsCoordinator(navController: navController, window: window)
-//    coordinate(to: settingCoordinator)
-//  }
+  func coordinateToSettings() {
+    let settingCoordinator = SettingsCoordinator(navController: navController, window: window)
+    coordinate(to: settingCoordinator)
+  }
 //
 //  func coordinateToSubs(with type: SubscriberListCoordinator.SubscriberType) {
 //    let subscriberListCoordinator = SubscriberListCoordinator(navController: navController, with: type)

@@ -22,16 +22,16 @@ final class PresentFinishGridView: CommonInitView {
   override func сommonInit() {
     setupBackground()
     setupFinishButton()
-    setupAppleButton()
+//    setupAppleButton()
   }
   
   fileprivate func setupBackground() {
     backgroundColor = .clear
     let titleLabel = UILabel()
     addSubview(titleLabel)
-    titleLabel.setupLabelWith(text: "Buy my attention", textColor: .white, font: .boldSystemFont(ofSize: 35))
+//    titleLabel.setupLabelWith(text: "Buy my attention", textColor: .white, font: .boldSystemFont(ofSize: 35))
 //    titleLabel.topLeft(to: self, topSpace: BMA.Margin.marginForShape20Percent, leftSpace: BMA.Margin.marginForShape5Percent)
-    titleLabel.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
+//    titleLabel.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
   }
   
   fileprivate func setupAppleButton() {
@@ -57,7 +57,11 @@ final class PresentFinishGridView: CommonInitView {
     let finishButton = CommonButton()
     addSubview(finishButton)
     self.finishButton = finishButton
-    finishButton.setTitle("Finish", for: .normal)
+    finishButton.setTitle("Share your opinion with us", for: .normal)
+    finishButton.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
+    finishButton.titleLabel?.textColor = .white
+    finishButton.titleLabel?.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
+
     finishButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       finishButton.centerXAnchor.constraint(equalTo: centerXAnchor),

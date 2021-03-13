@@ -38,13 +38,13 @@ final class ProfileController: BaseController {
   }
   
   private func setupSettingButton() {
-    let settingButton = UIBarButtonItem(image: Constants.TabBar.settings.image, style: .plain, target: self, action: #selector(coordinateToSettings))
+    let settingButton = UIBarButtonItem(image: Constants.TabBar.settings.image?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(coordinateToSettings))
     navigationItem.title = "behaviourrelay"
     navigationItem.rightBarButtonItems = [settingButton]
   }
   
   @objc private func coordinateToSettings() {
-//    coordinator.coordinateToSettings()
+    coordinator.coordinateToSettings()
   }
   
   private func setupCollectionView() {
@@ -52,7 +52,6 @@ final class ProfileController: BaseController {
     view.addSubview(collectionView)
     self.collectionView = collectionView
     collectionView.fillSuperview()
-//    collectionView.fillEqually(to: view)
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.backgroundColor = .clear
@@ -134,7 +133,7 @@ extension ProfileController: UICollectionViewDataSource {
     case .head:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifier.profileHeadCellID, for: indexPath) as? ProfileHeadViewCell else { assert(false) }
       
-      cell.configureCell(imageName: images[indexPath.row], title: "1.2M")
+      cell.configureCell(imageName: images[indexPath.row], title: "9999")
       cell.actionPublisher.sink { [weak self] (action) in
         switch action {
         case .patrons:

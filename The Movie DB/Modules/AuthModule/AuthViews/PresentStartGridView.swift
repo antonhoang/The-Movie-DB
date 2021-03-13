@@ -22,18 +22,6 @@ final class PresentStartGridView: CommonInitView {
   
   fileprivate func setupBackground() {
     backgroundColor = .clear
-    let titleLabel = UILabel()
-    addSubview(titleLabel)
-    titleLabel.setupLabelWith(text: "", textColor: .white, font: .boldSystemFont(ofSize: 35))
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-      titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-    ])
-//    titleLabel.topLeft(to: self,
-//                       topSpace: BMA.Margin.marginForShape20Percent,
-//                       leftSpace: BMA.Margin.marginForShape5Percent)
-//    titleLabel.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
   }
   
   fileprivate func setupDescription() {
@@ -41,12 +29,15 @@ final class PresentStartGridView: CommonInitView {
     addSubview(textDescription)
     textDescription.textAlignment = .center
     textDescription.numberOfLines = 0
-//    textDescription.center(to: self)
-//    textDescription.horizontal(to: self,
-//                               leftSpace: BMA.Margin.marginForShape10Percent,
-//                               rightSpace: -BMA.Margin.marginForShape10Percent)
-    
-    let text = "New form of communication.\nYour attention deserve more than an ordinary thumb up"
+    textDescription.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      textDescription.centerXAnchor.constraint(equalTo: centerXAnchor),
+      textDescription.centerYAnchor.constraint(equalTo: centerYAnchor),
+      textDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Margin.marginForShape10Percent),
+      textDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Margin.marginForShape10Percent)
+    ])
+    textDescription.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
+    let text = "Let discover new movies from your friends and share yours with them"
     textDescription.setupLabelWith(text: text,
                                    textColor: .white, font: .preferredFont(forTextStyle: .largeTitle))
     

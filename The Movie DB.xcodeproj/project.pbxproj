@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A1F1CD625FD2347001C8054 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F1CD525FD2347001C8054 /* SettingsCoordinator.swift */; };
+		7A1F1CD925FD236D001C8054 /* SettingsAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F1CD825FD236D001C8054 /* SettingsAssembler.swift */; };
+		7A1F1CDC25FD2387001C8054 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F1CDB25FD2387001C8054 /* SettingsController.swift */; };
+		7A1F1CDF25FD23A1001C8054 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F1CDE25FD23A1001C8054 /* SettingsViewModel.swift */; };
 		7A2B003E25E2E18200D253BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B003D25E2E18200D253BD /* AppDelegate.swift */; };
 		7A2B004025E2E18200D253BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B003F25E2E18200D253BD /* SceneDelegate.swift */; };
 		7A2B004225E2E18200D253BD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B004125E2E18200D253BD /* HomeController.swift */; };
@@ -96,6 +100,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A1F1CD525FD2347001C8054 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		7A1F1CD825FD236D001C8054 /* SettingsAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembler.swift; sourceTree = "<group>"; };
+		7A1F1CDB25FD2387001C8054 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		7A1F1CDE25FD23A1001C8054 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		7A2B003A25E2E18200D253BD /* The Movie DB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Movie DB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A2B003D25E2E18200D253BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A2B003F25E2E18200D253BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +205,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A1F1CD325FD22F4001C8054 /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				7A1F1CD525FD2347001C8054 /* SettingsCoordinator.swift */,
+				7A1F1CD825FD236D001C8054 /* SettingsAssembler.swift */,
+				7A1F1CDB25FD2387001C8054 /* SettingsController.swift */,
+				7A1F1CDE25FD23A1001C8054 /* SettingsViewModel.swift */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
 		7A2B003125E2E18200D253BD = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +254,7 @@
 		7A2B007225E3008F00D253BD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7A1F1CD325FD22F4001C8054 /* SettingsModule */,
 				FD09D6A625F937B100A7E2E6 /* ProfileModule */,
 				FD09D68225F92E0600A7E2E6 /* FeedModule */,
 				7A36A64C25F820EC006F958A /* CommonViews */,
@@ -646,6 +666,7 @@
 				7A2B008625E3016C00D253BD /* FavoriteAssembler.swift in Sources */,
 				7A36A5F825F6A466006F958A /* BaseSlider+Actions.swift in Sources */,
 				7A952DA425F0342C00D4A2F6 /* MovieVO.swift in Sources */,
+				7A1F1CD925FD236D001C8054 /* SettingsAssembler.swift in Sources */,
 				FD09D68025F92C9200A7E2E6 /* CommonButton.swift in Sources */,
 				7A68A42125E8438B007B6B37 /* AppCoordinator.swift in Sources */,
 				7A36A64A25F8209D006F958A /* PresentFinishGridView.swift in Sources */,
@@ -655,6 +676,7 @@
 				7A68A42525E8457F007B6B37 /* Assembler.swift in Sources */,
 				7A36A60A25F6A557006F958A /* MenuCell.swift in Sources */,
 				7A36A63125F81E66006F958A /* AuthCoordinator.swift in Sources */,
+				7A1F1CD625FD2347001C8054 /* SettingsCoordinator.swift in Sources */,
 				7A952DDC25F5582800D4A2F6 /* ImageManager.swift in Sources */,
 				7A952D4425EA8E7D00D4A2F6 /* EndPointType.swift in Sources */,
 				7A36A64425F8208A006F958A /* PresentStartGridView.swift in Sources */,
@@ -666,6 +688,7 @@
 				7A36A61025F6A587006F958A /* ProfileImageView.swift in Sources */,
 				7A952DC825F501FC00D4A2F6 /* DetailsData.swift in Sources */,
 				7A2B009725E301AE00D253BD /* DetailsCoordinator.swift in Sources */,
+				7A1F1CDC25FD2387001C8054 /* SettingsController.swift in Sources */,
 				7A2B004225E2E18200D253BD /* HomeController.swift in Sources */,
 				7A36A60625F6A540006F958A /* MenuController.swift in Sources */,
 				FD09D69625F92E9200A7E2E6 /* FeedCell.swift in Sources */,
@@ -701,6 +724,7 @@
 				7A36A61625F6A5AB006F958A /* CustomMenuHeaderView.swift in Sources */,
 				7A36A5F525F6A455006F958A /* BaseSliderViewModel.swift in Sources */,
 				7A952DB025F3B96400D4A2F6 /* HomeCell.swift in Sources */,
+				7A1F1CDF25FD23A1001C8054 /* SettingsViewModel.swift in Sources */,
 				FD09D6AB25F937DB00A7E2E6 /* ProfileAssembler.swift in Sources */,
 				7A2B009A25E301B700D253BD /* DetailsViewModel.swift in Sources */,
 				7A36A65525F821D5006F958A /* UIView+Shadow.swift in Sources */,

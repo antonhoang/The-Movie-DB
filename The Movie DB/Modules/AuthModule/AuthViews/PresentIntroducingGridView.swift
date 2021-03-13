@@ -19,11 +19,6 @@ final class PresentIntroducingGridView: CommonInitView {
   
   fileprivate func setupBackground() {
     backgroundColor = .clear
-    let titleLabel = UILabel()
-    addSubview(titleLabel)
-    titleLabel.setupLabelWith(text: "Buy my attention", textColor: .white, font: .boldSystemFont(ofSize: 35))
-//    titleLabel.topLeft(to: self, topSpace: BMA.Margin.marginForShape20Percent, leftSpace: BMA.Margin.marginForShape5Percent)
-    titleLabel.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
   }
   
   fileprivate func setupDescription() {
@@ -31,12 +26,16 @@ final class PresentIntroducingGridView: CommonInitView {
     addSubview(textDescription)
     textDescription.textAlignment = .center
     textDescription.numberOfLines = 0
-//    textDescription.center(to: self)
-//    textDescription.horizontal(to: self,
-//                               leftSpace: BMA.Margin.marginForShape10Percent,
-//                               rightSpace: -BMA.Margin.marginForShape10Percent)
+    textDescription.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      textDescription.centerXAnchor.constraint(equalTo: centerXAnchor),
+      textDescription.centerYAnchor.constraint(equalTo: centerYAnchor),
+      textDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.Margin.marginForShape10Percent),
+      textDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.Margin.marginForShape10Percent)
+    ])
+    textDescription.drawShadow(offset: CGSize(width: 1, height: 1), opacity: 1, color: .black, radius: 1)
     
-    let text = "Share likes among yourself. Receive cash rewards back to your pocket"
+    let text = "Do reviews, rate, discuss with other people"
     textDescription.setupLabelWith(text: text,
                                    textColor: .white, font: .preferredFont(forTextStyle: .largeTitle))
     
