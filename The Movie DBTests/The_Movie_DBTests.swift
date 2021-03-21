@@ -19,11 +19,9 @@ final class MockNetworkManager: NetworkManagerProtocol {
             
             guard let _ = response else { XCTFail("Invalid URL, check Request Item"); return }
             guard let data = data else { XCTFail("Invalid URL, check Request Item"); return }
-        
-            guard let _ = error else {
-                XCTAssertNotNil(response)
-                XCTAssertNotNil(data)
-                return
+              
+            if let error = error {
+                XCTFail(error.localizedDescription)
             }
             
             do {
@@ -54,21 +52,5 @@ class The_Movie_DBTests: XCTestCase {
     func testHomeResponse() {
         let endPoint = RequestItem.getPopularMovies
         mockNetworkManager.sendDataRequest(endPoint: endPoint, response: MovieData.self) { _ in }
-    }
-    
-    func testDetailResponse() {
-        let movieId = 527774
-        
-        let endPoint = RequestItem.getDetailsMovie(movie_id: movieId)
-        mockNetworkManager.sendDataRequest(endPoint: endPoint, response: DetailsData.self) { response in
-            
-            switch response {
-            case .success(let json):
-                XCTAssertNotNil(json)
-
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
-            }
-        }
     }
 }
