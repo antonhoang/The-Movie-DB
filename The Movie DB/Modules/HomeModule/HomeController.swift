@@ -69,13 +69,6 @@ final class HomeController: BaseController {
   
   fileprivate func setupUI() {
     navigationItem.title = screenTitle
-    let image = UIImage(named: Constants.Images.popcorn)?.withRenderingMode(.alwaysOriginal)
-    let button = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(handleMenu(_:)))
-    navigationItem.leftBarButtonItem = button
-  }
-  
-  @objc fileprivate func handleMenu(_ sender: UIBarButtonItem) {
-    print(#function)
   }
 }
 
