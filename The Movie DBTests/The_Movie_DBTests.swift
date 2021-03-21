@@ -18,7 +18,22 @@ final class MockNetworkManager: NetworkManagerProtocol {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let _ = response else { XCTFail("Invalid URL, check Request Item"); return }
-            guard let _ = data else { XCTFail("Invalid URL, check Request Item"); return }
+            guard let data = data else { XCTFail("Invalid URL, check Request Item"); return }
+        
+            guard let _ = error else {
+                XCTAssertNotNil(response)
+                XCTAssertNotNil(data)
+                return
+            }
+            
+            do {
+                let json = try JSONDecoder().decode(T.self, from: data)
+                XCTAssertNotNil(json)
+                handler?(.success(json))
+            } catch let error {
+                XCTFail(error.localizedDescription)
+                handler?(.failure(error))
+            }
         }
         task.resume()
     }
@@ -40,17 +55,20 @@ class The_Movie_DBTests: XCTestCase {
         let endPoint = RequestItem.getPopularMovies
         mockNetworkManager.sendDataRequest(endPoint: endPoint, response: MovieData.self) { _ in }
     }
+    
+    func testDetailResponse() {
+        let movieId = 527774
+        
+        let endPoint = RequestItem.getDetailsMovie(movie_id: movieId)
+        mockNetworkManager.sendDataRequest(endPoint: endPoint, response: DetailsData.self) { response in
+            
+            switch response {
+            case .success(let json):
+                XCTAssertNotNil(json)
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
         }
     }
-
 }
