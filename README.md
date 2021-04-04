@@ -1,5 +1,4 @@
 # The-Movie-DB
-Test project
 ![54dv4n](https://user-images.githubusercontent.com/62542442/113522568-3ae50a80-95aa-11eb-9261-e03ac1f5ffce.gif)
 ![54dvf1](https://user-images.githubusercontent.com/62542442/113522602-a202bf00-95aa-11eb-9a46-741046433823.gif)
 ![54dvuz](https://user-images.githubusercontent.com/62542442/113522669-340ac780-95ab-11eb-9646-d53dead7dc06.gif)
